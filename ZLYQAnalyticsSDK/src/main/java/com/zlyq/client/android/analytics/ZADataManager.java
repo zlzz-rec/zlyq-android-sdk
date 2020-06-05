@@ -281,6 +281,16 @@ public final class ZADataManager {
             EConstant.COLLECT_URL = url;
             return this;
         }
+
+        /**
+         * @param apiKey
+         * @return
+         */
+        public  Builder setApiKey(String apiKey) {
+            EConstant.API_KEY = apiKey;
+            return this;
+        }
+
         /**
          * cookie 动态注入接口
          * @param cookieIntercept

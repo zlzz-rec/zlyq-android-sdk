@@ -21,6 +21,7 @@ public class App extends Application {
 
         ZADataManager.Builder builder = new ZADataManager.Builder(this);
         builder.setPushUrl("http://47.93.23.69:8210")//TODO 必填!!!!!!
+                .setApiKey("abcdefg")
                 .setDebug(BuildConfig.DEBUG)//是否是debug
                 .setSidPeriodMinutes(15)//sid改变周期
                 .setPushLimitMinutes(5)//多少分钟 push一次

@@ -24,6 +24,10 @@ package com.zlyq.client.android.analytics;
      */
     public static String COLLECT_URL = "";
 
+    /**
+     * API_KEY
+     */
+    public static String API_KEY = "";
     /***********===================**time schedule**=============*********/
 
     /**

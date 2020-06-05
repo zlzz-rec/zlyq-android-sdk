@@ -23,6 +23,7 @@ import android.os.Looper;
 import android.os.SystemClock;
 import android.text.TextUtils;
 
+import com.zlyq.client.android.analytics.EConstant;
 import com.zlyq.client.android.analytics.utils.EMD5Utils;
 import org.json.JSONObject;
 import java.io.IOException;
@@ -175,7 +176,8 @@ public abstract class Request<T> implements Comparable<Request<T>> {
         return result;
     }
 
-    public Map addHeaderSign(String url, Map headers) {
+    public Map addHeaderSign(String url) {
+        Map headers = new HashMap();
         try {
             if (url != null) {
                 Map<String, String> getUrlParams = getGetUrlParams(url);
@@ -647,7 +649,7 @@ public abstract class Request<T> implements Comparable<Request<T>> {
     public String getSignParam(Map<String, String> params) {
         try {
             //sign = md5(age=12&name=John&time=1500000000000&abcdef&gender=male&race=Chinese)
-            String secret = "abcdef";
+            String secret = EConstant.API_KEY;
             String result = "";
             // url参数升序排序然后拼接成字符串
             List<String> keys = new ArrayList<>();

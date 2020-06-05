@@ -33,8 +33,8 @@ dependencies {
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
 
     implementation 'com.alibaba:fastjson:1.2.21'
-//    implementation(name: 'ZLYQAnalyticsSDK-release', ext: 'aar')
 
+//    implementation 'com.zlyq.analytics:zlyq-android-sdk:1.0.0'
     implementation project(path: ':ZLYQAnalyticsSDK')
 
 

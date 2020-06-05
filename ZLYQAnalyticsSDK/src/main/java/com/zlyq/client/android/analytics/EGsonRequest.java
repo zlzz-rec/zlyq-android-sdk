@@ -47,7 +47,7 @@ public class EGsonRequest<T> extends Request<T> {
                         Response.Listener<T> listener, Response.ErrorListener errorListener) {
         super(method, url, errorListener);
         this.clazz = clazz;
-        this.headers = addHeaderSign(url, headers);
+        this.headers = addHeaderSign(url);
         this.listener = listener;
         if(method==Method.POST){
             this.params=addPostParams(params);
