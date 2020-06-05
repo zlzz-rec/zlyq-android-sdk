@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <Button
+        android:id="@+id/btn_event"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="点击事件"
+        android:layout_centerInParent="true" />
+
+    <Button
+        android:id="@+id/btn_login"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="登陆" />
+
+    <Button
+        android:id="@+id/set_user_profile"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="set_user_profile" />
+
+    <Button
+        android:id="@+id/set_once_user_profile"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="set_once_user_profile" />
+
+    <Button
+        android:id="@+id/append_user_profile"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="append_user_profile" />
+
+    <Button
+        android:id="@+id/increase_user_profile"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="increase_user_profile" />
+
+    <Button
+        android:id="@+id/delete_user_profile"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="delete_user_profile" />
+
+    <Button
+        android:id="@+id/unset_user_profile"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="unset_user_profile" />
+
+    <Button
+        android:id="@+id/login_out"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="登出" />
+
+    <Button
+        android:id="@+id/test"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        android:text="测试" />
+    <TextView
+        android:id="@+id/text_log"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+</LinearLayout>
