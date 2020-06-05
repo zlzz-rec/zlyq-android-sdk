@@ -4,7 +4,7 @@ apply plugin: 'maven'
 // 2.maven-信息
 ext {// ext is a gradle closure allowing the declaration of global properties
     // 这个路径是从Github上Clone的本地路径
-    GITHUB_REPO_PATH = "/Users/tanfangliang/桌面/OtherProject/JJEvent-master"
+    GITHUB_REPO_PATH = "/Users/tanfangliang/Desktop/OtherProject/new/zlyq-android-sdk"
     PUBLISH_GROUP_ID = 'com.zlyq.client.android.analytics'
     PUBLISH_ARTIFACT_ID = 'ZLYQAnalyticsSDK'
     PUBLISH_VERSION = '1.0.0'
@@ -16,7 +16,7 @@ uploadArchives {
         //这里就是最后输出地址，在自己电脑上新建个文件夹，把文件夹路径粘贴在此
         //注意”file://“ + 路径，有三个斜杠，别漏了
         //用户/tanfangliang/桌面/OtherProject/sdklibrary
-        repository(url: "file:///用户/tanfangliang/桌面/OtherProject/sdklibrary")
+        repository(url: "file:///Users/tanfangliang/Desktop/OtherProject/sdklibrary")
 
         pom.project {
             groupId project.PUBLISH_GROUP_ID
