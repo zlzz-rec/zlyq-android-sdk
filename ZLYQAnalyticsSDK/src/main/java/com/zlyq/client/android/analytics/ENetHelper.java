@@ -59,7 +59,6 @@ import static com.zlyq.client.android.analytics.EConstant.TAG;
         EGson mEGson = new GsonBuilder().disableHtmlEscaping().create();
         Map map = new HashMap();
         Map commonMap = ZADataDecorator.getPresetProperties();
-//        map.put("common", mEGson.toJson(commonMap));
         map.put("common", commonMap);
         map.put("type", "track");
         map.put("project_id", EConstant.PROJECT_ID);
@@ -159,7 +158,7 @@ import static com.zlyq.client.android.analytics.EConstant.TAG;
     }
 
     private static void clientUserProfile(Map map){
-        String path = API.BASE_URL + API.INIT_API + EConstant.PROJECT_ID;
+        String path = EConstant.COLLECT_URL + API.INIT_API + EConstant.PROJECT_ID;
         path = path+"?time="+System.currentTimeMillis();
         EGsonRequest request = new EGsonRequest<>(Request.Method.POST, path, ResultConfig.class, null, map,//191
                 new Response.Listener<ResultConfig>() {

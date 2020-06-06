@@ -1,0 +1,73 @@
+// 1.maven-插件
+apply plugin: 'maven'
+
+//def定义的变量才会在project中
+def POM_NAME='analytics'
+
+def POM_VERSION='1.0.0'
+
+def POM_ARTIFACTID="zlyq-android-sdk"//项目名称id
+
+def POM_GROUPID='com.zlyq.analytics'  //项目组id
+
+def POM_PACKAGING='aar'
+
+def POM_DESCRIPTION='lib for Android'
+
+def NEXUS_USERNAME='Qoiuy'   //用户名
+
+def NEXUS_PASSWORD='Ld6C#@zt%EBw!7r'  //密码
+
+def NEXUS_REPOSITORY_URL='https://maven.pkg.github.com/zlzz-rec/'//repository的URL
+
+//task androidJavadocs(type: Javadoc) {
+//    options.encoding = "utf-8"
+//    source = android.sourceSets.main.java.srcDirs
+//    //添加classpath，解析类型
+//    classpath += project.files(android.getBootClasspath().join(File.pathSeparator))
+//}
+//
+////打包doc
+//task androidJavadocsJar(type: Jar, dependsOn: androidJavadocs) {
+//    classifier = 'javadoc' //分类器，区分jar
+//    from androidJavadocs.destinationDir
+//}
+//
+////打包源码
+//task androidSourcesJar(type: Jar) {
+//    classifier = 'sources'//分类器，区分jar
+//    from android.sourceSets.main.java.srcDirs
+//}
+//
+//artifacts {
+//    archives androidSourcesJar
+//    archives androidJavadocsJar
+//}
+
+//打包main目录下代码和资源的 task
+task androidSourcesJar(type: Jar) {
+    classifier = 'sources'
+    from android.sourceSets.main.java.srcDirs
+}
+//配置需要上传到maven仓库的文件
+artifacts {
+    archives androidSourcesJar
+}
+
+uploadArchives {
+    repositories {
+        mavenDeployer {
+            repository(url: NEXUS_REPOSITORY_URL) {
+                authentication(userName: NEXUS_USERNAME, password: NEXUS_PASSWORD)
+            }
+            pom.project {
+                name POM_NAME
+                version POM_VERSION
+                artifactId POM_ARTIFACTID
+                groupId POM_GROUPID
+                packaging POM_PACKAGING
+                description POM_DESCRIPTION
+            }
+        }
+    }
+}

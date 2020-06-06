@@ -60,6 +60,7 @@ ZADataManager.destoryEventService();
 ```
 ZADataManager.Builder builder = new ZADataManager.Builder(this);
 builder.setPushUrl("接入方服务器地址")// 必填!!!!!!
+        .setApiKey("接入的apiKey")// 必填!!!!!!
         .setDebug(BuildConfig.DEBUG)//是否是debug
         .setPushLimitMinutes(5)//多少分钟 push一次
         .setPushLimitNum(100)//多少条 就主动进行push

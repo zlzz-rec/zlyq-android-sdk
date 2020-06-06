@@ -9,7 +9,7 @@ package com.zlyq.client.android.analytics.net;
  */
 public class API {
 
-    public static String BASE_URL = "http://47.93.23.69:8210";
+//    public static String BASE_URL = "http://47.93.23.69:8210";
 
     public static String EVENT_API = "/api/v1/track/";
 

@@ -1,14 +1,9 @@
 package com.zlyq.client.android.analytics.bean;
 
-
 import com.zlyq.client.android.analytics.db.annotations.Table;
 import com.zlyq.client.android.analytics.db.annotations.Transient;
 
 import java.io.Serializable;
-
-/**
- * Created by chenchangjun on 18/2/8.
- */
 
 @Table(name = "eventlist")
 public class EventBean implements Serializable{

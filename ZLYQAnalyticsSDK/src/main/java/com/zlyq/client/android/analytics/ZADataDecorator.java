@@ -1,12 +1,10 @@
 package com.zlyq.client.android.analytics;
 
 import android.content.Context;
-import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.graphics.Point;
 import android.os.Build;
-import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.DisplayMetrics;
 import android.view.Display;
@@ -16,10 +14,6 @@ import com.zlyq.client.android.analytics.net.gson.EGson;
 import com.zlyq.client.android.analytics.net.gson.GsonBuilder;
 import com.zlyq.client.android.analytics.utils.NetworkUtils;
 import com.zlyq.client.android.analytics.utils.SensorsDataUtils;
-
-import org.json.JSONException;
-import org.json.JSONObject;
-
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.text.SimpleDateFormat;
@@ -243,7 +237,6 @@ public class ZADataDecorator {
      * @return
      */
     public static synchronized String getIT() {
-        //    SimpleDateFormat myFmt2=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");//等价于now.toLocaleString()
         return String.valueOf(System.currentTimeMillis());
     }
 

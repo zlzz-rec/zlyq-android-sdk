@@ -102,3 +102,7 @@
 -keep public class com.zlyq.client.android.analytics.enums.LTPType* {
       public protected *;
 }
+
+-keep public class com.zlyq.client.android.analytics.utils.SensorsDataUtils* {
+      public protected *;
+}

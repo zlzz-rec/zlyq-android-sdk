@@ -1,5 +1,4 @@
 apply plugin: 'com.android.library'
-apply from: 'maven-release-aar.gradle'
 
 version = "1.0.0"
 
@@ -42,3 +41,4 @@ dependencies {
     implementation 'com.android.support:appcompat-v7:27.1.1'
 }
 
+//apply from: 'upload_local_maven.gradle'

@@ -4,27 +4,12 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
-import android.widget.TextView;
-
-import com.alibaba.fastjson.JSON;
 import com.zlyq.client.android.analytics.ZADataAPI;
-import com.zlyq.client.android.analytics.ZADataDecorator;
 import com.zlyq.client.android.analytics.ZADataManager;
-import com.zlyq.client.android.analytics.net.gson.EGson;
-import com.zlyq.client.android.analytics.net.gson.GsonBuilder;
-import com.zlyq.client.android.analytics.utils.SensorsDataUtils;
-
-import org.json.JSONObject;
-
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Set;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
-
-    private TextView textLog;
-    EGson mEGson;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,9 +24,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         findViewById(R.id.increase_user_profile).setOnClickListener(this);
         findViewById(R.id.delete_user_profile).setOnClickListener(this);
         findViewById(R.id.unset_user_profile).setOnClickListener(this);
-        findViewById(R.id.test).setOnClickListener(this);
-        textLog = findViewById(R.id.text_log);
-        mEGson = new GsonBuilder().disableHtmlEscaping().create();
     }
 
     @Override
@@ -50,11 +32,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         ZADataManager.destoryEventService();
     }
 
-    @Override
-    protected void onNewIntent(Intent intent) {
-        super.onNewIntent(intent);
-        SensorsDataUtils.handleSchemeUrl(this, intent);
-    }
+//    @Override
+//    protected void onNewIntent(Intent intent) {
+//        super.onNewIntent(intent);
+//        SensorsDataUtils.handleSchemeUrl(this, intent);
+//    }
 
     @Override
     public void onClick(View v) {
@@ -105,22 +87,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 ecp7.put("name", "小红");
                 ecp7.put("gender", "女");
                 ZADataAPI.unsetUserProfile(ecp7);
-                break;
-            case R.id.test:
-                Map params = new HashMap<>();
-                params.put("project_id", "2");
-                params.put("udid", "sdsdsds4343434");
-                params.put("user_id", "8888888888");
-                Map commonMap = ZADataDecorator.getPresetProperties();
-                params.put("common", commonMap);
-                JSONObject json = null;
-                try {
-                    json = new JSONObject(params);
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-                String str = json.toString();
-                textLog.setText(str);
                 break;
         }
     }

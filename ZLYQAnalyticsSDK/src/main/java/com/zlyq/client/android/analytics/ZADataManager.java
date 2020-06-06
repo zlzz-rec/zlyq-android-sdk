@@ -340,7 +340,7 @@ public final class ZADataManager {
     }
 
     private static void initConfig(Map map){
-        String path = API.BASE_URL + API.INIT_API + EConstant.PROJECT_ID;
+        String path = EConstant.COLLECT_URL + API.INIT_API + EConstant.PROJECT_ID;
         path = path+"?time="+System.currentTimeMillis();
         EGsonRequest request = new EGsonRequest<>(Request.Method.POST, path, ResultConfig.class, null, map,//191
             new Response.Listener<ResultConfig>() {
