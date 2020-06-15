@@ -41,4 +41,5 @@ dependencies {
     implementation 'com.android.support:appcompat-v7:27.1.1'
 }
 
-//apply from: 'upload_local_maven.gradle'
+apply from: 'maven-release-aar.gradle'//本地仓库
+//apply from: 'upload_local_maven.gradle'//maven远端仓库

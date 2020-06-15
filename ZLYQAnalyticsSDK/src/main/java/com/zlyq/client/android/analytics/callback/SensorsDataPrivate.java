@@ -22,6 +22,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.util.DisplayMetrics;
 
+import com.zlyq.client.android.analytics.ZADataManager;
 import com.zlyq.client.android.analytics.data.persistent.PersistentFirstDay;
 import com.zlyq.client.android.analytics.data.persistent.PersistentFirstStart;
 import com.zlyq.client.android.analytics.utils.DateFormatUtils;
@@ -213,6 +214,7 @@ import static com.zlyq.client.android.analytics.EConstant.TAG;
     private static void trackAppStart(Activity activity) {
         try {
             SensorsDataAPI.getInstance().track("appStart", null);
+            ZADataManager.pushEvent();
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -229,6 +231,7 @@ import static com.zlyq.client.android.analytics.EConstant.TAG;
             JSONObject properties = new JSONObject();
             properties.put("duration", duration(startTime, endTime));
             SensorsDataAPI.getInstance().track("appEnd", properties);
+            ZADataManager.pushEvent();
 //            mDatabaseHelper.commitAppEndEventState(true);
             mCurrentActivity = null;
         } catch (Exception e) {

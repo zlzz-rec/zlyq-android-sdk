@@ -205,6 +205,8 @@ public class ZADataDecorator {
             deviceInfo.put("user_id", ZADataManager.getUserId().get());
             deviceInfo.put("distinct_id", ZADataManager.getDistinctId().get());
             deviceInfo.put("type", type);
+            String mAndroidId = SensorsDataUtils.getAndroidID(ZADataManager.getContext());
+            deviceInfo.put("udid", mAndroidId);
         } catch (final Exception e) {
             ELogger.logError(TAG, "Exception getting app version name");
         }

@@ -26,6 +26,7 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
+import android.provider.Settings;
 import android.text.TextUtils;
 import android.view.View;
 import android.view.ViewGroup;
@@ -35,12 +36,23 @@ import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.Toast;
 import com.zlyq.client.android.analytics.EConstant;
+import com.zlyq.client.android.analytics.EGsonRequest;
 import com.zlyq.client.android.analytics.ELogger;
 import com.zlyq.client.android.analytics.ZADataAPI;
 import com.zlyq.client.android.analytics.R;
+import com.zlyq.client.android.analytics.ZADataManager;
+import com.zlyq.client.android.analytics.bean.ResultConfig;
 import com.zlyq.client.android.analytics.dialog.DebugModeSelectDialog;
+import com.zlyq.client.android.analytics.net.API;
+import com.zlyq.client.android.analytics.net.core.Request;
+import com.zlyq.client.android.analytics.net.core.Response;
+import com.zlyq.client.android.analytics.net.core.VolleyError;
+
 import java.lang.reflect.Method;
 import java.util.HashMap;
+import java.util.Map;
+
+import static com.zlyq.client.android.analytics.EConstant.TAG;
 
 @SuppressWarnings("unused")
 public class SensorsDataAutoTrackHelper {
@@ -145,6 +157,35 @@ public class SensorsDataAutoTrackHelper {
         }
     }
 
+    private static void putDebugMode(Activity activity, final String debugModeId){
+        String path = EConstant.COLLECT_URL + API.DEBUG_MODE_API + debugModeId;
+        path = path+"?time="+System.currentTimeMillis();
+        String mAndroidId = SensorsDataUtils.getAndroidID(activity);
+        Map map = new HashMap();
+        map.put("udid", mAndroidId);
+        EGsonRequest request = new EGsonRequest<>(Request.Method.PUT, path, ResultConfig.class, null, map,//191
+            new Response.Listener<ResultConfig>() {
+                @Override
+                public void onResponse(ResultConfig response) {
+                    int code = response.getCode();
+                    ELogger.logWrite(TAG, response.toString());
+                    if (code == 0) {
+                        ELogger.logWrite(TAG, "--debugMode Success--");
+                    } else {
+                        ELogger.logWrite(TAG, "--debugMode Error--");
+                    }
+                }
+            },
+            new Response.ErrorListener() {
+                @Override
+                public void onErrorResponse(VolleyError error) {
+                    ELogger.logWrite(TAG, "--onVolleyError--");
+                }
+            }
+        );
+        ZADataManager.getRequestQueue().add(request);
+    }
+
     public static void handleSchemeUrl(Activity activity, Intent intent) {
         try {
             Uri uri = null;
@@ -152,44 +193,47 @@ public class SensorsDataAutoTrackHelper {
                 uri = intent.getData();
             }
             if (uri != null) {
-                String host = uri.getHost();
-                if ("heatmap".equals(host)) {
-                    String featureCode = uri.getQueryParameter("feature_code");
-                    String postUrl = uri.getQueryParameter("url");
-                    showOpenHeatMapDialog(activity, featureCode, postUrl);
-                    intent.setData(null);
-                } else if ("debugmode".equals(host)) {
-                    String infoId = uri.getQueryParameter("info_id");
-                    showDebugModeSelectDialog(activity, infoId);
-                    intent.setData(null);
-                } else if ("visualized".equals(host)) {
-                    String featureCode = uri.getQueryParameter("feature_code");
-                    String postUrl = uri.getQueryParameter("url");
-                    String serverUrl = EConstant.COLLECT_URL;
-                    String visualizedProject = null, serverProject = null;
-                    if (!TextUtils.isEmpty(postUrl)) {
-                        Uri visualizedUri = Uri.parse(postUrl);
-                        if (visualizedUri != null) {
-                            visualizedProject = visualizedUri.getQueryParameter("project");
-                        }
-                    }
-                    if (!TextUtils.isEmpty(serverUrl)) {
-                        Uri serverUri = Uri.parse(serverUrl);
-                        if (serverUri != null) {
-                            serverProject = serverUri.getQueryParameter("project");
-                        }
-                    }
-                    if (!TextUtils.isEmpty(visualizedProject) && !TextUtils.isEmpty(serverProject) && TextUtils.equals(visualizedProject, serverProject)
-                    ) {
-                        showOpenVisualizedAutoTrackDialog(activity, featureCode, postUrl);
-                    } else {
-                        showDialog(activity, "App 集成的项目与电脑浏览器打开的项目不同，无法进行可视化全埋点。");
-                    }
-                    intent.setData(null);
-                } else if ("popupwindow".equals(host)) {
-                    showPopupWindowDialog(activity, uri);
-                    intent.setData(null);
-                }
+                String debugId = uri.getQueryParameter("debug_id");
+                showDebugModeSelectDialog(activity, debugId);
+                intent.setData(null);
+//                String host = uri.getHost();
+//                if ("heatmap".equals(host)) {
+//                    String featureCode = uri.getQueryParameter("feature_code");
+//                    String postUrl = uri.getQueryParameter("url");
+//                    showOpenHeatMapDialog(activity, featureCode, postUrl);
+//                    intent.setData(null);
+//                } else if ("debugmode.app".equals(host)) {
+//                    String debugId = uri.getQueryParameter("debug_id");
+//                    showDebugModeSelectDialog(activity, debugId);
+//                    intent.setData(null);
+//                } else if ("visualized".equals(host)) {
+//                    String featureCode = uri.getQueryParameter("feature_code");
+//                    String postUrl = uri.getQueryParameter("url");
+//                    String serverUrl = EConstant.COLLECT_URL;
+//                    String visualizedProject = null, serverProject = null;
+//                    if (!TextUtils.isEmpty(postUrl)) {
+//                        Uri visualizedUri = Uri.parse(postUrl);
+//                        if (visualizedUri != null) {
+//                            visualizedProject = visualizedUri.getQueryParameter("project");
+//                        }
+//                    }
+//                    if (!TextUtils.isEmpty(serverUrl)) {
+//                        Uri serverUri = Uri.parse(serverUrl);
+//                        if (serverUri != null) {
+//                            serverProject = serverUri.getQueryParameter("project");
+//                        }
+//                    }
+//                    if (!TextUtils.isEmpty(visualizedProject) && !TextUtils.isEmpty(serverProject) && TextUtils.equals(visualizedProject, serverProject)
+//                    ) {
+//                        showOpenVisualizedAutoTrackDialog(activity, featureCode, postUrl);
+//                    } else {
+//                        showDialog(activity, "App 集成的项目与电脑浏览器打开的项目不同，无法进行可视化全埋点。");
+//                    }
+//                    intent.setData(null);
+//                } else if ("popupwindow".equals(host)) {
+//                    showPopupWindowDialog(activity, uri);
+//                    intent.setData(null);
+//                }
             }
         } catch (Exception e) {
             ELogger.logError("",e.getMessage());
@@ -212,8 +256,15 @@ public class SensorsDataAutoTrackHelper {
         }
     }
 
-    private static void showDebugModeSelectDialog(final Activity activity, final String infoId) {
+    private static void showDebugModeSelectDialog(final Activity activity, final String debugId) {
         try {
+            if("no_debug".endsWith(ZADataManager.getDebugMode().get())){
+                ZADataAPI.setDebugMode(ZADataAPI.DebugMode.DEBUG_OFF);
+            }else if("debug_and_import".endsWith(ZADataManager.getDebugMode().get())){
+                ZADataAPI.setDebugMode(ZADataAPI.DebugMode.DEBUG_AND_TRACK);
+            }else if("debug_and_not_import".endsWith(ZADataManager.getDebugMode().get())){
+                ZADataAPI.setDebugMode(ZADataAPI.DebugMode.DEBUG_ONLY);
+            }
             DebugModeSelectDialog dialog = new DebugModeSelectDialog(activity, ZADataAPI.getDebugMode());
             dialog.setCanceledOnTouchOutside(false);
             dialog.setOnDebugModeDialogClickListener(new DebugModeSelectDialog.OnDebugModeViewClickListener() {
@@ -224,6 +275,14 @@ public class SensorsDataAutoTrackHelper {
 
                 @Override
                 public void setDebugMode(Dialog dialog, ZADataAPI.DebugMode debugMode) {
+                    putDebugMode(activity, debugId);
+                    if(ZADataAPI.DebugMode.DEBUG_OFF == debugMode){
+                        ZADataManager.getDebugMode().commit("no_debug");
+                    }else if(ZADataAPI.DebugMode.DEBUG_ONLY == debugMode){
+                        ZADataManager.getDebugMode().commit("debug_and_not_import");
+                    }else if(ZADataAPI.DebugMode.DEBUG_AND_TRACK == debugMode){
+                        ZADataManager.getDebugMode().commit("debug_and_import");
+                    }
                     ZADataAPI.setDebugMode(debugMode);
                     dialog.cancel();
                 }
@@ -234,8 +293,8 @@ public class SensorsDataAutoTrackHelper {
                     //如果当前的调试模式不是 DebugOff ,则发送匿名或登录 ID 给服务端
                     String serverUrl = EConstant.COLLECT_URL;
                     ZADataAPI.DebugMode mCurrentDebugMode = ZADataAPI.getDebugMode();
-//                    if (!TextUtils.isEmpty(serverUrl) && !TextUtils.isEmpty(infoId) && mCurrentDebugMode != ZADataAPI.DebugMode.DEBUG_OFF) {
-//                        new SendDebugIdThread(serverUrl, SensorsDataAPI.sharedInstance().getDistinctId(), infoId, ThreadNameConstants.THREAD_SEND_DISTINCT_ID).start();
+//                    if (!TextUtils.isEmpty(serverUrl)) {
+//                        putDebugMode(activity,"");
 //                    }
                     String currentDebugToastMsg = "";
                     if (mCurrentDebugMode == ZADataAPI.DebugMode.DEBUG_OFF) {
@@ -243,7 +302,7 @@ public class SensorsDataAutoTrackHelper {
                     } else if (mCurrentDebugMode == ZADataAPI.DebugMode.DEBUG_ONLY) {
                         currentDebugToastMsg = "开启调试模式，校验数据，但不进行数据导入；关闭 App 进程后，将自动关闭调试模式";
                     } else if (mCurrentDebugMode == ZADataAPI.DebugMode.DEBUG_AND_TRACK) {
-                        currentDebugToastMsg = "开启调试模式，校验数据，并将数据导入到神策分析中；关闭 App 进程后，将自动关闭调试模式";
+                        currentDebugToastMsg = "开启调试模式，校验数据，并将数据导入到中量引擎分析中；关闭 App 进程后，将自动关闭调试模式";
                     }
                     Toast.makeText(activity, currentDebugToastMsg, Toast.LENGTH_LONG).show();
                     SALog.info(TAG, "您当前的调试模式是：" + mCurrentDebugMode, null);

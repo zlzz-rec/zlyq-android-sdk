@@ -3,6 +3,7 @@ package com.zlyq.client.android.analytics;
 import android.app.Application;
 import android.content.Context;
 import android.os.Process;
+import android.text.TextUtils;
 
 import com.zlyq.client.android.analytics.bean.ResultConfig;
 import com.zlyq.client.android.analytics.callback.SensorsDataAPI;
@@ -340,30 +341,32 @@ public final class ZADataManager {
     }
 
     private static void initConfig(Map map){
-        String path = EConstant.COLLECT_URL + API.INIT_API + EConstant.PROJECT_ID;
-        path = path+"?time="+System.currentTimeMillis();
-        EGsonRequest request = new EGsonRequest<>(Request.Method.POST, path, ResultConfig.class, null, map,//191
-            new Response.Listener<ResultConfig>() {
-                @Override
-                public void onResponse(ResultConfig response) {
-                    int code = response.getCode();
-                    ELogger.logWrite(TAG, response.toString());
-                    if (code == 0) {
-                        Map<String, String> data = response.getData();
-                        mDistinctId.commit(data.get("distinct_id"));
-                        ELogger.logWrite(TAG, "--init Success--");
-                    } else {
-                        ELogger.logWrite(TAG, "--init Error--");
+        if(mDistinctId != null && mDistinctId.get() != null){
+            String path = EConstant.COLLECT_URL + API.INIT_API + EConstant.PROJECT_ID;
+            path = path+"?time="+System.currentTimeMillis();
+            EGsonRequest request = new EGsonRequest<>(Request.Method.POST, path, ResultConfig.class, null, map,//191
+                    new Response.Listener<ResultConfig>() {
+                        @Override
+                        public void onResponse(ResultConfig response) {
+                            int code = response.getCode();
+                            ELogger.logWrite(TAG, response.toString());
+                            if (code == 0) {
+                                Map<String, String> data = response.getData();
+                                mDistinctId.commit(data.get("distinct_id"));
+                                ELogger.logWrite(TAG, "--init Success--");
+                            } else {
+                                ELogger.logWrite(TAG, "--init Error--");
+                            }
+                        }
+                    },
+                    new Response.ErrorListener() {
+                        @Override
+                        public void onErrorResponse(VolleyError error) {
+                            ELogger.logWrite(TAG, "--onVolleyError--");
+                        }
                     }
-                }
-            },
-            new Response.ErrorListener() {
-                @Override
-                public void onErrorResponse(VolleyError error) {
-                    ELogger.logWrite(TAG, "--onVolleyError--");
-                }
-            }
-        );
-        getRequestQueue().add(request);
+            );
+            getRequestQueue().add(request);
+        }
     }
 }

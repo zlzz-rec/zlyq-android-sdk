@@ -30,6 +30,7 @@ import android.view.WindowManager;
 import android.widget.TextView;
 import com.zlyq.client.android.analytics.ZADataAPI;
 import com.zlyq.client.android.analytics.R;
+import com.zlyq.client.android.analytics.ZADataManager;
 
 public class DebugModeSelectDialog extends Dialog implements View.OnClickListener {
 

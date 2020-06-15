@@ -124,6 +124,8 @@ import java.util.List;
         try {
             db.deleteByWhere(EventBean.class, " event_time<\"" + formateDate + "\"");
             ELogger.logWrite(EConstant.TAG, "deleteEventListByDate  success!-->"+formateDate);
+            List<EventBean> eventListByDate = getEventListByDate(formateDate);
+            ELogger.logWrite(EConstant.TAG, "getEventListByDate  success!-->");
         } catch (Exception e) {
             e.printStackTrace();
             ELogger.logWrite(EConstant.TAG, "deleteEventListByDate  failed-->"+e.getMessage());

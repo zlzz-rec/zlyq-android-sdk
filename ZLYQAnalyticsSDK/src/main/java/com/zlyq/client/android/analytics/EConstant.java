@@ -48,7 +48,7 @@ package com.zlyq.client.android.analytics;
    /**
     * 项目id
     */
-   static int PROJECT_ID = 0;
+   public static int PROJECT_ID = 0;
 
    /**
     * 调试模式

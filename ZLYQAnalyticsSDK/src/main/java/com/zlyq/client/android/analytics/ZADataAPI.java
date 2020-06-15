@@ -2,6 +2,8 @@ package com.zlyq.client.android.analytics;
 
 import android.widget.Toast;
 import com.zlyq.client.android.analytics.thread.JJPoolExecutor;
+import com.zlyq.client.android.analytics.utils.SensorsDataUtils;
+
 import java.util.Arrays;
 import java.util.Map;
 import java.util.concurrent.FutureTask;

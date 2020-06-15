@@ -2,6 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.zlyq.android.analytics">
 
+    <uses-permission android:name="android.permission.INTERNET"/>
+
     <application
         android:name="com.zlyq.android.analytics.App"
         android:allowBackup="true"
@@ -10,7 +12,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name="com.zlyq.android.analytics.MainActivity">
+        <activity android:name="com.zlyq.android.analytics.MainActivity"
+            android:launchMode="singleTask">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
@@ -19,14 +22,13 @@
                 <!--协议部分，自定义设置
                     如：xl://goods:8888/goodsDetail?goodsId=10011002
                    -->
-                <data android:scheme="xl"
-                    android:host="goods"
-                    android:path="/goodsDetail"
-                    android:port="8888" />
                 <!--下面这几行也必须得设置-->
                 <category android:name="android.intent.category.DEFAULT"/>
                 <action android:name="android.intent.action.VIEW"/>
                 <category android:name="android.intent.category.BROWSABLE"/>
+                <data
+                    android:host="debugmode.app"
+                    android:scheme="zlzzanalysis" />
             </intent-filter>
         </activity>
     </application>

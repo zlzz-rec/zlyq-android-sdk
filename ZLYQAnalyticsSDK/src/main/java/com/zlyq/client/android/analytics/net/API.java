@@ -16,4 +16,6 @@ public class API {
     public static String INIT_API = "/api/v1/identification/";
 
     public static String USER_PROFILE_API = "/api/v1/user_profile/";
+
+    public static String DEBUG_MODE_API = "/api/v1/debug/1/";
 }

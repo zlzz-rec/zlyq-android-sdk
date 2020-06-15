@@ -936,7 +936,7 @@ public final class SensorsDataUtils {
 
     /**
      * 解析 Activity 的 Intent 中是否包含 DebugMode、点击图、可视化全埋点的 uri 信息并显示 Dialog。
-     * 此方法用来辅助完善 Dialog 的展示，通常用在配置了神策 scheme 的 Activity 页面中的 onNewIntent 方法中，
+     * 此方法用来辅助完善 Dialog 的展示，通常用在配置了中量引擎 scheme 的 Activity 页面中的 onNewIntent 方法中，
      * 并且此 Activity 的 launchMode 为 singleTop 或者 singleTask 或者为 singleInstance。
      *
      * @param activity activity
