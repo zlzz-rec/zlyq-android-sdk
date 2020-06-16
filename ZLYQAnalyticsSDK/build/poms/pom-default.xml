@@ -3,7 +3,7 @@
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <modelVersion>4.0.0</modelVersion>
   <groupId>com.zlyq.analytics</groupId>
-  <artifactId>zlyq-android-sdk</artifactId>
+  <artifactId>ZLYQAnalyticSDK</artifactId>
   <version>1.0.0</version>
   <packaging>aar</packaging>
   <dependencies>

@@ -34,8 +34,22 @@ public class App extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
-        //参数1：context，参数2：宿主中取通用cookie，参数3：是否debug，
-        ZADataManager.init(this,"cookie String", true);
+
+        ZADataManager.Builder builder = new ZADataManager.Builder(this);
+        builder.setPushUrl("接入方服务器地址")// 必填!!!!!!
+                .setApiKey("接入的apiKey")// 必填!!!!!!
+                .setDebug(BuildConfig.DEBUG)//是否是debug
+                .setPushLimitMinutes(5)//多少分钟 push一次
+                .setPushLimitNum(100)//多少条 就主动进行push
+                .setProjectId(2)//项目id
+                .start();//开始
+
+        // 主动push，实时
+        Map customMap = new HashMap();
+        customMap.put("custom_key1", "custom_value1");
+        customMap.put("custom_key2", "custom_value2");
+        ZADataAPI.event("event", customMap);
+        ZADataManager.pushEvent();//关键代码
     }
 }
 ```
@@ -54,25 +68,6 @@ ZADataManager.cancelEventPush();
 * 停止事件的上传任务(仍会记录事件,停止事件推送)
 */
 ZADataManager.destoryEventService();
-```
-
-##### 2.5 如果要进行参数设定,只需将1.2 中的代码改为如下即可
-```
-ZADataManager.Builder builder = new ZADataManager.Builder(this);
-builder.setPushUrl("接入方服务器地址")// 必填!!!!!!
-        .setApiKey("接入的apiKey")// 必填!!!!!!
-        .setDebug(BuildConfig.DEBUG)//是否是debug
-        .setPushLimitMinutes(5)//多少分钟 push一次
-        .setPushLimitNum(100)//多少条 就主动进行push
-        .setProjectId(2)//项目id
-        .start();//开始
-
-// 主动push，实时
-Map customMap = new HashMap();
-customMap.put("custom_key1", "custom_value1");
-customMap.put("custom_key2", "custom_value2");
-ZADataAPI.event("event", customMap);
-ZADataManager.pushEvent();//关键代码
 ```
 
 #### 3.功能支持情况

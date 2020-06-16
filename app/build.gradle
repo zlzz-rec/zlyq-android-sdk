@@ -36,6 +36,6 @@ dependencies {
 
 //    implementation 'com.zlyq.analytics:zlyq-android-sdk:1.0.0'
 //    implementation project(path: ':ZLYQAnalyticsSDK')
-    implementation(name: 'zlyq-android-sdk-1.0.0', ext: 'aar')
+    implementation(name: 'ZLYQAnalyticSDK-1.0.0', ext: 'aar')
 
 }

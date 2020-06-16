@@ -18,15 +18,6 @@ public class App extends Application {
         super.onCreate();
 
         ZADataManager.Builder builder = new ZADataManager.Builder(this);
-//        builder.setPushUrl("http://47.93.23.69:8210")
-//                .setApiKey("dbddc83a6c890720fadb481937cdd1e5")
-//                .setProjectId(1)//项目id
-//                .setDebug(BuildConfig.DEBUG)//是否是debug
-//                .setSidPeriodMinutes(15)//sid改变周期
-//                .setPushLimitMinutes(5)//多少分钟 push一次
-//                .setPushLimitNum(100)//多少条 就主动进行push
-//                .start();//开始*/
-
         builder.setPushUrl("http://101.200.238.170:8210")
                 .setApiKey("e69b329bdd5c8e1490df8d130090fee1")
                 .setProjectId(1)//项目id

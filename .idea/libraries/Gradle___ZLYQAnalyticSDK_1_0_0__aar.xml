@@ -1,0 +1,10 @@
+<component name="libraryTable">
+  <library name="Gradle: :ZLYQAnalyticSDK-1.0.0:@aar">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/ZLYQAnalyticSDK-1.0.0.aar/5f80f17cd0efc03f53d0a7ce82d1ca9d/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/ZLYQAnalyticSDK-1.0.0.aar/5f80f17cd0efc03f53d0a7ce82d1ca9d/res" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
