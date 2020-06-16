@@ -20,7 +20,7 @@
             </intent-filter>
             <intent-filter>
                 <!--协议部分，自定义设置
-                    如：xl://goods:8888/goodsDetail?goodsId=10011002
+                    如：zlzzanalysis://debugmode.app?project_id=1&debug_id=12i7tkOf
                    -->
                 <!--下面这几行也必须得设置-->
                 <category android:name="android.intent.category.DEFAULT"/>
