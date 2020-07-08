@@ -13,7 +13,7 @@ import com.zlyq.client.android.analytics.bean.EventBean;
 import com.zlyq.client.android.analytics.net.gson.EGson;
 import com.zlyq.client.android.analytics.net.gson.GsonBuilder;
 import com.zlyq.client.android.analytics.utils.NetworkUtils;
-import com.zlyq.client.android.analytics.utils.SensorsDataUtils;
+import com.zlyq.client.android.analytics.utils.ZLYQDataUtils;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.text.SimpleDateFormat;
@@ -135,7 +135,7 @@ public class ZADataDecorator {
             //操作系统版本
             deviceInfo.put("os_version", Build.VERSION.RELEASE == null ? "UNKNOWN" : Build.VERSION.RELEASE);
             //设备制造商
-            deviceInfo.put("manufacturer", SensorsDataUtils.getManufacturer());
+            deviceInfo.put("manufacturer", ZLYQDataUtils.getManufacturer());
             //设备型号
             if (TextUtils.isEmpty(Build.MODEL)) {
                 deviceInfo.put("model", "UNKNOWN");
@@ -147,11 +147,11 @@ public class ZADataDecorator {
             final PackageInfo info = manager.getPackageInfo(mContext.getPackageName(), 0);
             deviceInfo.put("app_version", info.versionName);
             //运营商
-            String carrier = SensorsDataUtils.getCarrier(mContext);
+            String carrier = ZLYQDataUtils.getCarrier(mContext);
             if (!TextUtils.isEmpty(carrier)) {
                 deviceInfo.put("carrier", carrier);
             }
-            mAndroidId = SensorsDataUtils.getAndroidID(mContext);
+            mAndroidId = ZLYQDataUtils.getAndroidID(mContext);
             deviceInfo.put("udid", mAndroidId);
             deviceInfo.put("platform", "App");
             deviceInfo.put("time", ZADataDecorator.getNowDate());
@@ -181,9 +181,9 @@ public class ZADataDecorator {
                 screenHeight = display.getHeight();
             }
             //屏幕宽
-            deviceInfo.put("screen_width", SensorsDataUtils.getNaturalWidth(rotation, screenWidth, screenHeight));
+            deviceInfo.put("screen_width", ZLYQDataUtils.getNaturalWidth(rotation, screenWidth, screenHeight));
             //屏幕高
-            deviceInfo.put("screen_height", SensorsDataUtils.getNaturalHeight(rotation, screenWidth, screenHeight));
+            deviceInfo.put("screen_height", ZLYQDataUtils.getNaturalHeight(rotation, screenWidth, screenHeight));
         } catch (Exception e) {
             //context.getResources().getDisplayMetrics()这种方式获取屏幕高度不包括底部虚拟导航栏
             if (mContext.getResources() != null) {
@@ -205,7 +205,7 @@ public class ZADataDecorator {
             deviceInfo.put("user_id", ZADataManager.getUserId().get());
             deviceInfo.put("distinct_id", ZADataManager.getDistinctId().get());
             deviceInfo.put("type", type);
-            String mAndroidId = SensorsDataUtils.getAndroidID(ZADataManager.getContext());
+            String mAndroidId = ZLYQDataUtils.getAndroidID(ZADataManager.getContext());
             deviceInfo.put("udid", mAndroidId);
         } catch (final Exception e) {
             ELogger.logError(TAG, "Exception getting app version name");

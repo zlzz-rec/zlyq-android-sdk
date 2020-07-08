@@ -11,8 +11,8 @@
 
     <application>
         <provider
-            android:name="com.zlyq.client.android.analytics.callback.SensorsDataContentProvider"
-            android:authorities="${applicationId}.SensorsDataContentProvider"
+            android:name="com.zlyq.client.android.analytics.callback.ZLYQDataContentProvider"
+            android:authorities="${applicationId}.ZLYQDataContentProvider"
             android:enabled="true"
             android:exported="false" />
     </application>

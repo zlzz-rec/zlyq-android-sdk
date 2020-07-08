@@ -1,10 +1,12 @@
 package com.zlyq.client.android.analytics;
 
 import android.widget.Toast;
+
+import com.zlyq.client.android.analytics.bean.EventBean;
 import com.zlyq.client.android.analytics.thread.JJPoolExecutor;
-import com.zlyq.client.android.analytics.utils.SensorsDataUtils;
 
 import java.util.Arrays;
+import java.util.List;
 import java.util.Map;
 import java.util.concurrent.FutureTask;
 import java.util.regex.Matcher;
@@ -43,6 +45,35 @@ public final class ZADataAPI {
             e.printStackTrace();
             ELogger.logWrite(EConstant.TAG, "event error " + e.getMessage());
         }
+    }
+
+    /**
+     * 实时上报
+     * @param event
+     * @param ecp
+     */
+    public static void pushEvent(final String event, final Map ecp) {
+        EventBean bean = ZADataDecorator.generateEventBean(event, ecp);
+        if (bean == null) {
+            ELogger.logWrite(EConstant.TAG, " event bean == null");
+            return;
+        }
+        ELogger.logWrite(EConstant.TAG, " event " + bean.toString());
+        ENetHelper.create(ZADataManager.getContext(), new OnNetResponseListener() {
+            @Override
+            public void onPushSuccess() {
+            }
+            @Override
+            public void onPushEorr(int errorCode) {
+                //.请求成功,返回值错误,根据接口返回值,进行处理.
+            }
+            @Override
+            public void onPushFailed() {
+                //请求失败;不做处理.
+                EventTask eventTask = new EventTask(event,ecp);
+                JJPoolExecutor.getInstance().execute(new FutureTask<Object>(eventTask,null));
+            }
+        }).immediateSendEvent(bean);
     }
 
     /**

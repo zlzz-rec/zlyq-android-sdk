@@ -8,8 +8,8 @@ import android.net.Uri;
 
 import com.zlyq.client.android.analytics.utils.SALog;
 
-/*public*/ class SensorsDatabaseHelper {
-    private static final String SensorsDataContentProvider = ".SensorsDataContentProvider/";
+/*public*/ class ZLYQDatabaseHelper {
+    private static final String SensorsDataContentProvider = ".ZLYQDataContentProvider/";
     private ContentResolver mContentResolver;
     private Uri mAppStart;
     private Uri mAppEndState;
@@ -22,14 +22,14 @@ import com.zlyq.client.android.analytics.utils.SALog;
     /* $AppEnd 事件触发的时间戳 */
     private long mAppEndTime = 0;
 
-    SensorsDatabaseHelper(Context context, String packageName) {
+    ZLYQDatabaseHelper(Context context, String packageName) {
         mContentResolver = context.getContentResolver();
-        mAppStart = Uri.parse("content://" + packageName + SensorsDataContentProvider + SensorsDataTable.APP_STARTED.getName());
-        mAppEndState = Uri.parse("content://" + packageName + SensorsDataContentProvider + SensorsDataTable.APP_END_STATE.getName());
-        mAppPausedTime = Uri.parse("content://" + packageName + SensorsDataContentProvider + SensorsDataTable.APP_PAUSED_TIME.getName());
-        mAppStartTime = Uri.parse("content://" + packageName + SensorsDataContentProvider + SensorsDataTable.APP_START_TIME.getName());
-        mAppEndData = Uri.parse("content://" + packageName + SensorsDataContentProvider + SensorsDataTable.APP_END_DATA.getName());
-        mActivityStartCount = Uri.parse("content://" + packageName + SensorsDataContentProvider + SensorsDataTable.ACTIVITY_START_COUNT.getName());
+        mAppStart = Uri.parse("content://" + packageName + SensorsDataContentProvider + ZLYQDataTable.APP_STARTED.getName());
+        mAppEndState = Uri.parse("content://" + packageName + SensorsDataContentProvider + ZLYQDataTable.APP_END_STATE.getName());
+        mAppPausedTime = Uri.parse("content://" + packageName + SensorsDataContentProvider + ZLYQDataTable.APP_PAUSED_TIME.getName());
+        mAppStartTime = Uri.parse("content://" + packageName + SensorsDataContentProvider + ZLYQDataTable.APP_START_TIME.getName());
+        mAppEndData = Uri.parse("content://" + packageName + SensorsDataContentProvider + ZLYQDataTable.APP_END_DATA.getName());
+        mActivityStartCount = Uri.parse("content://" + packageName + SensorsDataContentProvider + ZLYQDataTable.ACTIVITY_START_COUNT.getName());
     }
 
     /**
@@ -46,7 +46,7 @@ import com.zlyq.client.android.analytics.utils.SALog;
      */
     public void commitAppStart(boolean appStart) {
         ContentValues contentValues = new ContentValues();
-        contentValues.put(SensorsDataTable.APP_STARTED.getName(), appStart);
+        contentValues.put(ZLYQDataTable.APP_STARTED.getName(), appStart);
         mContentResolver.insert(mAppStart, contentValues);
     }
 
@@ -57,7 +57,7 @@ import com.zlyq.client.android.analytics.utils.SALog;
      */
     public void commitActivityCount(int activityCount) {
         ContentValues contentValues = new ContentValues();
-        contentValues.put(SensorsDataTable.ACTIVITY_START_COUNT.getName(), activityCount);
+        contentValues.put(ZLYQDataTable.ACTIVITY_START_COUNT.getName(), activityCount);
         mContentResolver.insert(mActivityStartCount, contentValues);
     }
 
@@ -87,7 +87,7 @@ import com.zlyq.client.android.analytics.utils.SALog;
 //     */
 //    public void commitAppPausedTime(long pausedTime) {
 //        ContentValues contentValues = new ContentValues();
-//        contentValues.put(SensorsDataTable.APP_PAUSED_TIME.getName(), pausedTime);
+//        contentValues.put(ZLYQDataTable.APP_PAUSED_TIME.getName(), pausedTime);
 //        mContentResolver.insert(mAppPausedTime, contentValues);
 //    }
 //
@@ -98,7 +98,7 @@ import com.zlyq.client.android.analytics.utils.SALog;
 //     */
 //    public long getAppPausedTime() {
 //        long pausedTime = 0;
-//        Cursor cursor = mContentResolver.query(mAppPausedTime, new String[]{SensorsDataTable.APP_PAUSED_TIME.getName()}, null, null, null);
+//        Cursor cursor = mContentResolver.query(mAppPausedTime, new String[]{ZLYQDataTable.APP_PAUSED_TIME.getName()}, null, null, null);
 //        if (cursor != null && cursor.getCount() > 0) {
 //            while (cursor.moveToNext()) {
 //                pausedTime = cursor.getLong(0);
@@ -118,7 +118,7 @@ import com.zlyq.client.android.analytics.utils.SALog;
      */
     public void commitAppStartTime(long appStartTime) {
         ContentValues contentValues = new ContentValues();
-        contentValues.put(SensorsDataTable.APP_START_TIME.getName(), appStartTime);
+        contentValues.put(ZLYQDataTable.APP_START_TIME.getName(), appStartTime);
         mContentResolver.insert(mAppStartTime, contentValues);
     }
 
@@ -150,7 +150,7 @@ import com.zlyq.client.android.analytics.utils.SALog;
     public void commitAppEndTime(long appPausedTime) {
         try {
             ContentValues contentValues = new ContentValues();
-            contentValues.put(SensorsDataTable.APP_PAUSED_TIME.getName(), appPausedTime);
+            contentValues.put(ZLYQDataTable.APP_PAUSED_TIME.getName(), appPausedTime);
             mContentResolver.insert(mAppPausedTime, contentValues);
         } catch (Exception ex) {
             SALog.printStackTrace(ex);
@@ -191,7 +191,7 @@ import com.zlyq.client.android.analytics.utils.SALog;
      */
     public void commitAppEndData(String appEndData) {
         ContentValues contentValues = new ContentValues();
-        contentValues.put(SensorsDataTable.APP_END_DATA.getName(), appEndData);
+        contentValues.put(ZLYQDataTable.APP_END_DATA.getName(), appEndData);
         mContentResolver.insert(mAppEndData, contentValues);
     }
 
@@ -221,7 +221,7 @@ import com.zlyq.client.android.analytics.utils.SALog;
      */
     public void commitAppEndEventState(boolean appEndState) {
         ContentValues contentValues = new ContentValues();
-        contentValues.put(SensorsDataTable.APP_END_STATE.getName(), appEndState);
+        contentValues.put(ZLYQDataTable.APP_END_STATE.getName(), appEndState);
         mContentResolver.insert(mAppEndState, contentValues);
     }
 
@@ -232,7 +232,7 @@ import com.zlyq.client.android.analytics.utils.SALog;
      */
     public boolean getAppEndEventState() {
         boolean state = true;
-        Cursor cursor = mContentResolver.query(mAppEndState, new String[]{SensorsDataTable.APP_END_STATE.getName()}, null, null, null);
+        Cursor cursor = mContentResolver.query(mAppEndState, new String[]{ZLYQDataTable.APP_END_STATE.getName()}, null, null, null);
         if (cursor != null && cursor.getCount() > 0) {
             while (cursor.moveToNext()) {
                 state = cursor.getInt(0) > 0;

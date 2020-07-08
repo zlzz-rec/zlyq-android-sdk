@@ -30,7 +30,6 @@ import android.view.WindowManager;
 import android.widget.TextView;
 import com.zlyq.client.android.analytics.ZADataAPI;
 import com.zlyq.client.android.analytics.R;
-import com.zlyq.client.android.analytics.ZADataManager;
 
 public class DebugModeSelectDialog extends Dialog implements View.OnClickListener {
 
@@ -50,7 +49,7 @@ public class DebugModeSelectDialog extends Dialog implements View.OnClickListene
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         requestWindowFeature(Window.FEATURE_NO_TITLE);
-        setContentView(R.layout.sensors_analytics_debug_mode_dialog_content);
+        setContentView(R.layout.zlyq_analytics_debug_mode_dialog_content);
         initView();
         Window window = getWindow();
         if (window != null) {

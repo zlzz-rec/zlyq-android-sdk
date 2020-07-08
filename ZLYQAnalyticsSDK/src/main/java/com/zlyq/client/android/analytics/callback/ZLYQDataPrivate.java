@@ -27,7 +27,7 @@ import com.zlyq.client.android.analytics.data.persistent.PersistentFirstDay;
 import com.zlyq.client.android.analytics.data.persistent.PersistentFirstStart;
 import com.zlyq.client.android.analytics.utils.DateFormatUtils;
 import com.zlyq.client.android.analytics.utils.SALog;
-import com.zlyq.client.android.analytics.utils.SensorsDataTimer;
+import com.zlyq.client.android.analytics.utils.ZLYQDataTimer;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -44,11 +44,11 @@ import java.util.Map;
 
 import static com.zlyq.client.android.analytics.EConstant.TAG;
 
-/*public*/ class SensorsDataPrivate {
+/*public*/ class ZLYQDataPrivate {
     private static List<String> mIgnoredActivities;
     private static final SimpleDateFormat mDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss"
             + ".SSS", Locale.CHINA);
-    private static SensorsDatabaseHelper mDatabaseHelper;
+    private static ZLYQDatabaseHelper mDatabaseHelper;
     private static CountDownTimer countDownTimer;
     private static WeakReference<Activity> mCurrentActivity;
     private static PersistentFirstDay mFirstDay;
@@ -202,7 +202,7 @@ import static com.zlyq.client.android.analytics.EConstant.TAG;
 //            JSONObject properties = new JSONObject();
 //            properties.put("$activity", activity.getClass().getCanonicalName());
 //            properties.put("title", getActivityTitle(activity));
-//            SensorsDataAPI.getInstance().track("$AppViewScreen", properties);
+//            ZLYQDataAPI.getInstance().track("$AppViewScreen", properties);
 //        } catch (Exception e) {
 //            e.printStackTrace();
 //        }
@@ -213,8 +213,8 @@ import static com.zlyq.client.android.analytics.EConstant.TAG;
      */
     private static void trackAppStart(Activity activity) {
         try {
-            SensorsDataAPI.getInstance().track("appStart", null);
-            ZADataManager.pushEvent();
+            ZLYQDataAPI.getInstance().track("appStart", null);
+//            ZADataManager.pushEvent();
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -230,8 +230,8 @@ import static com.zlyq.client.android.analytics.EConstant.TAG;
             }
             JSONObject properties = new JSONObject();
             properties.put("duration", duration(startTime, endTime));
-            SensorsDataAPI.getInstance().track("appEnd", properties);
-            ZADataManager.pushEvent();
+            ZLYQDataAPI.getInstance().track("appEnd", properties);
+//            ZADataManager.pushEvent();
 //            mDatabaseHelper.commitAppEndEventState(true);
             mCurrentActivity = null;
         } catch (Exception e) {
@@ -316,7 +316,7 @@ import static com.zlyq.client.android.analytics.EConstant.TAG;
     public static void registerActivityLifecycleCallbacks(Application application, PersistentFirstStart firstStart, PersistentFirstDay firstDay) {
         mFirstStart = firstStart;
         mFirstDay = firstDay;
-        mDatabaseHelper = new SensorsDatabaseHelper(application.getApplicationContext(), application.getPackageName());
+        mDatabaseHelper = new ZLYQDatabaseHelper(application.getApplicationContext(), application.getPackageName());
         countDownTimer = new CountDownTimer(SESSION_INTERVAL_TIME, 10 * 1000) {
             @Override
             public void onTick(long l) {
@@ -338,7 +338,7 @@ import static com.zlyq.client.android.analytics.EConstant.TAG;
             @Override
             public void onActivityStarted(Activity activity) {
                 try {
-                    if (SensorsDataAPI.isMultiProcess()) {
+                    if (ZLYQDataAPI.isMultiProcess()) {
                         startActivityCount = mDatabaseHelper.getActivityCount();
                         mDatabaseHelper.commitActivityCount(++startActivityCount);
                     } else {
@@ -376,7 +376,7 @@ import static com.zlyq.client.android.analytics.EConstant.TAG;
                          *  1. App 在 onResume 之前 Crash，导致只有启动没有退出；
                          *  2. 多进程的情况下只会开启一个打点器；
                          */
-                        SensorsDataTimer.getInstance().timer(timer, 0, TIME_INTERVAL);
+                        ZLYQDataTimer.getInstance().timer(timer, 0, TIME_INTERVAL);
                     }
                 } catch (Exception e) {
                     SALog.printStackTrace(e);
@@ -424,10 +424,10 @@ import static com.zlyq.client.android.analytics.EConstant.TAG;
                     // 停止计时器，针对跨进程的情况，要停止当前进程的打点器
                     startTimerCount--;
                     if (startTimerCount == 0) {
-                        SensorsDataTimer.getInstance().shutdownTimerTask();
+                        ZLYQDataTimer.getInstance().shutdownTimerTask();
                     }
 
-                    if (SensorsDataAPI.isMultiProcess()) {
+                    if (ZLYQDataAPI.isMultiProcess()) {
                         startActivityCount = mDatabaseHelper.getActivityCount();
                         startActivityCount = startActivityCount > 0 ? --startActivityCount : 0;
                         mDatabaseHelper.commitActivityCount(startActivityCount);
@@ -478,7 +478,7 @@ import static com.zlyq.client.android.analytics.EConstant.TAG;
         final Map<String, Object> deviceInfo = new HashMap<>();
         {
             deviceInfo.put("$lib", "Android");
-            deviceInfo.put("$lib_version", SensorsDataAPI.SDK_VERSION);
+            deviceInfo.put("$lib_version", ZLYQDataAPI.SDK_VERSION);
             deviceInfo.put("$os", "Android");
             deviceInfo.put("$os_version",
                     Build.VERSION.RELEASE == null ? "UNKNOWN" : Build.VERSION.RELEASE);

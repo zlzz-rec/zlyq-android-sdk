@@ -19,35 +19,35 @@ import java.util.Map;
 import java.util.concurrent.FutureTask;
 
 @Keep
-public class SensorsDataAPI {
+public class ZLYQDataAPI {
     private final String TAG = this.getClass().getSimpleName();
     public static final String SDK_VERSION = "1.0.0";
-    private static SensorsDataAPI INSTANCE;
+    private static ZLYQDataAPI INSTANCE;
     private static final Object mLock = new Object();
     private static Map<String, Object> mDeviceInfo;
     private String mDeviceId;
 
     @Keep
     @SuppressWarnings("UnusedReturnValue")
-    public static SensorsDataAPI init(Application application, PersistentFirstStart mFirstStart, PersistentFirstDay mFirstDay) {
+    public static ZLYQDataAPI init(Application application, PersistentFirstStart mFirstStart, PersistentFirstDay mFirstDay) {
         synchronized (mLock) {
             if (null == INSTANCE) {
-                INSTANCE = new SensorsDataAPI(application, mFirstStart, mFirstDay);
+                INSTANCE = new ZLYQDataAPI(application, mFirstStart, mFirstDay);
             }
             return INSTANCE;
         }
     }
 
     @Keep
-    public static SensorsDataAPI getInstance() {
+    public static ZLYQDataAPI getInstance() {
         return INSTANCE;
     }
 
-    private SensorsDataAPI(Application application, PersistentFirstStart mFirstStart, PersistentFirstDay mFirstDay) {
-        mDeviceId = SensorsDataPrivate.getAndroidID(application.getApplicationContext());
-        mDeviceInfo = SensorsDataPrivate.getDeviceInfo(application.getApplicationContext());
-        SensorsDataPrivate.registerActivityLifecycleCallbacks(application, mFirstStart, mFirstDay);
-        SensorsDataPrivate.registerActivityStateObserver(application);
+    private ZLYQDataAPI(Application application, PersistentFirstStart mFirstStart, PersistentFirstDay mFirstDay) {
+        mDeviceId = ZLYQDataPrivate.getAndroidID(application.getApplicationContext());
+        mDeviceInfo = ZLYQDataPrivate.getDeviceInfo(application.getApplicationContext());
+        ZLYQDataPrivate.registerActivityLifecycleCallbacks(application, mFirstStart, mFirstDay);
+        ZLYQDataPrivate.registerActivityStateObserver(application);
     }
 
     /**

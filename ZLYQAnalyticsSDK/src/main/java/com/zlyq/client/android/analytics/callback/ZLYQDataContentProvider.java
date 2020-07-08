@@ -12,7 +12,7 @@ import android.net.Uri;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 
-public class SensorsDataContentProvider extends ContentProvider {
+public class ZLYQDataContentProvider extends ContentProvider {
     private final static int APP_START = 1;
     private final static int APP_END_STATE = 2;
     private final static int APP_PAUSED_TIME = 3;
@@ -29,12 +29,12 @@ public class SensorsDataContentProvider extends ContentProvider {
     public boolean onCreate() {
         if (getContext() != null) {
             String packName = getContext().getPackageName();
-            uriMatcher.addURI(packName + ".SensorsDataContentProvider", SensorsDataTable.APP_STARTED.getName(), APP_START);
-            uriMatcher.addURI(packName + ".SensorsDataContentProvider", SensorsDataTable.APP_END_STATE.getName(), APP_END_STATE);
-            uriMatcher.addURI(packName + ".SensorsDataContentProvider", SensorsDataTable.APP_PAUSED_TIME.getName(), APP_PAUSED_TIME);
-            uriMatcher.addURI(packName + ".SensorsDataContentProvider", SensorsDataTable.APP_START_TIME.getName(), APP_START_TIME);
-            uriMatcher.addURI(packName + ".SensorsDataContentProvider", SensorsDataTable.APP_END_DATA.getName(), APP_END_DATA);
-            uriMatcher.addURI(packName + ".SensorsDataContentProvider", SensorsDataTable.ACTIVITY_START_COUNT.getName(), ACTIVITY_START_COUNT);
+            uriMatcher.addURI(packName + ".ZLYQDataContentProvider", ZLYQDataTable.APP_STARTED.getName(), APP_START);
+            uriMatcher.addURI(packName + ".ZLYQDataContentProvider", ZLYQDataTable.APP_END_STATE.getName(), APP_END_STATE);
+            uriMatcher.addURI(packName + ".ZLYQDataContentProvider", ZLYQDataTable.APP_PAUSED_TIME.getName(), APP_PAUSED_TIME);
+            uriMatcher.addURI(packName + ".ZLYQDataContentProvider", ZLYQDataTable.APP_START_TIME.getName(), APP_START_TIME);
+            uriMatcher.addURI(packName + ".ZLYQDataContentProvider", ZLYQDataTable.APP_END_DATA.getName(), APP_END_DATA);
+            uriMatcher.addURI(packName + ".ZLYQDataContentProvider", ZLYQDataTable.ACTIVITY_START_COUNT.getName(), ACTIVITY_START_COUNT);
 
             sharedPreferences = getContext().getSharedPreferences("com.zlyq.client.android.analytics", Context.MODE_PRIVATE);
             mEditor = sharedPreferences.edit();
@@ -54,29 +54,29 @@ public class SensorsDataContentProvider extends ContentProvider {
         int code = uriMatcher.match(uri);
         switch (code) {
             case APP_START:
-                boolean appStart = contentValues.getAsBoolean(SensorsDataTable.APP_STARTED.getName());
-                mEditor.putBoolean(SensorsDataTable.APP_STARTED.getName(), appStart);
+                boolean appStart = contentValues.getAsBoolean(ZLYQDataTable.APP_STARTED.getName());
+                mEditor.putBoolean(ZLYQDataTable.APP_STARTED.getName(), appStart);
                 mContentResolver.notifyChange(uri, null);
                 break;
             case APP_END_STATE:
-                boolean appEnd = contentValues.getAsBoolean(SensorsDataTable.APP_END_STATE.getName());
-                mEditor.putBoolean(SensorsDataTable.APP_END_STATE.getName(), appEnd);
+                boolean appEnd = contentValues.getAsBoolean(ZLYQDataTable.APP_END_STATE.getName());
+                mEditor.putBoolean(ZLYQDataTable.APP_END_STATE.getName(), appEnd);
                 break;
             case APP_PAUSED_TIME:
-                long pausedTime = contentValues.getAsLong(SensorsDataTable.APP_PAUSED_TIME.getName());
-                mEditor.putLong(SensorsDataTable.APP_PAUSED_TIME.getName(), pausedTime);
+                long pausedTime = contentValues.getAsLong(ZLYQDataTable.APP_PAUSED_TIME.getName());
+                mEditor.putLong(ZLYQDataTable.APP_PAUSED_TIME.getName(), pausedTime);
                 break;
             case APP_START_TIME:
-                long startTime = contentValues.getAsLong(SensorsDataTable.APP_START_TIME.getName());
-                mEditor.putLong(SensorsDataTable.APP_START_TIME.getName(), startTime);
+                long startTime = contentValues.getAsLong(ZLYQDataTable.APP_START_TIME.getName());
+                mEditor.putLong(ZLYQDataTable.APP_START_TIME.getName(), startTime);
                 break;
             case APP_END_DATA:
-                String appEndData = contentValues.getAsString(SensorsDataTable.APP_END_DATA.getName());
-                mEditor.putString(SensorsDataTable.APP_END_DATA.getName(), appEndData);
+                String appEndData = contentValues.getAsString(ZLYQDataTable.APP_END_DATA.getName());
+                mEditor.putString(ZLYQDataTable.APP_END_DATA.getName(), appEndData);
                 break;
             case ACTIVITY_START_COUNT:
-                int activityCount = contentValues.getAsInteger(SensorsDataTable.ACTIVITY_START_COUNT.getName());
-                mEditor.putInt(SensorsDataTable.ACTIVITY_START_COUNT.getName(), activityCount);
+                int activityCount = contentValues.getAsInteger(ZLYQDataTable.ACTIVITY_START_COUNT.getName());
+                mEditor.putInt(ZLYQDataTable.ACTIVITY_START_COUNT.getName(), activityCount);
                 break;
         }
         mEditor.commit();
@@ -90,33 +90,33 @@ public class SensorsDataContentProvider extends ContentProvider {
         MatrixCursor matrixCursor = null;
         switch (code) {
             case APP_START:
-                int appStart = sharedPreferences.getBoolean(SensorsDataTable.APP_STARTED.getName(), true) ? 1 : 0;
-                matrixCursor = new MatrixCursor(new String[]{SensorsDataTable.APP_STARTED.getName()});
+                int appStart = sharedPreferences.getBoolean(ZLYQDataTable.APP_STARTED.getName(), true) ? 1 : 0;
+                matrixCursor = new MatrixCursor(new String[]{ZLYQDataTable.APP_STARTED.getName()});
                 matrixCursor.addRow(new Object[]{appStart});
                 break;
             case APP_END_STATE:
-                int appEnd = sharedPreferences.getBoolean(SensorsDataTable.APP_END_STATE.getName(), true) ? 1 : 0;
-                matrixCursor = new MatrixCursor(new String[]{SensorsDataTable.APP_END_STATE.getName()});
+                int appEnd = sharedPreferences.getBoolean(ZLYQDataTable.APP_END_STATE.getName(), true) ? 1 : 0;
+                matrixCursor = new MatrixCursor(new String[]{ZLYQDataTable.APP_END_STATE.getName()});
                 matrixCursor.addRow(new Object[]{appEnd});
                 break;
             case APP_PAUSED_TIME:
-                long pausedTime = sharedPreferences.getLong(SensorsDataTable.APP_PAUSED_TIME.getName(), 0);
-                matrixCursor = new MatrixCursor(new String[]{SensorsDataTable.APP_PAUSED_TIME.getName()});
+                long pausedTime = sharedPreferences.getLong(ZLYQDataTable.APP_PAUSED_TIME.getName(), 0);
+                matrixCursor = new MatrixCursor(new String[]{ZLYQDataTable.APP_PAUSED_TIME.getName()});
                 matrixCursor.addRow(new Object[]{pausedTime});
                 break;
             case APP_START_TIME:
-                long startTime = sharedPreferences.getLong(SensorsDataTable.APP_START_TIME.getName(), 0);
-                matrixCursor = new MatrixCursor(new String[]{SensorsDataTable.APP_START_TIME.getName()});
+                long startTime = sharedPreferences.getLong(ZLYQDataTable.APP_START_TIME.getName(), 0);
+                matrixCursor = new MatrixCursor(new String[]{ZLYQDataTable.APP_START_TIME.getName()});
                 matrixCursor.addRow(new Object[]{startTime});
                 break;
             case APP_END_DATA:
-                String appEndData = sharedPreferences.getString(SensorsDataTable.APP_END_DATA.getName(), null);
-                matrixCursor = new MatrixCursor(new String[]{SensorsDataTable.APP_END_DATA.getName()});
+                String appEndData = sharedPreferences.getString(ZLYQDataTable.APP_END_DATA.getName(), null);
+                matrixCursor = new MatrixCursor(new String[]{ZLYQDataTable.APP_END_DATA.getName()});
                 matrixCursor.addRow(new Object[]{appEndData});
                 break;
             case ACTIVITY_START_COUNT:
-                int activity_start_count = sharedPreferences.getInt(SensorsDataTable.ACTIVITY_START_COUNT.getName(), 0);
-                matrixCursor = new MatrixCursor(new String[]{SensorsDataTable.ACTIVITY_START_COUNT.getName()});
+                int activity_start_count = sharedPreferences.getInt(ZLYQDataTable.ACTIVITY_START_COUNT.getName(), 0);
+                matrixCursor = new MatrixCursor(new String[]{ZLYQDataTable.ACTIVITY_START_COUNT.getName()});
                 matrixCursor.addRow(new Object[]{activity_start_count});
                 break;
         }

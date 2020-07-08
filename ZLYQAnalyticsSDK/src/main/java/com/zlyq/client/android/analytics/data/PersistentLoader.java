@@ -33,7 +33,7 @@ public class PersistentLoader {
     private PersistentLoader(Context context) {
         PersistentLoader.context = context.getApplicationContext();
         final SharedPreferencesLoader sPrefsLoader = new SharedPreferencesLoader();
-        final String prefsName = "com.sensorsdata.analytics.android.sdk.SensorsDataAPI";
+        final String prefsName = "com.sensorsdata.analytics.android.sdk.ZLYQDataAPI";
         storedPreferences = sPrefsLoader.loadPreferences(context, prefsName);
     }
 

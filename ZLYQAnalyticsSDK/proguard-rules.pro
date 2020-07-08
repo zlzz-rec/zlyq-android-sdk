@@ -103,10 +103,6 @@
       public protected *;
 }
 
--keep public class com.zlyq.client.android.analytics.utils.SensorsDataUtils* {
-      public protected *;
-}
-
--keep public class com.zlyq.client.android.analytics.utils.SensorsDataAutoTrackHelper* {
+-keep public class com.zlyq.client.android.analytics.utils.ZLYQDataUtils* {
       public protected *;
 }

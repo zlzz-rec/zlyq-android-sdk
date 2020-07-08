@@ -79,7 +79,7 @@ public class EDeviceUtils {
             return "";
         }
 
-        String result = "app_jj";
+        String result = "app_client";
         try {
             String packageName = context.getPackageName();
             String versionName = context.getPackageManager().getPackageInfo(

@@ -64,7 +64,7 @@ import java.util.Random;
 import java.util.Set;
 import java.util.UUID;
 
-public final class SensorsDataUtils {
+public final class ZLYQDataUtils {
 
     private static final String marshmallowMacAddress = "02:00:00:00:00:00";
     private static final String fileAddressMac = "/sys/class/net/wlan0/address";
@@ -115,7 +115,7 @@ public final class SensorsDataUtils {
             add("0123456789abcdef");
         }
     };
-    private static final String TAG = "SA.SensorsDataUtils";
+    private static final String TAG = "SA.ZLYQDataUtils";
 
     public static String getManufacturer() {
         String manufacturer = Build.MANUFACTURER == null ? "UNKNOWN" : Build.MANUFACTURER.trim();
@@ -146,7 +146,7 @@ public final class SensorsDataUtils {
                     String activityTitle = null;
 
                     if (Build.VERSION.SDK_INT >= 11) {
-                        String toolbarTitle = SensorsDataUtils.getToolbarTitle(activity);
+                        String toolbarTitle = ZLYQDataUtils.getToolbarTitle(activity);
                         if (!TextUtils.isEmpty(toolbarTitle)) {
                             activityTitle = toolbarTitle;
                         }
@@ -216,7 +216,7 @@ public final class SensorsDataUtils {
      */
     public static String getCarrier(Context context) {
         try {
-            if (SensorsDataUtils.checkHasPermission(context, Manifest.permission.READ_PHONE_STATE)) {
+            if (ZLYQDataUtils.checkHasPermission(context, Manifest.permission.READ_PHONE_STATE)) {
                 try {
                     TelephonyManager telephonyManager = (TelephonyManager) context.getSystemService(Context
                             .TELEPHONY_SERVICE);
@@ -303,7 +303,7 @@ public final class SensorsDataUtils {
             if (sCarrierMap.containsKey(operator)) {
                 return sCarrierMap.get(operator);
             }
-            String carrierJson = getJsonFromAssets("mcc_mnc_mini.json", context);
+            String carrierJson = getJsonFromAssets("mac.json", context);
             if (TextUtils.isEmpty(carrierJson)) {
                 sCarrierMap.put(operator, alternativeName);
                 return alternativeName;
@@ -664,7 +664,7 @@ public final class SensorsDataUtils {
     private static String getDeviceID(Context context, int number) {
         String deviceId = "";
         try {
-            if (!SensorsDataUtils.checkHasPermission(context, "android.permission.READ_PHONE_STATE")) {
+            if (!ZLYQDataUtils.checkHasPermission(context, "android.permission.READ_PHONE_STATE")) {
                 return deviceId;
             }
 
@@ -943,6 +943,6 @@ public final class SensorsDataUtils {
      * @param intent intent
      */
     public static void handleSchemeUrl(Activity activity, Intent intent) {
-        SensorsDataAutoTrackHelper.handleSchemeUrl(activity, intent);
+        ZLYQDataAutoTrackHelper.handleSchemeUrl(activity, intent);
     }
 }

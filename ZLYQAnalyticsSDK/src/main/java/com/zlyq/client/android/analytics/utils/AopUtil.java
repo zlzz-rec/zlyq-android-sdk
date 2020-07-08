@@ -41,7 +41,7 @@ import com.zlyq.client.android.analytics.AopConstants;
 import com.zlyq.client.android.analytics.R;
 import com.zlyq.client.android.analytics.ViewNode;
 import com.zlyq.client.android.analytics.callback.ScreenAutoTracker;
-import com.zlyq.client.android.analytics.callback.SensorsDataFragmentTitle;
+import com.zlyq.client.android.analytics.callback.ZLYQDataFragmentTitle;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -265,14 +265,14 @@ public class AopUtil {
                     if (trackProperties.has(AopConstants.TITLE)) {
                         title = trackProperties.optString(AopConstants.TITLE);
                     }
-                    SensorsDataUtils.mergeJSONObject(trackProperties, properties);
+                    ZLYQDataUtils.mergeJSONObject(trackProperties, properties);
                 }
             }
 
-            if (TextUtils.isEmpty(title) && fragment.getClass().isAnnotationPresent(SensorsDataFragmentTitle.class)) {
-                SensorsDataFragmentTitle sensorsDataFragmentTitle = fragment.getClass().getAnnotation(SensorsDataFragmentTitle.class);
-                if (sensorsDataFragmentTitle != null) {
-                    title = sensorsDataFragmentTitle.title();
+            if (TextUtils.isEmpty(title) && fragment.getClass().isAnnotationPresent(ZLYQDataFragmentTitle.class)) {
+                ZLYQDataFragmentTitle ZLYQDataFragmentTitle = fragment.getClass().getAnnotation(ZLYQDataFragmentTitle.class);
+                if (ZLYQDataFragmentTitle != null) {
+                    title = ZLYQDataFragmentTitle.title();
                 }
             }
 
@@ -284,7 +284,7 @@ public class AopUtil {
                 }
                 if (activity != null) {
                     if (isTitleNull) {
-                        title = SensorsDataUtils.getActivityTitle(activity);
+                        title = ZLYQDataUtils.getActivityTitle(activity);
                     }
 
                     if (isScreenNameNull) {
@@ -347,7 +347,7 @@ public class AopUtil {
                 ScreenAutoTracker screenAutoTracker = (ScreenAutoTracker) activity;
                 JSONObject trackProperties = screenAutoTracker.getTrackProperties();
                 if (trackProperties != null) {
-                    SensorsDataUtils.mergeJSONObject(trackProperties, propertyJSON);
+                    ZLYQDataUtils.mergeJSONObject(trackProperties, propertyJSON);
                 }
             }
         } catch (Exception ex) {
@@ -526,7 +526,7 @@ public class AopUtil {
                     }
 
                     if (Build.VERSION.SDK_INT >= 11) {
-                        String toolbarTitle = SensorsDataUtils.getToolbarTitle(activity);
+                        String toolbarTitle = ZLYQDataUtils.getToolbarTitle(activity);
                         if (!TextUtils.isEmpty(toolbarTitle)) {
                             activityTitle = toolbarTitle;
                         }

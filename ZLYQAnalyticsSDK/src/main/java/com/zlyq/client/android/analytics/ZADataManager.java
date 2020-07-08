@@ -1,12 +1,13 @@
 package com.zlyq.client.android.analytics;
 
+import android.app.Activity;
 import android.app.Application;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Process;
-import android.text.TextUtils;
 
 import com.zlyq.client.android.analytics.bean.ResultConfig;
-import com.zlyq.client.android.analytics.callback.SensorsDataAPI;
+import com.zlyq.client.android.analytics.callback.ZLYQDataAPI;
 import com.zlyq.client.android.analytics.data.PersistentLoader;
 import com.zlyq.client.android.analytics.data.persistent.PersistentAppId;
 import com.zlyq.client.android.analytics.data.persistent.PersistentDebugMode;
@@ -23,7 +24,8 @@ import com.zlyq.client.android.analytics.net.core.Response;
 import com.zlyq.client.android.analytics.net.core.Tools.EVolley;
 import com.zlyq.client.android.analytics.net.core.VolleyError;
 import com.zlyq.client.android.analytics.utils.EDeviceUtils;
-import com.zlyq.client.android.analytics.utils.SensorsDataUtils;
+import com.zlyq.client.android.analytics.utils.ZLYQDataAutoTrackHelper;
+import com.zlyq.client.android.analytics.utils.ZLYQDataUtils;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -150,16 +152,17 @@ public final class ZADataManager {
         hasInit = true;
         EConstant.SWITCH_OFF = false;//开启一切统计事务
         EConstant.DEVELOP_MODE = isDebug;//是否是开发模式
+        ZADataManager.getDebugMode().commit("no_debug");
 
         /****************进行初始化*************************/
         app = application;
         queue = EVolley.newRequestQueue(application);
         EPushService.startService();
         ZADataDecorator.initCookie(cookie);
-        SensorsDataAPI.init(application, mFirstStart, mFirstDay);
+        ZLYQDataAPI.init(application, mFirstStart, mFirstDay);
 
         //初始化
-        String mAndroidId = SensorsDataUtils.getAndroidID(getContext());
+        String mAndroidId = ZLYQDataUtils.getAndroidID(getContext());
         Map map = new HashMap();
         map.put("project_id", EConstant.PROJECT_ID);
         map.put("udid", mAndroidId);
@@ -170,18 +173,9 @@ public final class ZADataManager {
 
     }
 
-    public static void pushEvent() {
-        EPushService.getSingleInstance().excutePushEvent();
-    }
-
-    /**
-     * 用于刷新Cookie
-     *
-     * @param cookie
-     */
-    public static void refreshCookie(String cookie) {
-        ZADataDecorator.initCookie(cookie);
-    }
+//    public static void pushEvent() {
+//        EPushService.getSingleInstance().excutePushEvent();
+//    }
 
     /**
      * 停止sdk所有服务(停止事件统计,停止事件推送)
@@ -368,5 +362,12 @@ public final class ZADataManager {
             );
             getRequestQueue().add(request);
         }
+    }
+
+    public static void handleSchemeUrl(Activity activity, Intent intent){
+        if(intent == null){
+            return;
+        }
+        ZLYQDataAutoTrackHelper.handleSchemeUrl(activity, intent);
     }
 }

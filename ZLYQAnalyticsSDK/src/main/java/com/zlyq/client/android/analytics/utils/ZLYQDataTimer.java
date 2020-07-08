@@ -24,16 +24,16 @@ import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.ThreadFactory;
 import java.util.concurrent.TimeUnit;
 
-public class SensorsDataTimer {
-    private static SensorsDataTimer instance;
+public class ZLYQDataTimer {
+    private static ZLYQDataTimer instance;
     private ScheduledExecutorService mScheduledExecutorService;
 
-    private SensorsDataTimer() {
+    private ZLYQDataTimer() {
     }
 
-    public static SensorsDataTimer getInstance() {
+    public static ZLYQDataTimer getInstance() {
         if (instance == null) {
-            instance = new SensorsDataTimer();
+            instance = new ZLYQDataTimer();
         }
         return instance;
     }

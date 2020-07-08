@@ -43,13 +43,13 @@ public class DbParams {
             mAppEndDataUri, mSessionTimeUri, mLoginIdUri;
 
     private DbParams(String packageName) {
-        mUri = Uri.parse("content://" + packageName + ".SensorsDataContentProvider/" + TABLE_EVENTS);
-        mActivityStartCountUri = Uri.parse("content://" + packageName + ".SensorsDataContentProvider/" + TABLE_ACTIVITY_START_COUNT);
-        mAppStartTimeUri = Uri.parse("content://" + packageName + ".SensorsDataContentProvider/" + TABLE_APP_START_TIME);
-        mAppEndDataUri = Uri.parse("content://" + packageName + ".SensorsDataContentProvider/" + TABLE_APP_END_DATA);
-        mAppEndUri = Uri.parse("content://" + packageName + ".SensorsDataContentProvider/" + TABLE_APP_END_TIME);
-        mSessionTimeUri = Uri.parse("content://" + packageName + ".SensorsDataContentProvider/" + TABLE_SESSION_INTERVAL_TIME);
-        mLoginIdUri = Uri.parse("content://" + packageName + ".SensorsDataContentProvider/" + TABLE_LOGIN_ID);
+        mUri = Uri.parse("content://" + packageName + ".ZLYQDataContentProvider/" + TABLE_EVENTS);
+        mActivityStartCountUri = Uri.parse("content://" + packageName + ".ZLYQDataContentProvider/" + TABLE_ACTIVITY_START_COUNT);
+        mAppStartTimeUri = Uri.parse("content://" + packageName + ".ZLYQDataContentProvider/" + TABLE_APP_START_TIME);
+        mAppEndDataUri = Uri.parse("content://" + packageName + ".ZLYQDataContentProvider/" + TABLE_APP_END_DATA);
+        mAppEndUri = Uri.parse("content://" + packageName + ".ZLYQDataContentProvider/" + TABLE_APP_END_TIME);
+        mSessionTimeUri = Uri.parse("content://" + packageName + ".ZLYQDataContentProvider/" + TABLE_SESSION_INTERVAL_TIME);
+        mLoginIdUri = Uri.parse("content://" + packageName + ".ZLYQDataContentProvider/" + TABLE_LOGIN_ID);
     }
 
     public static DbParams getInstance(String packageName) {

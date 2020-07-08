@@ -1,6 +1,6 @@
 package com.zlyq.client.android.analytics.callback;
 
-/*public*/ enum SensorsDataTable {
+/*public*/ enum ZLYQDataTable {
     APP_STARTED("app_started"),
     APP_PAUSED_TIME("app_paused_time"),
     APP_START_TIME("app_start_time"),
@@ -9,7 +9,7 @@ package com.zlyq.client.android.analytics.callback;
     ACTIVITY_START_COUNT("activity_start_count"),
     SESSION_INTERVAL_TIME("session_interval_time");
 
-    SensorsDataTable(String name) {
+    ZLYQDataTable(String name) {
         this.name = name;
     }
 

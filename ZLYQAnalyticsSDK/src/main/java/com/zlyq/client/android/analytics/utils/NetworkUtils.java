@@ -40,7 +40,7 @@ public class NetworkUtils {
     public static String networkType(Context context) {
         try {
             // 检测权限
-            if (!SensorsDataUtils.checkHasPermission(context, Manifest.permission.ACCESS_NETWORK_STATE)) {
+            if (!ZLYQDataUtils.checkHasPermission(context, Manifest.permission.ACCESS_NETWORK_STATE)) {
                 return "NULL";
             }
 
@@ -123,7 +123,7 @@ public class NetworkUtils {
      */
     public static boolean isNetworkAvailable(Context context) {
         // 检测权限
-        if (!SensorsDataUtils.checkHasPermission(context, Manifest.permission.ACCESS_NETWORK_STATE)) {
+        if (!ZLYQDataUtils.checkHasPermission(context, Manifest.permission.ACCESS_NETWORK_STATE)) {
             return false;
         }
         try {

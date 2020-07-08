@@ -14,7 +14,7 @@ import com.zlyq.client.android.analytics.net.core.Tools.EVolley;
 import com.zlyq.client.android.analytics.net.core.VolleyError;
 import com.zlyq.client.android.analytics.net.gson.EGson;
 import com.zlyq.client.android.analytics.net.gson.GsonBuilder;
-import com.zlyq.client.android.analytics.utils.SensorsDataUtils;
+import com.zlyq.client.android.analytics.utils.ZLYQDataUtils;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -87,6 +87,39 @@ import static com.zlyq.client.android.analytics.EConstant.TAG;
     }
 
     /**
+     * event事件即时上报数据
+     * @param mBean
+     */
+    public void immediateSendEvent(EventBean mBean) {
+        EGson mEGson = new GsonBuilder().disableHtmlEscaping().create();
+        Map map = new HashMap();
+        Map commonMap = ZADataDecorator.getPresetProperties();
+        map.put("common", commonMap);
+        map.put("type", "track");
+        map.put("project_id", EConstant.PROJECT_ID);
+        map.put("debug_mode", ZADataManager.getDebugMode().get());
+        List<Map> propertiesList = new ArrayList<>();
+        if(mBean == null) return;
+        Map propertiesMap = new HashMap();
+        propertiesMap.put("event", mBean.getEvent());
+        propertiesMap.put("event_time", mBean.getEvent_time());
+        propertiesMap.put("is_first_day", mBean.isIs_first_day());
+        propertiesMap.put("is_first_time", mBean.isIs_first_day());
+        propertiesMap.put("is_login", mBean.isIs_login());
+        if(!TextUtils.isEmpty(mBean.getExt())){
+            Map extMap = mEGson.fromJson(mBean.getExt(), Map.class);
+            propertiesMap.putAll(extMap);
+        }
+        propertiesList.add(propertiesMap);
+        if(propertiesList.size() == 0){
+            return;
+        }
+        map.put("properties", propertiesList);
+        String api = EConstant.COLLECT_URL+API.EVENT_API+EConstant.PROJECT_ID;
+        pushData(api, map);
+    }
+
+    /**
      * user_profile事件上报数据
      * @param type
      * @param property
@@ -107,7 +140,7 @@ import static com.zlyq.client.android.analytics.EConstant.TAG;
      * 身份认证
      */
     public void sendIdentification() {
-        String mAndroidId = SensorsDataUtils.getAndroidID(mContext);
+        String mAndroidId = ZLYQDataUtils.getAndroidID(mContext);
         Map map = new HashMap();
         map.put("project_id", EConstant.PROJECT_ID);
         map.put("udid", mAndroidId);

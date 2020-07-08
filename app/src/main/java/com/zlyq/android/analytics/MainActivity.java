@@ -1,14 +1,11 @@
 package com.zlyq.android.analytics;
 
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import com.zlyq.client.android.analytics.ZADataAPI;
 import com.zlyq.client.android.analytics.ZADataManager;
-import com.zlyq.client.android.analytics.utils.SensorsDataAutoTrackHelper;
-
 import java.util.HashMap;
 import java.util.Map;
 
@@ -29,17 +26,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         findViewById(R.id.unset_user_profile).setOnClickListener(this);
 
         Intent intent = getIntent();
-        String scheme = intent.getScheme();
-        Uri uri = intent.getData();
-        if (uri != null && "zlzzanalysis".endsWith(scheme)) {
-            SensorsDataAutoTrackHelper.handleSchemeUrl(this, intent);
-        }
+        ZADataManager.handleSchemeUrl(this, intent);
     }
 
     @Override
     protected void onNewIntent(Intent intent) {
         super.onNewIntent(intent);
-        SensorsDataAutoTrackHelper.handleSchemeUrl(this, intent);
+        ZADataManager.handleSchemeUrl(this, intent);
     }
 
     @Override
@@ -53,10 +46,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         switch (v.getId()){
             case R.id.btn_event:
                 Map customMap = new HashMap();
-                customMap.put("custom_key1", "custom_value1");
-                customMap.put("custom_key2", "custom_value2");
+                customMap.put("custom_key", String.valueOf(System.currentTimeMillis()));
                 ZADataAPI.event("custom_event", customMap);
-                ZADataManager.pushEvent();
+//                ZADataAPI.pushEvent("custom_event", customMap);
                 break;
             case R.id.btn_login:
                 ZADataAPI.login("123456789");
