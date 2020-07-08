@@ -11,7 +11,17 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0ef2330f-0232-4e27-9484-651d23dc8fdd" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/zlyq/android/analytics/PollingUtil.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle___ZLYQAnalyticSDK_1_0_1__aar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/libs/ZLYQAnalyticSDK-1.0.1.aar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/com/zlyq/analytics/ZLYQAnalyticSDK/1.0.1/ZLYQAnalyticSDK-1.0.1-sources.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/com/zlyq/analytics/ZLYQAnalyticSDK/1.0.1/ZLYQAnalyticSDK-1.0.1-sources.jar.md5" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/com/zlyq/analytics/ZLYQAnalyticSDK/1.0.1/ZLYQAnalyticSDK-1.0.1-sources.jar.sha1" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/com/zlyq/analytics/ZLYQAnalyticSDK/1.0.1/ZLYQAnalyticSDK-1.0.1.aar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/com/zlyq/analytics/ZLYQAnalyticSDK/1.0.1/ZLYQAnalyticSDK-1.0.1.aar.md5" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/com/zlyq/analytics/ZLYQAnalyticSDK/1.0.1/ZLYQAnalyticSDK-1.0.1.aar.sha1" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/com/zlyq/analytics/ZLYQAnalyticSDK/1.0.1/ZLYQAnalyticSDK-1.0.1.pom" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/com/zlyq/analytics/ZLYQAnalyticSDK/1.0.1/ZLYQAnalyticSDK-1.0.1.pom.md5" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/com/zlyq/analytics/ZLYQAnalyticSDK/1.0.1/ZLYQAnalyticSDK-1.0.1.pom.sha1" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/4.4/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/4.4/fileHashes/fileHashes.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/4.4/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/4.4/fileHashes/fileHashes.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/4.4/fileHashes/resourceHashesCache.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/4.4/fileHashes/resourceHashesCache.bin" afterDir="false" />
@@ -24,49 +34,29 @@
       <change beforePath="$PROJECT_DIR$/.gradle/4.4/taskHistory/taskHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/4.4/taskHistory/taskHistory.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/caches/build_file_checksums.ser" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/caches/build_file_checksums.ser" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle___ZLYQAnalyticSDK_1_0_0__aar.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ZLYQAnalyticsSDK/build/ivy.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ZLYQAnalyticsSDK/build/libs/ZLYQAnalyticsSDK-1.0.0-sources.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ZLYQAnalyticsSDK/build/poms/pom-default.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ZLYQAnalyticsSDK/proguard-rules.pro" beforeDir="false" afterPath="$PROJECT_DIR$/ZLYQAnalyticsSDK/proguard-rules.pro" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ZLYQAnalyticsSDK/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/ZLYQAnalyticsSDK/src/main/AndroidManifest.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ZLYQAnalyticsSDK/src/main/assets/mcc_mnc_mini.json" beforeDir="false" afterPath="$PROJECT_DIR$/ZLYQAnalyticsSDK/src/main/assets/mac.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README_USE.md" beforeDir="false" afterPath="$PROJECT_DIR$/README_USE.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ZLYQAnalyticsSDK/maven-release-aar.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/ZLYQAnalyticsSDK/maven-release-aar.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ZLYQAnalyticsSDK/src/main/java/com/zlyq/client/android/analytics/EConstant.java" beforeDir="false" afterPath="$PROJECT_DIR$/ZLYQAnalyticsSDK/src/main/java/com/zlyq/client/android/analytics/EConstant.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ZLYQAnalyticsSDK/src/main/java/com/zlyq/client/android/analytics/EDBHelper.java" beforeDir="false" afterPath="$PROJECT_DIR$/ZLYQAnalyticsSDK/src/main/java/com/zlyq/client/android/analytics/EDBHelper.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ZLYQAnalyticsSDK/src/main/java/com/zlyq/client/android/analytics/ENetHelper.java" beforeDir="false" afterPath="$PROJECT_DIR$/ZLYQAnalyticsSDK/src/main/java/com/zlyq/client/android/analytics/ENetHelper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ZLYQAnalyticsSDK/src/main/java/com/zlyq/client/android/analytics/ZADataAPI.java" beforeDir="false" afterPath="$PROJECT_DIR$/ZLYQAnalyticsSDK/src/main/java/com/zlyq/client/android/analytics/ZADataAPI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ZLYQAnalyticsSDK/src/main/java/com/zlyq/client/android/analytics/EPushTask.java" beforeDir="false" afterPath="$PROJECT_DIR$/ZLYQAnalyticsSDK/src/main/java/com/zlyq/client/android/analytics/EPushTask.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ZLYQAnalyticsSDK/src/main/java/com/zlyq/client/android/analytics/ZADataDecorator.java" beforeDir="false" afterPath="$PROJECT_DIR$/ZLYQAnalyticsSDK/src/main/java/com/zlyq/client/android/analytics/ZADataDecorator.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ZLYQAnalyticsSDK/src/main/java/com/zlyq/client/android/analytics/ZADataManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/ZLYQAnalyticsSDK/src/main/java/com/zlyq/client/android/analytics/ZADataManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ZLYQAnalyticsSDK/src/main/java/com/zlyq/client/android/analytics/callback/SensorsDataAPI.java" beforeDir="false" afterPath="$PROJECT_DIR$/ZLYQAnalyticsSDK/src/main/java/com/zlyq/client/android/analytics/callback/ZLYQDataAPI.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ZLYQAnalyticsSDK/src/main/java/com/zlyq/client/android/analytics/callback/SensorsDataContentProvider.java" beforeDir="false" afterPath="$PROJECT_DIR$/ZLYQAnalyticsSDK/src/main/java/com/zlyq/client/android/analytics/callback/ZLYQDataContentProvider.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ZLYQAnalyticsSDK/src/main/java/com/zlyq/client/android/analytics/callback/SensorsDataFragmentTitle.java" beforeDir="false" afterPath="$PROJECT_DIR$/ZLYQAnalyticsSDK/src/main/java/com/zlyq/client/android/analytics/callback/ZLYQDataFragmentTitle.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ZLYQAnalyticsSDK/src/main/java/com/zlyq/client/android/analytics/callback/SensorsDataPrivate.java" beforeDir="false" afterPath="$PROJECT_DIR$/ZLYQAnalyticsSDK/src/main/java/com/zlyq/client/android/analytics/callback/ZLYQDataPrivate.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ZLYQAnalyticsSDK/src/main/java/com/zlyq/client/android/analytics/callback/SensorsDataTable.java" beforeDir="false" afterPath="$PROJECT_DIR$/ZLYQAnalyticsSDK/src/main/java/com/zlyq/client/android/analytics/callback/ZLYQDataTable.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ZLYQAnalyticsSDK/src/main/java/com/zlyq/client/android/analytics/callback/SensorsDatabaseHelper.java" beforeDir="false" afterPath="$PROJECT_DIR$/ZLYQAnalyticsSDK/src/main/java/com/zlyq/client/android/analytics/callback/ZLYQDatabaseHelper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ZLYQAnalyticsSDK/src/main/java/com/zlyq/client/android/analytics/data/DbParams.java" beforeDir="false" afterPath="$PROJECT_DIR$/ZLYQAnalyticsSDK/src/main/java/com/zlyq/client/android/analytics/data/DbParams.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ZLYQAnalyticsSDK/src/main/java/com/zlyq/client/android/analytics/data/PersistentLoader.java" beforeDir="false" afterPath="$PROJECT_DIR$/ZLYQAnalyticsSDK/src/main/java/com/zlyq/client/android/analytics/data/PersistentLoader.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ZLYQAnalyticsSDK/src/main/java/com/zlyq/client/android/analytics/dialog/DebugModeSelectDialog.java" beforeDir="false" afterPath="$PROJECT_DIR$/ZLYQAnalyticsSDK/src/main/java/com/zlyq/client/android/analytics/dialog/DebugModeSelectDialog.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ZLYQAnalyticsSDK/src/main/java/com/zlyq/client/android/analytics/utils/AopUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/ZLYQAnalyticsSDK/src/main/java/com/zlyq/client/android/analytics/utils/AopUtil.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ZLYQAnalyticsSDK/src/main/java/com/zlyq/client/android/analytics/utils/EDeviceUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/ZLYQAnalyticsSDK/src/main/java/com/zlyq/client/android/analytics/utils/EDeviceUtils.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ZLYQAnalyticsSDK/src/main/java/com/zlyq/client/android/analytics/utils/NetworkUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/ZLYQAnalyticsSDK/src/main/java/com/zlyq/client/android/analytics/utils/NetworkUtils.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ZLYQAnalyticsSDK/src/main/java/com/zlyq/client/android/analytics/utils/SensorsDataAutoTrackHelper.java" beforeDir="false" afterPath="$PROJECT_DIR$/ZLYQAnalyticsSDK/src/main/java/com/zlyq/client/android/analytics/utils/ZLYQDataAutoTrackHelper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ZLYQAnalyticsSDK/src/main/java/com/zlyq/client/android/analytics/utils/SensorsDataTimer.java" beforeDir="false" afterPath="$PROJECT_DIR$/ZLYQAnalyticsSDK/src/main/java/com/zlyq/client/android/analytics/utils/ZLYQDataTimer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ZLYQAnalyticsSDK/src/main/java/com/zlyq/client/android/analytics/utils/SensorsDataUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/ZLYQAnalyticsSDK/src/main/java/com/zlyq/client/android/analytics/utils/ZLYQDataUtils.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ZLYQAnalyticsSDK/src/main/res/layout/sensors_analytics_debug_mode_dialog_content.xml" beforeDir="false" afterPath="$PROJECT_DIR$/ZLYQAnalyticsSDK/src/main/res/layout/zlyq_analytics_debug_mode_dialog_content.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/app.iml" beforeDir="false" afterPath="$PROJECT_DIR$/app/app.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/app/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/libs/ZLYQAnalyticSDK-1.0.0.aar" beforeDir="false" afterPath="$PROJECT_DIR$/app/libs/ZLYQAnalyticSDK-1.0.0.aar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/release/app-release.apk" beforeDir="false" afterPath="$PROJECT_DIR$/app/release/app-release.apk" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/libs/ZLYQAnalyticSDK-1.0.0.aar" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/zlyq/android/analytics/App.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/zlyq/android/analytics/App.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/zlyq/android/analytics/MainActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/zlyq/android/analytics/MainActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/intermediates/proguard-files/proguard-android-optimize.txt-3.1.4" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/intermediates/proguard-files/proguard-android.txt-3.1.4" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/intermediates/proguard-files/proguard-defaults.txt-3.1.4" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/com/zlyq/analytics/ZLYQAnalyticSDK/1.0.0/ZLYQAnalyticSDK-1.0.0-sources.jar" beforeDir="false" afterPath="$PROJECT_DIR$/com/zlyq/analytics/ZLYQAnalyticSDK/1.0.0/ZLYQAnalyticSDK-1.0.0-sources.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/com/zlyq/analytics/ZLYQAnalyticSDK/1.0.0/ZLYQAnalyticSDK-1.0.0-sources.jar.md5" beforeDir="false" afterPath="$PROJECT_DIR$/com/zlyq/analytics/ZLYQAnalyticSDK/1.0.0/ZLYQAnalyticSDK-1.0.0-sources.jar.md5" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/com/zlyq/analytics/ZLYQAnalyticSDK/1.0.0/ZLYQAnalyticSDK-1.0.0-sources.jar.sha1" beforeDir="false" afterPath="$PROJECT_DIR$/com/zlyq/analytics/ZLYQAnalyticSDK/1.0.0/ZLYQAnalyticSDK-1.0.0-sources.jar.sha1" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/com/zlyq/analytics/ZLYQAnalyticSDK/1.0.0/ZLYQAnalyticSDK-1.0.0.aar" beforeDir="false" afterPath="$PROJECT_DIR$/com/zlyq/analytics/ZLYQAnalyticSDK/1.0.0/ZLYQAnalyticSDK-1.0.0.aar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/com/zlyq/analytics/ZLYQAnalyticSDK/1.0.0/ZLYQAnalyticSDK-1.0.0.aar.md5" beforeDir="false" afterPath="$PROJECT_DIR$/com/zlyq/analytics/ZLYQAnalyticSDK/1.0.0/ZLYQAnalyticSDK-1.0.0.aar.md5" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/com/zlyq/analytics/ZLYQAnalyticSDK/1.0.0/ZLYQAnalyticSDK-1.0.0.aar.sha1" beforeDir="false" afterPath="$PROJECT_DIR$/com/zlyq/analytics/ZLYQAnalyticSDK/1.0.0/ZLYQAnalyticSDK-1.0.0.aar.sha1" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/com/zlyq/analytics/ZLYQAnalyticSDK/1.0.0/ZLYQAnalyticSDK-1.0.0-sources.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/com/zlyq/analytics/ZLYQAnalyticSDK/1.0.0/ZLYQAnalyticSDK-1.0.0-sources.jar.md5" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/com/zlyq/analytics/ZLYQAnalyticSDK/1.0.0/ZLYQAnalyticSDK-1.0.0-sources.jar.sha1" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/com/zlyq/analytics/ZLYQAnalyticSDK/1.0.0/ZLYQAnalyticSDK-1.0.0.aar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/com/zlyq/analytics/ZLYQAnalyticSDK/1.0.0/ZLYQAnalyticSDK-1.0.0.aar.md5" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/com/zlyq/analytics/ZLYQAnalyticSDK/1.0.0/ZLYQAnalyticSDK-1.0.0.aar.sha1" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/com/zlyq/analytics/ZLYQAnalyticSDK/1.0.0/ZLYQAnalyticSDK-1.0.0.pom" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/com/zlyq/analytics/ZLYQAnalyticSDK/1.0.0/ZLYQAnalyticSDK-1.0.0.pom.md5" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/com/zlyq/analytics/ZLYQAnalyticSDK/1.0.0/ZLYQAnalyticSDK-1.0.0.pom.sha1" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/com/zlyq/analytics/ZLYQAnalyticSDK/maven-metadata.xml" beforeDir="false" afterPath="$PROJECT_DIR$/com/zlyq/analytics/ZLYQAnalyticSDK/maven-metadata.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/com/zlyq/analytics/ZLYQAnalyticSDK/maven-metadata.xml.md5" beforeDir="false" afterPath="$PROJECT_DIR$/com/zlyq/analytics/ZLYQAnalyticSDK/maven-metadata.xml.md5" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/com/zlyq/analytics/ZLYQAnalyticSDK/maven-metadata.xml.sha1" beforeDir="false" afterPath="$PROJECT_DIR$/com/zlyq/analytics/ZLYQAnalyticSDK/maven-metadata.xml.sha1" afterDir="false" />
@@ -135,20 +125,11 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/zlyq/android/analytics/MainActivity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="35">
-              <caret line="25" column="36" selection-start-line="25" selection-start-column="36" selection-end-line="25" selection-end-column="36" />
+            <state relative-caret-position="73">
+              <caret line="61" column="26" selection-start-line="61" selection-start-column="26" selection-end-line="61" selection-end-column="26" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/ZLYQAnalyticsSDK/build.gradle">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="137">
-              <caret line="24" column="31" selection-start-line="24" selection-start-column="31" selection-end-line="24" selection-end-column="31" />
             </state>
           </provider>
         </entry>
@@ -156,17 +137,17 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/build.gradle">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="291">
-              <caret line="37" column="49" selection-start-line="37" selection-start-column="49" selection-end-line="37" selection-end-column="49" />
+            <state relative-caret-position="69">
+              <caret line="3" column="24" lean-forward="true" selection-start-line="3" selection-start-column="24" selection-end-line="3" selection-end-column="24" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/ZLYQAnalyticsSDK/src/main/java/com/zlyq/client/android/analytics/ZADataAPI.java">
+        <entry file="file://$PROJECT_DIR$/ZLYQAnalyticsSDK/src/main/java/com/zlyq/client/android/analytics/EDBHelper.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="232">
-              <caret line="63" column="41" selection-start-line="63" selection-start-column="41" selection-end-line="63" selection-end-column="41" />
+            <state relative-caret-position="230">
+              <caret line="174" column="32" selection-start-line="174" selection-start-column="32" selection-end-line="174" selection-end-column="32" />
             </state>
           </provider>
         </entry>
@@ -174,58 +155,29 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/ZLYQAnalyticsSDK/src/main/java/com/zlyq/client/android/analytics/ENetHelper.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="151">
-              <caret line="92" column="34" selection-start-line="92" selection-start-column="16" selection-end-line="92" selection-end-column="34" />
+            <state relative-caret-position="389">
+              <caret line="110" column="41" selection-start-line="110" selection-start-column="41" selection-end-line="110" selection-end-column="41" />
               <folding>
-                <element signature="e#8133#8370#0" expanded="true" />
-                <element signature="e#8369#8370#0" expanded="true" />
+                <element signature="e#4808#5514#0" expanded="true" />
+                <element signature="e#5513#5514#0" expanded="true" />
+                <element signature="e#5532#5869#0" expanded="true" />
+                <element signature="e#5868#5869#0" expanded="true" />
+                <element signature="e#7258#7908#0" expanded="true" />
+                <element signature="e#7907#7908#0" expanded="true" />
+                <element signature="e#7922#8231#0" expanded="true" />
+                <element signature="e#8230#8231#0" expanded="true" />
+                <element signature="e#9399#9636#0" expanded="true" />
+                <element signature="e#9635#9636#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/zlyq/android/analytics/App.java">
+        <entry file="file://$PROJECT_DIR$/ZLYQAnalyticsSDK/maven-release-aar.gradle">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="102">
-              <caret line="18" selection-start-line="18" selection-end-line="18" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/ZLYQAnalyticsSDK/src/main/java/com/zlyq/client/android/analytics/ZADataManager.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="227">
-              <caret line="179" column="7" selection-start-line="179" selection-start-column="7" selection-end-line="179" selection-end-column="7" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/ZLYQAnalyticsSDK/src/main/java/com/zlyq/client/android/analytics/ZADataDecorator.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="289">
-              <caret line="98" column="52" selection-start-line="98" selection-start-column="52" selection-end-line="98" selection-end-column="52" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/ZLYQAnalyticsSDK/src/main/java/com/zlyq/client/android/analytics/callback/ZLYQDataAPI.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="749">
-              <caret line="57" column="7" selection-start-line="57" selection-start-column="7" selection-end-line="57" selection-end-column="7" />
-              <folding>
-                <element signature="e#1432#1433#0" expanded="true" />
-                <element signature="e#1463#1464#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="184">
+              <caret line="8" column="34" selection-start-line="8" selection-start-column="34" selection-end-line="8" selection-end-column="34" />
             </state>
           </provider>
         </entry>
@@ -233,8 +185,38 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/ZLYQAnalyticsSDK/src/main/java/com/zlyq/client/android/analytics/EPushTask.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="41">
-              <caret line="52" column="21" selection-start-line="52" selection-start-column="21" selection-end-line="52" selection-end-column="21" />
+            <state relative-caret-position="225">
+              <caret line="43" column="38" selection-start-line="43" selection-start-column="38" selection-end-line="43" selection-end-column="38" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/zlyq/android/analytics/App.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="84">
+              <caret line="14" selection-start-line="14" selection-end-line="14" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/ZLYQAnalyticsSDK/src/main/java/com/zlyq/client/android/analytics/ZADataDecorator.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="344">
+              <caret line="101" column="100" selection-start-line="101" selection-start-column="100" selection-end-line="101" selection-end-column="100" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#9986#9987#0" expanded="true" />
+                <element signature="e#10283#10284#0" expanded="true" />
+                <element signature="e#10375#10376#0" expanded="true" />
+                <element signature="e#10625#10626#0" expanded="true" />
+                <element signature="e#10707#10708#0" expanded="true" />
+                <element signature="e#10780#10781#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -243,13 +225,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>getDebugMode</find>
-      <find>mDebugMode</find>
-      <find>getRequestQueue</find>
-      <find>putDebugMode</find>
-      <find>showDebugModeSelectDialog</find>
-      <find>zlzzanalysis</find>
-      <find>sensors_analytics_debug_mode_title</find>
       <find>SWITCH_OFF</find>
       <find>destoryEventService</find>
       <find>getDistinctId</find>
@@ -273,6 +248,13 @@
       <find>PUSH_CUT_NUMBER</find>
       <find>pushEventByNum</find>
       <find>excutePushEvent</find>
+      <find>app_client</find>
+      <find>HEADER_CONTENT_TYPE</find>
+      <find>text/json</find>
+      <find>getIs_first_day</find>
+      <find>Exception getting app version name</find>
+      <find>EventBean</find>
+      <find>ZADataAPI.pushEvent</find>
     </findStrings>
   </component>
   <component name="GenerateSignedApkSettings">
@@ -292,8 +274,6 @@
         <option value="$PROJECT_DIR$/gradle.properties" />
         <option value="$PROJECT_DIR$/local.properties" />
         <option value="$PROJECT_DIR$/build.gradle" />
-        <option value="$PROJECT_DIR$/ZLYQAnalyticsSDK/src/main/java/com/zlyq/client/android/analytics/bean/EventBean.java" />
-        <option value="$PROJECT_DIR$/ZLYQAnalyticsSDK/src/main/java/com/zlyq/client/android/analytics/EConstant.java" />
         <option value="$PROJECT_DIR$/ZLYQAnalyticsSDK/src/main/res/layout/sensors_analytics_debug_mode_dialog_content.xml" />
         <option value="$PROJECT_DIR$/app/src/main/assets/main.html" />
         <option value="$PROJECT_DIR$/ZLYQAnalyticsSDK/src/main/java/com/zlyq/client/android/analytics/net/API.java" />
@@ -301,28 +281,31 @@
         <option value="$PROJECT_DIR$/ZLYQAnalyticsSDK/src/main/java/com/zlyq/client/android/analytics/utils/SensorsDataAutoTrackHelper.java" />
         <option value="$PROJECT_DIR$/ZLYQAnalyticsSDK/src/main/java/com/zlyq/client/android/analytics/utils/SensorsDataUtils.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml" />
-        <option value="$PROJECT_DIR$/ZLYQAnalyticsSDK/src/main/java/com/zlyq/client/android/analytics/ZADataDecorator.java" />
         <option value="$PROJECT_DIR$/ZLYQAnalyticsSDK/src/main/java/com/zlyq/client/android/analytics/callback/SensorsDataPrivate.java" />
-        <option value="$PROJECT_DIR$/ZLYQAnalyticsSDK/src/main/java/com/zlyq/client/android/analytics/EDBHelper.java" />
         <option value="$PROJECT_DIR$/ZLYQAnalyticsSDK/build.gradle" />
         <option value="$PROJECT_DIR$/ZLYQAnalyticsSDK/upload_local_maven.gradle" />
-        <option value="$PROJECT_DIR$/ZLYQAnalyticsSDK/maven-release-aar.gradle" />
-        <option value="$PROJECT_DIR$/README.md" />
-        <option value="$PROJECT_DIR$/README_USE.md" />
         <option value="$PROJECT_DIR$/ZLYQAnalyticsSDK/proguard-rules.pro" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/zlyq/android/analytics/PollingUtil.java" />
         <option value="$PROJECT_DIR$/ZLYQAnalyticsSDK/src/main/AndroidManifest.xml" />
         <option value="$PROJECT_DIR$/ZLYQAnalyticsSDK/src/main/java/com/zlyq/client/android/analytics/utils/EDeviceUtils.java" />
         <option value="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/zlyq/android/analytics/App.java" />
         <option value="$PROJECT_DIR$/ZLYQAnalyticsSDK/src/main/java/com/zlyq/client/android/analytics/EPushService.java" />
         <option value="$PROJECT_DIR$/ZLYQAnalyticsSDK/src/main/java/com/zlyq/client/android/analytics/callback/ZLYQDataAPI.java" />
         <option value="$PROJECT_DIR$/ZLYQAnalyticsSDK/src/main/java/com/zlyq/client/android/analytics/callback/ZLYQDataPrivate.java" />
         <option value="$PROJECT_DIR$/ZLYQAnalyticsSDK/src/main/java/com/zlyq/client/android/analytics/utils/ZLYQDataAutoTrackHelper.java" />
-        <option value="$PROJECT_DIR$/ZLYQAnalyticsSDK/src/main/java/com/zlyq/client/android/analytics/ENetHelper.java" />
         <option value="$PROJECT_DIR$/ZLYQAnalyticsSDK/src/main/java/com/zlyq/client/android/analytics/ZADataManager.java" />
         <option value="$PROJECT_DIR$/ZLYQAnalyticsSDK/src/main/java/com/zlyq/client/android/analytics/ZADataAPI.java" />
+        <option value="$PROJECT_DIR$/ZLYQAnalyticsSDK/src/main/java/com/zlyq/client/android/analytics/EConstant.java" />
+        <option value="$PROJECT_DIR$/ZLYQAnalyticsSDK/src/main/java/com/zlyq/client/android/analytics/EDBHelper.java" />
+        <option value="$PROJECT_DIR$/ZLYQAnalyticsSDK/src/main/java/com/zlyq/client/android/analytics/EPushTask.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/zlyq/android/analytics/App.java" />
+        <option value="$PROJECT_DIR$/ZLYQAnalyticsSDK/src/main/java/com/zlyq/client/android/analytics/bean/EventBean.java" />
+        <option value="$PROJECT_DIR$/ZLYQAnalyticsSDK/src/main/java/com/zlyq/client/android/analytics/ZADataDecorator.java" />
+        <option value="$PROJECT_DIR$/ZLYQAnalyticsSDK/src/main/java/com/zlyq/client/android/analytics/ENetHelper.java" />
+        <option value="$PROJECT_DIR$/ZLYQAnalyticsSDK/maven-release-aar.gradle" />
         <option value="$PROJECT_DIR$/app/build.gradle" />
+        <option value="$PROJECT_DIR$/README.md" />
+        <option value="$PROJECT_DIR$/README_USE.md" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/zlyq/android/analytics/MainActivity.java" />
       </list>
     </option>
@@ -350,74 +333,6 @@
               <item name="zlyq-android-sdk" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
               <item name="app" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
             </path>
-            <path>
-              <item name="zlyq-android-sdk" type="b2602c69:ProjectViewProjectNode" />
-              <item name="zlyq-android-sdk" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="app" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="zlyq-android-sdk" type="b2602c69:ProjectViewProjectNode" />
-              <item name="zlyq-android-sdk" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="app" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="zlyq-android-sdk" type="b2602c69:ProjectViewProjectNode" />
-              <item name="zlyq-android-sdk" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="app" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="zlyq-android-sdk" type="b2602c69:ProjectViewProjectNode" />
-              <item name="zlyq-android-sdk" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="app" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="com" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="zlyq-android-sdk" type="b2602c69:ProjectViewProjectNode" />
-              <item name="zlyq-android-sdk" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="app" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="com" type="462c0819:PsiDirectoryNode" />
-              <item name="zlyq" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="zlyq-android-sdk" type="b2602c69:ProjectViewProjectNode" />
-              <item name="zlyq-android-sdk" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="app" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="com" type="462c0819:PsiDirectoryNode" />
-              <item name="zlyq" type="462c0819:PsiDirectoryNode" />
-              <item name="android" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="zlyq-android-sdk" type="b2602c69:ProjectViewProjectNode" />
-              <item name="zlyq-android-sdk" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="app" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="com" type="462c0819:PsiDirectoryNode" />
-              <item name="zlyq" type="462c0819:PsiDirectoryNode" />
-              <item name="android" type="462c0819:PsiDirectoryNode" />
-              <item name="analytics" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="zlyq-android-sdk" type="b2602c69:ProjectViewProjectNode" />
-              <item name="zlyq-android-sdk" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="ZLYQAnalyticsSDK" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-            </path>
           </expand>
           <select />
         </subPane>
@@ -429,7 +344,7 @@
   </component>
   <component name="PropertiesComponent">
     <property name="DEBUGGABLE_DEVICE" value="huawei-ane_al00-GJQ4C18412040658" />
-    <property name="DEBUGGABLE_PROCESS" value="com.ccj.android.analytics" />
+    <property name="DEBUGGABLE_PROCESS" value="com.zlyq.android.analytics" />
     <property name="DEBUGGER_ID" value="Auto" />
     <property name="ExportApk.ApkPath" value="$PROJECT_DIR$/app" />
     <property name="ExportApk.BuildVariants" value="release" />
@@ -658,15 +573,21 @@
       <option name="project" value="LOCAL" />
       <updated>1592289183539</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="代码提交。">
+      <created>1594180275739</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1594180275739</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="ToolWindowManager">
     <frame x="4" y="23" width="1660" height="947" extended-state="0" />
-    <editor active="true" />
     <layout>
       <window_info id="Captures" order="0" side_tool="true" weight="0.25" />
-      <window_info content_ui="combo" id="Project" order="1" visible="true" weight="0.13226205" />
+      <window_info active="true" content_ui="combo" id="Project" order="1" visible="true" weight="0.18108776" />
       <window_info id="Structure" order="2" side_tool="true" />
       <window_info id="Build Variants" order="3" side_tool="true" />
       <window_info id="Image Layers" order="4" />
@@ -674,15 +595,15 @@
       <window_info id="Resources Explorer" order="6" />
       <window_info id="Capture Tool" order="7" />
       <window_info id="Favorites" order="8" side_tool="true" />
-      <window_info anchor="bottom" id="Run" order="0" weight="0.28485578" />
-      <window_info anchor="bottom" id="Logcat" order="1" weight="0.49278846" />
+      <window_info anchor="bottom" id="Run" order="0" visible="true" weight="0.3125" />
+      <window_info anchor="bottom" id="Logcat" order="1" weight="0.26802886" />
       <window_info anchor="bottom" id="TODO" order="2" />
       <window_info anchor="bottom" id="Android Profiler" order="3" />
-      <window_info anchor="bottom" id="Debug" order="4" weight="0.13942307" />
+      <window_info anchor="bottom" id="Debug" order="4" weight="0.21875" />
       <window_info anchor="bottom" id="Terminal" order="5" weight="0.265625" />
       <window_info anchor="bottom" id="Event Log" order="6" side_tool="true" />
       <window_info anchor="bottom" id="Version Control" order="7" />
-      <window_info active="true" anchor="bottom" id="Build" order="8" visible="true" weight="0.37740386" />
+      <window_info anchor="bottom" id="Build" order="8" weight="0.6923077" />
       <window_info anchor="bottom" id="Find" order="9" weight="0.1454327" />
       <window_info anchor="right" id="Device File Explorer" order="0" side_tool="true" />
       <window_info anchor="right" id="Capture Analysis" order="1" />
@@ -701,50 +622,25 @@
     <MESSAGE value="代码提交。" />
     <option name="LAST_COMMIT_MESSAGE" value="代码提交。" />
   </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/ZLYQAnalyticsSDK/src/main/java/com/zlyq/client/android/analytics/ZADataDecorator.java</url>
+          <line>208</line>
+          <properties />
+          <option name="timeStamp" value="24" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/ZLYQAnalyticsSDK/src/main/java/com/zlyq/client/android/analytics/ZADataDecorator.java</url>
+          <line>134</line>
+          <properties />
+          <option name="timeStamp" value="25" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/ZLYQAnalyticsSDK/src/main/java/com/zlyq/client/android/analytics/net/core/VolleyLog.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="345">
-          <caret line="34" selection-start-line="34" selection-end-line="34" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/ZLYQAnalyticsSDK/src/main/java/com/zlyq/client/android/analytics/net/core/Request.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="9361">
-          <caret line="457" selection-start-line="457" selection-end-line="457" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/ZLYQAnalyticsSDK-1.0.0.aar/9e7d5d559a04d95379333c25af75c4f6/jars/classes.jar!/com/zlyq/client/android/analytics/ZADataManager.class" />
-    <entry file="file://$PROJECT_DIR$/ZLYQAnalyticsSDK/src/main/java/com/zlyq/client/android/analytics/bean/EventBean.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="23">
-          <caret line="1" selection-start-line="1" selection-end-line="1" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/ZLYQAnalyticsSDK/src/main/java/com/zlyq/client/android/analytics/OnNetResponseListener.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="69">
-          <caret line="3" column="9" selection-start-line="3" selection-start-column="9" selection-end-line="3" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/settings.gradle">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="46">
-          <caret line="2" lean-forward="true" selection-start-line="2" selection-end-line="2" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/build.gradle">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="115">
-          <caret line="5" column="17" selection-start-line="5" selection-start-column="17" selection-end-line="5" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/ZLYQAnalyticsSDK/build/generated/source/buildConfig/debug/com/zlyq/client/android/analytics/BuildConfig.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="253">
@@ -774,13 +670,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="183">
           <caret line="695" column="25" selection-start-line="695" selection-start-column="25" selection-end-line="695" selection-end-column="25" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/ZLYQAnalyticsSDK/src/main/java/com/zlyq/client/android/analytics/EConstant.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="253">
-          <caret line="11" column="7" lean-forward="true" selection-start-line="11" selection-start-column="7" selection-end-line="11" selection-end-column="7" />
         </state>
       </provider>
     </entry>
@@ -848,13 +737,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/README.md">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="782">
-          <caret line="34" column="28" selection-start-line="34" selection-start-column="28" selection-end-line="34" selection-end-column="28" />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/ZLYQAnalyticSDK-1.0.0.aar/5f80f17cd0efc03f53d0a7ce82d1ca9d/jars/classes.jar!/com/zlyq/client/android/analytics/f.class">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="196">
@@ -870,20 +752,6 @@
             <element signature="e#5089#5090#0" expanded="true" />
             <element signature="e#5148#5149#0" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/ZLYQAnalyticsSDK/maven-release-aar.gradle">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="207">
-          <caret line="9" column="29" selection-start-line="9" selection-start-column="29" selection-end-line="9" selection-end-column="29" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/ZLYQAnalyticsSDK/src/main/java/com/zlyq/client/android/analytics/EDBHelper.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2576">
-          <caret line="118" column="19" selection-start-line="118" selection-start-column="19" selection-end-line="118" selection-end-column="19" />
         </state>
       </provider>
     </entry>
@@ -921,20 +789,6 @@
         </state>
       </provider>
       <provider editor-type-id="android-manifest" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/README_USE.md">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="155">
-          <caret line="26" column="50" selection-start-line="26" selection-start-column="50" selection-end-line="26" selection-end-column="50" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/ZLYQAnalyticsSDK/src/main/java/com/zlyq/client/android/analytics/utils/EDeviceUtils.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="139">
-          <caret line="80" lean-forward="true" selection-start-line="80" selection-end-line="80" />
-        </state>
-      </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/AndroidManifest.xml">
       <provider selected="true" editor-type-id="text-editor">
@@ -994,37 +848,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/ZLYQAnalyticsSDK/src/main/java/com/zlyq/client/android/analytics/EventTask.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="427">
-          <caret line="37" column="33" selection-start-line="37" selection-start-column="33" selection-end-line="37" selection-end-column="33" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/ZLYQAnalyticsSDK/src/main/java/com/zlyq/client/android/analytics/ZADataDecorator.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="289">
-          <caret line="98" column="52" selection-start-line="98" selection-start-column="52" selection-end-line="98" selection-end-column="52" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/ZLYQAnalyticsSDK/src/main/java/com/zlyq/client/android/analytics/EPushService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="320">
-          <caret line="53" column="24" selection-start-line="53" selection-start-column="24" selection-end-line="53" selection-end-column="24" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/ZLYQAnalyticsSDK/src/main/java/com/zlyq/client/android/analytics/EPushTask.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="41">
-          <caret line="52" column="21" selection-start-line="52" selection-start-column="21" selection-end-line="52" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/ZLYQAnalyticsSDK/src/main/java/com/zlyq/client/android/analytics/callback/ZLYQDataAPI.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="749">
@@ -1036,59 +859,209 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/ZLYQAnalyticsSDK/src/main/java/com/zlyq/client/android/analytics/ENetHelper.java">
+    <entry file="file://$PROJECT_DIR$/ZLYQAnalyticsSDK/src/main/java/com/zlyq/client/android/analytics/ZADataAPI.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="151">
-          <caret line="92" column="34" selection-start-line="92" selection-start-column="16" selection-end-line="92" selection-end-column="34" />
-          <folding>
-            <element signature="e#8133#8370#0" expanded="true" />
-            <element signature="e#8369#8370#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="157">
+          <caret line="239" column="24" selection-start-line="239" selection-start-column="24" selection-end-line="239" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/ZLYQAnalyticSDK-1.0.0.aar/a0691806bcddd3e9d3cf553b6421f629/jars/classes.jar!/com/zlyq/client/android/analytics/ZADataManager.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="223">
+          <caret line="234" column="37" selection-start-line="234" selection-start-column="37" selection-end-line="234" selection-end-column="37" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$USER_HOME$/Library/Android/sdk/platforms/android-29/android.jar!/java/util/concurrent/atomic/AtomicInteger.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="223">
+          <caret line="56" column="21" selection-start-line="56" selection-start-column="21" selection-end-line="56" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ZLYQAnalyticsSDK/src/main/java/com/zlyq/client/android/analytics/EConstant.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="216">
+          <caret line="34" column="16" selection-start-line="34" selection-start-column="16" selection-end-line="34" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ZLYQAnalyticsSDK/src/main/java/com/zlyq/client/android/analytics/utils/EDeviceUtils.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1426">
+          <caret line="81" column="25" selection-start-line="81" selection-start-column="25" selection-end-line="81" selection-end-column="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ZLYQAnalyticsSDK/src/main/java/com/zlyq/client/android/analytics/net/core/Request.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="260">
+          <caret line="63" column="7" lean-forward="true" selection-start-line="63" selection-start-column="7" selection-end-line="63" selection-end-column="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ZLYQAnalyticsSDK/src/main/java/com/zlyq/client/android/analytics/EGsonRequest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="214">
+          <caret line="49" column="32" selection-start-line="49" selection-start-column="32" selection-end-line="49" selection-end-column="32" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/ZLYQAnalyticsSDK/src/main/java/com/zlyq/client/android/analytics/ZADataManager.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="227">
-          <caret line="179" column="7" selection-start-line="179" selection-start-column="7" selection-end-line="179" selection-end-column="7" />
+        <state relative-caret-position="112">
+          <caret line="174" lean-forward="true" selection-start-line="174" selection-end-line="174" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/ZLYQAnalyticsSDK/src/main/java/com/zlyq/client/android/analytics/ZADataAPI.java">
+    <entry file="file://$PROJECT_DIR$/ZLYQAnalyticsSDK/src/main/java/com/zlyq/client/android/analytics/EPushTask.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="232">
-          <caret line="63" column="41" selection-start-line="63" selection-start-column="41" selection-end-line="63" selection-end-column="41" />
+        <state relative-caret-position="225">
+          <caret line="43" column="38" selection-start-line="43" selection-start-column="38" selection-end-line="43" selection-end-column="38" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/zlyq/android/analytics/App.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="18" selection-start-line="18" selection-end-line="18" />
+        <state relative-caret-position="84">
+          <caret line="14" selection-start-line="14" selection-end-line="14" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/build.gradle">
+    <entry file="file://$PROJECT_DIR$/ZLYQAnalyticsSDK/src/main/java/com/zlyq/client/android/analytics/EventTask.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="291">
-          <caret line="37" column="49" selection-start-line="37" selection-start-column="49" selection-end-line="37" selection-end-column="49" />
+        <state relative-caret-position="202">
+          <caret line="30" column="18" lean-forward="true" selection-start-line="30" selection-start-column="18" selection-end-line="30" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ZLYQAnalyticsSDK/src/main/java/com/zlyq/client/android/analytics/EDBHelper.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="230">
+          <caret line="174" column="32" selection-start-line="174" selection-start-column="32" selection-end-line="174" selection-end-column="32" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$USER_HOME$/Library/Android/sdk/platforms/android-29/android.jar!/android/content/pm/PackageInfo.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="230">
+          <caret line="49" column="18" selection-start-line="49" selection-start-column="18" selection-end-line="49" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ZLYQAnalyticsSDK/src/main/java/com/zlyq/client/android/analytics/EPushService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="112">
+          <caret line="53" selection-start-line="53" selection-end-line="53" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ZLYQAnalyticsSDK/src/main/java/com/zlyq/client/android/analytics/db/EFinalDb.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="112">
+          <caret line="720" selection-start-line="720" selection-end-line="720" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ZLYQAnalyticsSDK/src/main/java/com/zlyq/client/android/analytics/bean/EventBean.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="207">
+          <caret line="28" lean-forward="true" selection-start-line="28" selection-end-line="28" />
+          <folding>
+            <element signature="e#1012#1013#0" expanded="true" />
+            <element signature="e#1047#1048#0" expanded="true" />
+            <element signature="e#1104#1105#0" expanded="true" />
+            <element signature="e#1152#1153#0" expanded="true" />
+            <element signature="e#1192#1193#0" expanded="true" />
+            <element signature="e#1228#1229#0" expanded="true" />
+            <element signature="e#1287#1288#0" expanded="true" />
+            <element signature="e#1337#1338#0" expanded="true" />
+            <element signature="e#1372#1373#0" expanded="true" />
+            <element signature="e#1403#1404#0" expanded="true" />
+            <element signature="e#1452#1453#0" expanded="true" />
+            <element signature="e#1492#1493#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ZLYQAnalyticsSDK/src/main/java/com/zlyq/client/android/analytics/ZADataDecorator.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="344">
+          <caret line="101" column="100" selection-start-line="101" selection-start-column="100" selection-end-line="101" selection-end-column="100" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#9986#9987#0" expanded="true" />
+            <element signature="e#10283#10284#0" expanded="true" />
+            <element signature="e#10375#10376#0" expanded="true" />
+            <element signature="e#10625#10626#0" expanded="true" />
+            <element signature="e#10707#10708#0" expanded="true" />
+            <element signature="e#10780#10781#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ZLYQAnalyticsSDK/src/main/java/com/zlyq/client/android/analytics/ENetHelper.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="389">
+          <caret line="110" column="41" selection-start-line="110" selection-start-column="41" selection-end-line="110" selection-end-column="41" />
+          <folding>
+            <element signature="e#4808#5514#0" expanded="true" />
+            <element signature="e#5513#5514#0" expanded="true" />
+            <element signature="e#5532#5869#0" expanded="true" />
+            <element signature="e#5868#5869#0" expanded="true" />
+            <element signature="e#7258#7908#0" expanded="true" />
+            <element signature="e#7907#7908#0" expanded="true" />
+            <element signature="e#7922#8231#0" expanded="true" />
+            <element signature="e#8230#8231#0" expanded="true" />
+            <element signature="e#9399#9636#0" expanded="true" />
+            <element signature="e#9635#9636#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ZLYQAnalyticsSDK/maven-release-aar.gradle">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="184">
+          <caret line="8" column="34" selection-start-line="8" selection-start-column="34" selection-end-line="8" selection-end-column="34" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/ZLYQAnalyticsSDK/build.gradle">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="137">
-          <caret line="24" column="31" selection-start-line="24" selection-start-column="31" selection-end-line="24" selection-end-column="31" />
+        <state relative-caret-position="162">
+          <caret line="33" column="26" lean-forward="true" selection-start-line="33" selection-start-column="26" selection-end-line="33" selection-end-column="26" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/build.gradle">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="69">
+          <caret line="3" column="24" lean-forward="true" selection-start-line="3" selection-start-column="24" selection-end-line="3" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/README.md">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="213">
+          <caret line="51" column="17" selection-start-line="51" selection-start-column="17" selection-end-line="51" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/README_USE.md">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="50">
+          <caret line="37" column="49" lean-forward="true" selection-start-line="37" selection-start-column="49" selection-end-line="37" selection-end-column="49" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/zlyq/android/analytics/MainActivity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="35">
-          <caret line="25" column="36" selection-start-line="25" selection-start-column="36" selection-end-line="25" selection-end-column="36" />
+        <state relative-caret-position="73">
+          <caret line="61" column="26" selection-start-line="61" selection-start-column="26" selection-end-line="61" selection-end-column="26" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>

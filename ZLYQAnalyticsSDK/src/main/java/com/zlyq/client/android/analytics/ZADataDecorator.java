@@ -94,11 +94,16 @@ public class ZADataDecorator {
 
     public static synchronized void pushEventByNum() {
         ZADataDecorator.addEventNum();
-        if (ZADataDecorator.getEventNum() >= EConstant.PUSH_CUT_NUMBER) { //当满足连续操作大于100条,就进行上传服务
-            //  JJEventService.pushEvent();
+        if (ZADataDecorator.getEventNum() >= EConstant.PUSH_MAX_NUMBER){
             EPushService.getSingleInstance().excutePushEvent();
             ZADataDecorator.clearEventNum();
             ELogger.logWrite(EConstant.TAG, "当满足连续操作大于" + EConstant.PUSH_CUT_NUMBER + "条,就进行上传服务");
+        }else{
+            if (ZADataDecorator.getEventNum() >= EConstant.PUSH_CUT_NUMBER) { //当满足连续操作大于指定条,就进行上传服务
+                EPushService.getSingleInstance().excutePushEvent();
+                ZADataDecorator.clearEventNum();
+                ELogger.logWrite(EConstant.TAG, "当满足连续操作大于" + EConstant.PUSH_CUT_NUMBER + "条,就进行上传服务");
+            }
         }
     }
 

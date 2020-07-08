@@ -14,9 +14,9 @@ repositories {
 
 ##### 1.3 最后在dependencies中添加配置：
 ```
-compile(name: 'zlyq-android-sdk-1.0.0', ext: 'aar')
+compile(name: 'zlyq-android-sdk-1.0.1', ext: 'aar')
 或
-implementation(name: 'zlyq-android-sdk-1.0.0', ext: 'aar')
+implementation(name: 'zlyq-android-sdk-1.0.1', ext: 'aar')
 ```
 
 #### 2.SDK 服务启动
@@ -49,7 +49,7 @@ public class App extends Application {
         customMap.put("custom_key1", "custom_value1");
         customMap.put("custom_key2", "custom_value2");
         ZADataAPI.event("event", customMap);
-        ZADataManager.pushEvent();//关键代码
+        ZADataAPI.pushEvent("event", customMap);//关键代码，即时上报
     }
 }
 ```

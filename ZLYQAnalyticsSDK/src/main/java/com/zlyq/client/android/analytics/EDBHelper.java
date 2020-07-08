@@ -64,6 +64,23 @@ import java.util.List;
     }
 
     /**
+     *  检索所有数据
+     * @return
+     */
+    public static synchronized List<EventBean> getEventList() {
+        //select * from shopping.tb_item where it < '2015-03-08 21:28:44';
+        List<EventBean> resultList = null;
+        try {
+            resultList = db.findAll(EventBean.class);
+            ELogger.logWrite(EConstant.TAG, "getEventListByDate  success!-->--resultList.size()--"+resultList.size());
+        } catch (Exception e) {
+            e.printStackTrace();
+            ELogger.logWrite(EConstant.TAG, "getEventListByDate  failed-->"+e.getMessage());
+        }
+        return resultList;
+    }
+
+    /**
      * 获取 检索记录行 start-end 之间的数据
      * @return
      */
@@ -124,8 +141,19 @@ import java.util.List;
         try {
             db.deleteByWhere(EventBean.class, " event_time<\"" + formateDate + "\"");
             ELogger.logWrite(EConstant.TAG, "deleteEventListByDate  success!-->"+formateDate);
-            List<EventBean> eventListByDate = getEventListByDate(formateDate);
-            ELogger.logWrite(EConstant.TAG, "getEventListByDate  success!-->");
+        } catch (Exception e) {
+            e.printStackTrace();
+            ELogger.logWrite(EConstant.TAG, "deleteEventListByDate  failed-->"+e.getMessage());
+        }
+    }
+
+    /**
+     * 删除数据
+     */
+    public static synchronized void deleteEventList() {
+        try {
+            db.deleteAll(EventBean.class);
+            ELogger.logWrite(EConstant.TAG, "deleteEventListByDate  success!-->");
         } catch (Exception e) {
             e.printStackTrace();
             ELogger.logWrite(EConstant.TAG, "deleteEventListByDate  failed-->"+e.getMessage());

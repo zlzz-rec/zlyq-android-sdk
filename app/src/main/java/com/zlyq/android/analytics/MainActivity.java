@@ -45,10 +45,21 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.btn_event:
+//            {
+//                "is_first_time": false,
+//                    "is_first_day": false,
+//                    "item_id": "1116824",
+//                    "event": "item_click",
+//                    "type": "22",
+//                    "channel_id": 81,
+//                    "event_time": "2020-07-08 19:25:42",
+//                    "is_login": false
+//            }
                 Map customMap = new HashMap();
-                customMap.put("custom_key", String.valueOf(System.currentTimeMillis()));
-                ZADataAPI.event("custom_event", customMap);
-//                ZADataAPI.pushEvent("custom_event", customMap);
+                customMap.put("item_id", "1116824");
+                customMap.put("type", "22");
+                customMap.put("channel_id", 81);
+                ZADataAPI.event("item_click", customMap);
                 break;
             case R.id.btn_login:
                 ZADataAPI.login("123456789");

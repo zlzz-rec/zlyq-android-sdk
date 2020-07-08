@@ -115,8 +115,31 @@ import static com.zlyq.client.android.analytics.EConstant.TAG;
             return;
         }
         map.put("properties", propertiesList);
-        String api = EConstant.COLLECT_URL+API.EVENT_API+EConstant.PROJECT_ID;
-        pushData(api, map);
+        String path = EConstant.COLLECT_URL+API.EVENT_API+EConstant.PROJECT_ID+"?time="+System.currentTimeMillis();
+        EGsonRequest request = new EGsonRequest<>(Request.Method.POST, path, ResultBean.class, null, map,//191
+                new Response.Listener<ResultBean>() {
+                    @Override
+                    public void onResponse(ResultBean response) {
+                        int code = response.getCode();
+                        ELogger.logWrite(TAG, response.toString());
+                        if (code == 0) {
+                            ELogger.logWrite(TAG, "--onPushSuccess--");
+                        } else {
+                            ELogger.logWrite(TAG, "--onPushEorr--");
+                        }
+                        isLoading = false;
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        ELogger.logWrite(TAG, "--onVolleyError--");
+                        responseListener.onPushFailed();
+                        isLoading = false;
+                    }
+                }
+        );
+        queue.add(request);
     }
 
     /**

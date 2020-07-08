@@ -42,7 +42,8 @@ import java.util.List;
         cut_point_date = ZADataDecorator.getNowDate();
 
         //4.获取小于当前时间的数据 集合`push_list`.
-        List list = EDBHelper.getEventListByDate(cut_point_date);
+//        List list = EDBHelper.getEventListByDate(cut_point_date);
+        List list = EDBHelper.getEventList();
 
         if (list == null || list.size() == 0) {
             ELogger.logWrite(EConstant.TAG, "list.size() == 0  cancel push");
@@ -53,7 +54,8 @@ import java.util.List;
             @Override
             public void onPushSuccess() {
                 //5*请求成功,返回值正确, 删除`cut_point_date`之前的数据
-                EDBHelper.deleteEventListByDate(cut_point_date);
+//                EDBHelper.deleteEventListByDate(cut_point_date);
+                EDBHelper.deleteEventList();
                 ZADataDecorator.clearEventNum();
             }
             @Override

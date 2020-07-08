@@ -29,11 +29,14 @@ package com.zlyq.client.android.analytics;
      */
     public static String API_KEY = "";
     /***********===================**time schedule**=============*********/
-
     /**
-     * 记录到达xx条,主动进行上传,默认100
+     * 主动进行上传最大条数
      */
-    static int  PUSH_CUT_NUMBER = 100;
+    static int  PUSH_MAX_NUMBER = 50;
+    /**
+     * 记录到达xx条,主动进行上传,默认10
+     */
+    static int  PUSH_CUT_NUMBER = 10;
 
     /**
      * 上传间隔事件 分钟, 默认1分钟
