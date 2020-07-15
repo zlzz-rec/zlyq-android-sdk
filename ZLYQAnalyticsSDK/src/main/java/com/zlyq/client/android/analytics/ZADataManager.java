@@ -5,6 +5,7 @@ import android.app.Application;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Process;
+import android.text.TextUtils;
 
 import com.zlyq.client.android.analytics.bean.ResultConfig;
 import com.zlyq.client.android.analytics.callback.ZLYQDataAPI;
@@ -14,6 +15,7 @@ import com.zlyq.client.android.analytics.data.persistent.PersistentDebugMode;
 import com.zlyq.client.android.analytics.data.persistent.PersistentDistinctId;
 import com.zlyq.client.android.analytics.data.persistent.PersistentFirstDay;
 import com.zlyq.client.android.analytics.data.persistent.PersistentFirstStart;
+import com.zlyq.client.android.analytics.data.persistent.PersistentIsLogin;
 import com.zlyq.client.android.analytics.data.persistent.PersistentUserId;
 import com.zlyq.client.android.analytics.exception.EventException;
 import com.zlyq.client.android.analytics.intercept.CookieFacade;
@@ -48,6 +50,7 @@ public final class ZADataManager {
     private static PersistentDistinctId mDistinctId = null;
     private static PersistentAppId mAppId = null;
     private static PersistentDebugMode mDebugMode = null;
+    private static PersistentIsLogin mIsLogin = null;
     private static RequestQueue queue;
 
     /**
@@ -116,6 +119,13 @@ public final class ZADataManager {
         return mDebugMode;
     }
 
+    public static PersistentIsLogin isLogin(){
+        if (mIsLogin == null) {
+            throw new EventException("mFirstStart is not");
+        }
+        return mIsLogin;
+    }
+
     /**
      * 初始化sdk, 要在application中的onCreate() 方法中进行初始化.
      *
@@ -136,6 +146,7 @@ public final class ZADataManager {
         mDistinctId = (PersistentDistinctId) PersistentLoader.loadPersistent(PersistentLoader.PersistentName.DISTINCT_ID);
         mAppId = (PersistentAppId) PersistentLoader.loadPersistent(PersistentLoader.PersistentName.APP_ID);
         mDebugMode = (PersistentDebugMode) PersistentLoader.loadPersistent(PersistentLoader.PersistentName.DEBUG_MODE);
+        mIsLogin = (PersistentIsLogin) PersistentLoader.loadPersistent(PersistentLoader.PersistentName.IS_LOGIN);
 
         //处理app拥有多个进程
         String processName = EDeviceUtils.getProcessName(application, Process.myPid());
@@ -335,32 +346,35 @@ public final class ZADataManager {
     }
 
     private static void initConfig(Map map){
-        if(mDistinctId != null && mDistinctId.get() != null){
-            String path = EConstant.COLLECT_URL + API.INIT_API + EConstant.PROJECT_ID;
-            path = path+"?time="+System.currentTimeMillis();
-            EGsonRequest request = new EGsonRequest<>(Request.Method.POST, path, ResultConfig.class, null, map,//191
-                    new Response.Listener<ResultConfig>() {
-                        @Override
-                        public void onResponse(ResultConfig response) {
-                            int code = response.getCode();
-                            ELogger.logWrite(TAG, response.toString());
-                            if (code == 0) {
-                                Map<String, String> data = response.getData();
-                                mDistinctId.commit(data.get("distinct_id"));
-                                ELogger.logWrite(TAG, "--init Success--");
-                            } else {
-                                ELogger.logWrite(TAG, "--init Error--");
+        if(mDistinctId != null){
+            String distinctId = mDistinctId.get();
+            if(TextUtils.isEmpty(distinctId)){
+                String path = EConstant.COLLECT_URL + API.INIT_API + EConstant.PROJECT_ID;
+                path = path+"?time="+System.currentTimeMillis();
+                EGsonRequest request = new EGsonRequest<>(Request.Method.POST, path, ResultConfig.class, null, map,//191
+                        new Response.Listener<ResultConfig>() {
+                            @Override
+                            public void onResponse(ResultConfig response) {
+                                int code = response.getCode();
+                                ELogger.logWrite(TAG, response.toString());
+                                if (code == 0) {
+                                    Map<String, String> data = response.getData();
+                                    mDistinctId.commit(data.get("distinct_id"));
+                                    ELogger.logWrite(TAG, "--init Success--");
+                                } else {
+                                    ELogger.logWrite(TAG, "--init Error--");
+                                }
+                            }
+                        },
+                        new Response.ErrorListener() {
+                            @Override
+                            public void onErrorResponse(VolleyError error) {
+                                ELogger.logWrite(TAG, "--onVolleyError--");
                             }
                         }
-                    },
-                    new Response.ErrorListener() {
-                        @Override
-                        public void onErrorResponse(VolleyError error) {
-                            ELogger.logWrite(TAG, "--onVolleyError--");
-                        }
-                    }
-            );
-            getRequestQueue().add(request);
+                );
+                getRequestQueue().add(request);
+            }
         }
     }
 

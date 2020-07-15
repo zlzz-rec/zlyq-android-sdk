@@ -51,40 +51,40 @@ import static com.zlyq.client.android.analytics.EConstant.TAG;
         queue = EVolley.newRequestQueue(context);
     }
 
-    /**
-     * event事件上报数据
-     * @param list
-     */
-    public void sendEvent(List<EventBean> list) {
-        EGson mEGson = new GsonBuilder().disableHtmlEscaping().create();
-        Map map = new HashMap();
-        Map commonMap = ZADataDecorator.getPresetProperties();
-        map.put("common", commonMap);
-        map.put("type", "track");
-        map.put("project_id", EConstant.PROJECT_ID);
-        map.put("debug_mode", ZADataManager.getDebugMode().get());
-        List<Map> propertiesList = new ArrayList<>();
-        for(EventBean bean : list){
-            if(bean == null) break;
-            Map propertiesMap = new HashMap();
-            propertiesMap.put("event", bean.getEvent());
-            propertiesMap.put("event_time", bean.getEvent_time());
-            propertiesMap.put("is_first_day", bean.isIs_first_day());
-            propertiesMap.put("is_first_time", bean.isIs_first_day());
-            propertiesMap.put("is_login", bean.isIs_login());
-            if(!TextUtils.isEmpty(bean.getExt())){
-                Map extMap = mEGson.fromJson(bean.getExt(), Map.class);
-                propertiesMap.putAll(extMap);
-            }
-            propertiesList.add(propertiesMap);
-        }
-        if(propertiesList.size() == 0){
-            return;
-        }
-        map.put("properties", propertiesList);
-        String api = EConstant.COLLECT_URL+API.EVENT_API+EConstant.PROJECT_ID;
-        pushData(api, map);
-    }
+//    /**
+//     * event事件上报数据
+//     * @param list
+//     */
+//    public void sendEvent(List<EventBean> list) {
+//        EGson mEGson = new GsonBuilder().disableHtmlEscaping().create();
+//        Map map = new HashMap();
+//        Map commonMap = ZADataDecorator.getPresetProperties();
+//        map.put("common", commonMap);
+//        map.put("type", "track");
+//        map.put("project_id", EConstant.PROJECT_ID);
+//        map.put("debug_mode", ZADataManager.getDebugMode().get());
+//        List<Map> propertiesList = new ArrayList<>();
+//        for(EventBean bean : list){
+//            if(bean == null) break;
+//            Map propertiesMap = new HashMap();
+//            propertiesMap.put("event", bean.getEvent());
+//            propertiesMap.put("event_time", bean.getEvent_time());
+//            propertiesMap.put("is_first_day", bean.isIs_first_day());
+//            propertiesMap.put("is_first_time", bean.isIs_first_day());
+//            propertiesMap.put("is_login", bean.isIs_login());
+//            if(!TextUtils.isEmpty(bean.getExt())){
+//                Map extMap = mEGson.fromJson(bean.getExt(), Map.class);
+//                propertiesMap.putAll(extMap);
+//            }
+//            propertiesList.add(propertiesMap);
+//        }
+//        if(propertiesList.size() == 0){
+//            return;
+//        }
+//        map.put("properties", propertiesList);
+//        String api = EConstant.COLLECT_URL+API.EVENT_API+EConstant.PROJECT_ID;
+//        pushData(api, map);
+//    }
 
     /**
      * event事件即时上报数据
@@ -142,72 +142,71 @@ import static com.zlyq.client.android.analytics.EConstant.TAG;
         queue.add(request);
     }
 
-    /**
-     * user_profile事件上报数据
-     * @param type
-     * @param property
-     */
-    public void sendEvent(String type, Map property) {
-        Map map = new HashMap();
-        map.put("project_id", EConstant.PROJECT_ID);
-        map.put("type", "user_profile");
-        map.put("debug_mode", ZADataManager.getDebugMode().get());
-        Map commonMap = ZADataDecorator.getUserProfileProperties(type);
-        map.put("common", commonMap);
-        map.put("property", property);
-        String api = EConstant.COLLECT_URL+API.USER_PROFILE_API+EConstant.PROJECT_ID;
-        pushData(api, map);
-    }
+//    /**
+//     * user_profile事件上报数据
+//     * @param type
+//     * @param property
+//     */
+//    public void sendEvent(String type, Map property) {
+//        Map map = new HashMap();
+//        map.put("project_id", EConstant.PROJECT_ID);
+//        map.put("type", "user_profile");
+//        map.put("debug_mode", ZADataManager.getDebugMode().get());
+//        Map commonMap = ZADataDecorator.getUserProfileProperties(type);
+//        map.put("common", commonMap);
+//        map.put("property", property);
+//        String api = EConstant.COLLECT_URL+API.USER_PROFILE_API+EConstant.PROJECT_ID;
+//        pushData(api, map);
+//    }
 
-    /**
-     * 身份认证
-     */
-    public void sendIdentification() {
-        String mAndroidId = ZLYQDataUtils.getAndroidID(mContext);
-        Map map = new HashMap();
-        map.put("project_id", EConstant.PROJECT_ID);
-        map.put("udid", mAndroidId);
-        map.put("user_id", ZADataManager.getUserId().get());
-        clientUserProfile(map);
-    }
+//    /**
+//     * 身份认证
+//     */
+//    public void sendIdentification() {
+//        String mAndroidId = ZLYQDataUtils.getAndroidID(mContext);
+//        Map map = new HashMap();
+//        map.put("project_id", EConstant.PROJECT_ID);
+//        map.put("udid", mAndroidId);
+//        map.put("user_id", ZADataManager.getUserId().get());
+//        clientUserProfile(map);
+//    }
 
-    /**
-     * 埋点上报
-     * @param path
-     * @param map
-     */
-    public void pushData(String path, Map map) {
-        isLoading = true;
-        ELogger.logWrite(TAG, "push map-->" + map.toString());
-        path = path+"?time="+System.currentTimeMillis();
-        EGsonRequest request = new EGsonRequest<>(Request.Method.POST, path, ResultBean.class, null, map,//191
-            new Response.Listener<ResultBean>() {
-                @Override
-                public void onResponse(ResultBean response) {
-                    int code = response.getCode();
-                    ELogger.logWrite(TAG, response.toString());
-                    if (code == 0) {
-                        responseListener.onPushSuccess();
-                        ELogger.logWrite(TAG, "--onPushSuccess--");
-
-                    } else {
-                        responseListener.onPushEorr(code);
-                        ELogger.logWrite(TAG, "--onPushEorr--");
-                    }
-                    isLoading = false;
-                }
-            },
-            new Response.ErrorListener() {
-                @Override
-                public void onErrorResponse(VolleyError error) {
-                    ELogger.logWrite(TAG, "--onVolleyError--");
-                    responseListener.onPushFailed();
-                    isLoading = false;
-                }
-            }
-        );
-        queue.add(request);
-    }
+//    /**
+//     * 埋点上报
+//     * @param path
+//     * @param map
+//     */
+//    public void pushData(String path, Map map) {
+//        isLoading = true;
+//        ELogger.logWrite(TAG, "push map-->" + map.toString());
+//        path = path+"?time="+System.currentTimeMillis();
+//        EGsonRequest request = new EGsonRequest<>(Request.Method.POST, path, ResultBean.class, null, map,//191
+//            new Response.Listener<ResultBean>() {
+//                @Override
+//                public void onResponse(ResultBean response) {
+//                    int code = response.getCode();
+//                    ELogger.logWrite(TAG, response.toString());
+//                    if (code == 0) {
+//                        responseListener.onPushSuccess();
+//                        ELogger.logWrite(TAG, "--onPushSuccess--");
+//                    } else {
+//                        responseListener.onPushEorr(code);
+//                        ELogger.logWrite(TAG, "--onPushEorr--");
+//                    }
+//                    isLoading = false;
+//                }
+//            },
+//            new Response.ErrorListener() {
+//                @Override
+//                public void onErrorResponse(VolleyError error) {
+//                    ELogger.logWrite(TAG, "--onVolleyError--");
+//                    responseListener.onPushFailed();
+//                    isLoading = false;
+//                }
+//            }
+//        );
+//        queue.add(request);
+//    }
 
     public static boolean getIsLoading() {
         return isLoading;

@@ -70,6 +70,8 @@ public class PersistentLoader {
                 return new PersistentFirstTrackInstallationWithCallback(storedPreferences);
             case PersistentName.FIRST_START:
                 return new PersistentFirstStart(storedPreferences);
+            case PersistentName.IS_LOGIN:
+                return new PersistentIsLogin(storedPreferences);
             case PersistentName.USER_ID:
                 return new PersistentUserId(storedPreferences);
             case PersistentName.REMOTE_CONFIG:
@@ -91,6 +93,7 @@ public class PersistentLoader {
         String DISTINCT_ID = "events_distinct_id";
         String FIRST_DAY = "first_day";
         String FIRST_START = "first_start";
+        String IS_LOGIN = "is_login";
         String FIRST_INSTALL = "first_track_installation";
         String FIRST_INSTALL_CALLBACK = "first_track_installation_with_callback";
         String USER_ID = "events_user_id";

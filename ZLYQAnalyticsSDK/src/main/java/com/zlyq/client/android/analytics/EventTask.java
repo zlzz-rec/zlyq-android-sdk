@@ -34,7 +34,8 @@ public class EventTask implements Runnable {
                 return;
             }
             ELogger.logWrite(EConstant.TAG, " event " + bean.toString());
-            EDBHelper.addEventData(bean);
+//            EDBHelper.addEventData(bean);
+            EDBHelper.addNewData(bean);
             ZADataDecorator.pushEventByNum();
         } catch (Exception e) {
             e.printStackTrace();

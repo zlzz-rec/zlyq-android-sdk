@@ -14,9 +14,9 @@ repositories {
 
 ##### 1.3 最后在dependencies中添加配置：
 ```
-compile(name: 'ZLYQAnalyticSDK-1.0.1', ext: 'aar')
+compile(name: 'ZLYQAnalyticSDK-1.0.2', ext: 'aar')
 或
-implementation(name: 'ZLYQAnalyticSDK-1.0.1', ext: 'aar')
+implementation(name: 'ZLYQAnalyticSDK-1.0.2', ext: 'aar')
 ```
 
 #### 2.SDK 服务启动

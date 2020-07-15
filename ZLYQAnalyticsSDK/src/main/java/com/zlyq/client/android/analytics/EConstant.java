@@ -32,7 +32,7 @@ package com.zlyq.client.android.analytics;
     /**
      * 主动进行上传最大条数
      */
-    static int  PUSH_MAX_NUMBER = 50;
+    static int  PUSH_MAX_NUMBER = 30;
     /**
      * 记录到达xx条,主动进行上传,默认10
      */

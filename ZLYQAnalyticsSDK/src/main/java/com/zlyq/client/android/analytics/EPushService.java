@@ -31,7 +31,8 @@ import static com.zlyq.client.android.analytics.EConstant.SWITCH_OFF;
                 if (SWITCH_OFF) {
                     return;
                 }
-                EPushTask.pushEvent();
+//                EPushTask.pushEvent();
+                ZADataDecorator.timerTaskPushEventByNum();
             }
         };
         if (timerHasCanceled){

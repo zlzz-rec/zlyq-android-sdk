@@ -3,14 +3,24 @@ package com.zlyq.client.android.analytics;
 import android.widget.Toast;
 
 import com.zlyq.client.android.analytics.bean.EventBean;
+import com.zlyq.client.android.analytics.bean.ResultBean;
+import com.zlyq.client.android.analytics.bean.ResultConfig;
+import com.zlyq.client.android.analytics.net.API;
+import com.zlyq.client.android.analytics.net.core.Request;
+import com.zlyq.client.android.analytics.net.core.Response;
+import com.zlyq.client.android.analytics.net.core.VolleyError;
 import com.zlyq.client.android.analytics.thread.JJPoolExecutor;
+import com.zlyq.client.android.analytics.utils.ZLYQDataUtils;
 
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.FutureTask;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
+import static com.zlyq.client.android.analytics.EConstant.TAG;
 
 /**
  * 统计入口
@@ -82,6 +92,7 @@ public final class ZADataAPI {
     public static void login(String userId) {
         try {
             ZADataManager.getUserId().commit(userId);
+            ZADataManager.isLogin().commit(true);
             identification();
         } catch (Exception e) {
             e.printStackTrace();
@@ -95,6 +106,8 @@ public final class ZADataAPI {
     public static void logout() {
         try {
             ZADataManager.getUserId().commit("");
+            ZADataManager.isLogin().commit(false);
+//            EPushService.getSingleInstance().excutePushEvent();
             identification();
         } catch (Exception e) {
             e.printStackTrace();
@@ -218,37 +231,127 @@ public final class ZADataAPI {
     }
 
     private static void setUserProfiles(String type, Map map){
-        ENetHelper.create(ZADataManager.getContext(), new OnNetResponseListener() {
-            @Override
-            public void onPushSuccess() {
-                ELogger.logWrite(EConstant.TAG, "user_profile success ");
-            }
-            @Override
-            public void onPushEorr(int errorCode) {
-                ELogger.logError(EConstant.TAG, "user_profile error ");
-            }
-            @Override
-            public void onPushFailed() {
-                ELogger.logError(EConstant.TAG, "user_profile error ");
-            }
-        }).sendEvent(type, map);
+        sendEvent(type, map);
+//        ENetHelper.create(ZADataManager.getContext(), new OnNetResponseListener() {
+//            @Override
+//            public void onPushSuccess() {
+//                ELogger.logWrite(EConstant.TAG, "user_profile success ");
+//            }
+//            @Override
+//            public void onPushEorr(int errorCode) {
+//                ELogger.logError(EConstant.TAG, "user_profile error ");
+//            }
+//            @Override
+//            public void onPushFailed() {
+//                ELogger.logError(EConstant.TAG, "user_profile error ");
+//            }
+//        }).sendEvent(type, map);
     }
 
     private static void identification(){
-        ENetHelper.create(ZADataManager.getContext(), new OnNetResponseListener() {
-            @Override
-            public void onPushSuccess() {
-                ELogger.logWrite(EConstant.TAG, "user_profile success ");
-            }
-            @Override
-            public void onPushEorr(int errorCode) {
-                ELogger.logError(EConstant.TAG, "user_profile error ");
-            }
-            @Override
-            public void onPushFailed() {
-                ELogger.logError(EConstant.TAG, "user_profile error ");
-            }
-        }).sendIdentification();
+        sendIdentification();
+//        ENetHelper.create(ZADataManager.getContext(), new OnNetResponseListener() {
+//            @Override
+//            public void onPushSuccess() {
+//                ELogger.logWrite(EConstant.TAG, "user_profile success ");
+//            }
+//            @Override
+//            public void onPushEorr(int errorCode) {
+//                ELogger.logError(EConstant.TAG, "user_profile error ");
+//            }
+//            @Override
+//            public void onPushFailed() {
+//                ELogger.logError(EConstant.TAG, "user_profile error ");
+//            }
+//        }).sendIdentification();
+    }
+
+    /**
+     * user_profile事件上报数据
+     * @param type
+     * @param property
+     */
+    private static void sendEvent(String type, Map property) {
+        Map map = new HashMap();
+        map.put("project_id", EConstant.PROJECT_ID);
+        map.put("type", "user_profile");
+        map.put("debug_mode", ZADataManager.getDebugMode().get());
+        Map commonMap = ZADataDecorator.getUserProfileProperties(type);
+        map.put("common", commonMap);
+        map.put("property", property);
+        String api = EConstant.COLLECT_URL+ API.USER_PROFILE_API+EConstant.PROJECT_ID;
+        pushData(api, map);
+    }
+
+    /**
+     * 埋点上报
+     * @param path
+     * @param map
+     */
+    private static void pushData(String path, Map map) {
+        ELogger.logWrite(TAG, "push map-->" + map.toString());
+        path = path+"?time="+System.currentTimeMillis();
+        EGsonRequest request = new EGsonRequest<>(Request.Method.POST, path, ResultBean.class, null, map,//191
+                new Response.Listener<ResultBean>() {
+                    @Override
+                    public void onResponse(ResultBean response) {
+                        int code = response.getCode();
+                        ELogger.logWrite(TAG, response.toString());
+                        if (code == 0) {
+                            ELogger.logWrite(TAG, "--onPushSuccess--");
+                        } else {
+                            ELogger.logWrite(TAG, "--onPushEorr--");
+                        }
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        ELogger.logWrite(TAG, "--onVolleyError--");
+                    }
+                }
+        );
+        ZADataManager.getRequestQueue().add(request);
+    }
+
+    private static void clientUserProfile(Map map){
+        String path = EConstant.COLLECT_URL + API.INIT_API + EConstant.PROJECT_ID;
+        path = path+"?time="+System.currentTimeMillis();
+        EGsonRequest request = new EGsonRequest<>(Request.Method.POST, path, ResultConfig.class, null, map,//191
+                new Response.Listener<ResultConfig>() {
+                    @Override
+                    public void onResponse(ResultConfig response) {
+                        int code = response.getCode();
+                        ELogger.logWrite(TAG, response.toString());
+                        if (code == 0) {
+                            Map<String, String> data = response.getData();
+                            ZADataManager.getDistinctId().commit(data.get("distinct_id"));
+                            ELogger.logWrite(TAG, "--init Success--");
+                        } else {
+                            ELogger.logWrite(TAG, "--init Error--");
+                        }
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        ELogger.logWrite(TAG, "--onVolleyError--");
+                    }
+                }
+        );
+        ZADataManager.getRequestQueue().add(request);
+    }
+
+    /**
+     * 身份认证
+     */
+    private static void sendIdentification() {
+        String mAndroidId = ZLYQDataUtils.getAndroidID(ZADataManager.getContext());
+        Map map = new HashMap();
+        map.put("project_id", EConstant.PROJECT_ID);
+        map.put("udid", mAndroidId);
+        map.put("user_id", ZADataManager.getUserId().get());
+        clientUserProfile(map);
     }
 
     private static boolean checkUserProfile(Map<String, Object> map){

@@ -36,7 +36,7 @@ public class ZADataDecorator {
 
     private static final AtomicInteger eventNum = new AtomicInteger(0);//当满足连续操作大于100条,就进行上传服务
    // private static  volatile long hitsCount = 0;//当前页面在一次访问中的第几次数据请求；与session_id关联，当session_id变化时重新计数，从1开始
-    private static  final AtomicInteger hitsCount=new AtomicInteger(0) ;//当前页面在一次访问中的第几次数据请求；与session_id关联，当session_id变化时重新计数，从1开始
+//    private static  final AtomicInteger hitsCount=new AtomicInteger(0) ;//当前页面在一次访问中的第几次数据请求；与session_id关联，当session_id变化时重新计数，从1开始
 
     //MD5摘要，用于校验md5(dt+cid+type+salt)
     private static String salt="d41d8cd98f00b204e9800998ecf84";
@@ -90,6 +90,20 @@ public class ZADataDecorator {
         }
         ZADataDecorator.refreshCurrentEventDate();//刷新点击 时间,用于比较下次点击事件,计算Sid
         return bean;
+    }
+
+    public static synchronized void timerTaskPushEventByNum() {
+        if (ZADataDecorator.getEventNum() >= EConstant.PUSH_MAX_NUMBER){
+            EPushService.getSingleInstance().excutePushEvent();
+            ZADataDecorator.clearEventNum();
+            ELogger.logWrite(EConstant.TAG, "当满足连续操作大于" + EConstant.PUSH_CUT_NUMBER + "条,就进行上传服务");
+        }else{
+            if (ZADataDecorator.getEventNum() >= EConstant.PUSH_CUT_NUMBER) { //当满足连续操作大于指定条,就进行上传服务
+                EPushService.getSingleInstance().excutePushEvent();
+                ZADataDecorator.clearEventNum();
+                ELogger.logWrite(EConstant.TAG, "当满足连续操作大于" + EConstant.PUSH_CUT_NUMBER + "条,就进行上传服务");
+            }
+        }
     }
 
     public static synchronized void pushEventByNum() {
@@ -221,15 +235,15 @@ public class ZADataDecorator {
     /**
      * 访问结束的标志:不活动状态超过15分钟；由客户端生成
      */
-    public static synchronized String getSID() {
-        //
-        String newDate = getNowDate();
-        if (ZADataDecorator.compareDate(newDate, old_date, EConstant.PUSH_FINISH_DATE)) {
-            sid = getNewUniqueSid() + "";
-            hitsCount.set(0); //ssid变化时,重新计数
-        }
-        return sid;
-    }
+//    public static synchronized String getSID() {
+//        //
+//        String newDate = getNowDate();
+//        if (ZADataDecorator.compareDate(newDate, old_date, EConstant.PUSH_FINISH_DATE)) {
+//            sid = getNewUniqueSid() + "";
+//            hitsCount.set(0); //ssid变化时,重新计数
+//        }
+//        return sid;
+//    }
 
     public static synchronized String getNowDate() {
         SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
@@ -252,9 +266,9 @@ public class ZADataDecorator {
         return System.currentTimeMillis() + "" + radom;
     }
 
-    public static synchronized  String  getHnbCount() {
-        return hitsCount.incrementAndGet()+"";
-    }
+//    public static synchronized  String  getHnbCount() {
+//        return hitsCount.incrementAndGet()+"";
+//    }
 
     public static  void refreshCurrentEventDate() {
         old_date = getNowDate();
