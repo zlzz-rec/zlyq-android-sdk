@@ -185,3 +185,22 @@ Map<String, Object> commonParams = ZADataAPI.commonParams();
 -keep class com.zlyq.client.android.analytics.exception.**{*;}
 -keep class com.zlyq.client.android.analytics.enums.**{*;}
 ```
+
+#### 7.调试模式
+```
+在程序的入口处添加如下代码，scheme和host替换成分配的配置即可。
+
+<intent-filter>
+    <!--协议部分，自定义设置
+        如：zlzzanalysis://debugmode.app?project_id=1&debug_id=12i7tkOf
+        artandc91cf844bd9d8d3b25e802e58bb0aa3f://zlzz.com?project_id=1&debug_id=12i7tkOf
+       -->
+    <!--下面这几行也必须得设置-->
+    <category android:name="android.intent.category.DEFAULT"/>
+    <action android:name="android.intent.action.VIEW"/>
+    <category android:name="android.intent.category.BROWSABLE"/>
+    <data
+        android:host="zlzz.com"
+        android:scheme="artandc91cf844bd9d8d3b25e802e58bb0aa3f" />
+</intent-filter>
+```

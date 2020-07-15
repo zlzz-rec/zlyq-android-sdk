@@ -23,10 +23,7 @@ import static com.zlyq.client.android.analytics.EConstant.TAG;
 /**
  * 推送任务,可静态执行
   判断网络, 对数据库中数据进行上传. 上传完毕,删除db相应数据.
-
- * Created by chenchangjun on 18/2/24.
  */
-
  class EPushTask  {
 
     private static volatile String cut_point_date = "";//校验数据库最新数据时间戳
@@ -56,8 +53,8 @@ import static com.zlyq.client.android.analytics.EConstant.TAG;
         cut_point_date = ZADataDecorator.getNowDate();
 
         //4.获取小于当前时间的数据 集合`push_list`.
-//        List list = EDBHelper.getEventListByDate(cut_point_date);
-        List list = EDBHelper.getDataList();
+        List list = EDBHelper.getEventListByDate(cut_point_date);
+//        List list = EDBHelper.getDataList();
 
         if (list == null || list.size() == 0) {
             ELogger.logWrite(EConstant.TAG, "list.size() == 0  cancel push");
@@ -130,7 +127,8 @@ import static com.zlyq.client.android.analytics.EConstant.TAG;
                         int code = response.getCode();
                         ELogger.logWrite(TAG, response.toString());
                         if (code == 0) {
-                            EDBHelper.clearAllCache();
+//                            EDBHelper.clearAllCache();
+                            EDBHelper.deleteEventListByDate(cut_point_date);
                             ZADataDecorator.clearEventNum();
                             ELogger.logWrite(TAG, "--onPushSuccess--");
                         } else {

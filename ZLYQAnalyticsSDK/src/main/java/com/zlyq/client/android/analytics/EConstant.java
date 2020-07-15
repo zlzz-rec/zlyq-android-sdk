@@ -1,8 +1,5 @@
 package com.zlyq.client.android.analytics;
 
-/**
- * Created by chenchangjun on 18/2/8.
- */
  public class EConstant {
 
     static volatile boolean SWITCH_OFF = false; //全局开关,用于在接口返回时,控制sdk是否启动

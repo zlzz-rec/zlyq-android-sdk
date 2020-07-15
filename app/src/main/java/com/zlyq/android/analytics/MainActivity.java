@@ -62,7 +62,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 ZADataAPI.event("item_click", customMap);
                 break;
             case R.id.btn_login:
-                ZADataAPI.login("123456789");
+                ZADataAPI.login("12345678900000");
                 break;
             case R.id.login_out:
                 ZADataAPI.logout();

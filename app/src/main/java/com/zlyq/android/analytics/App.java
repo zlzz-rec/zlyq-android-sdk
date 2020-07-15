@@ -22,8 +22,8 @@ public class App extends Application {
                 .setApiKey("111c739156e83a1b5683291bc3e95921")
                 .setProjectId(1)//项目id
                 .setDebug(BuildConfig.DEBUG)//是否是debug
-                .setPushLimitMinutes(0.5)//多少分钟 push一次
-                .setPushLimitNum(10)//多少条 就主动进行push
+                .setPushLimitMinutes(1)//多少分钟 push一次
+                .setPushLimitNum(5)//多少条 就主动进行push
                 .start();//开始*/
 
     }

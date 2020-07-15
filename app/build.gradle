@@ -34,7 +34,6 @@ dependencies {
 
     implementation 'com.alibaba:fastjson:1.2.21'
 
-//    implementation 'com.zlyq.analytics:zlyq-android-sdk:1.0.0'
 //    implementation project(path: ':ZLYQAnalyticsSDK')
     implementation(name: 'ZLYQAnalyticSDK-1.0.2', ext: 'aar')
 
