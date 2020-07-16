@@ -35,6 +35,6 @@ dependencies {
     implementation 'com.alibaba:fastjson:1.2.21'
 
 //    implementation project(path: ':ZLYQAnalyticsSDK')
-    implementation(name: 'ZLYQAnalyticSDK-1.0.2', ext: 'aar')
+    implementation(name: 'ZLYQAnalyticSDK-1.0.3', ext: 'aar')
 
 }

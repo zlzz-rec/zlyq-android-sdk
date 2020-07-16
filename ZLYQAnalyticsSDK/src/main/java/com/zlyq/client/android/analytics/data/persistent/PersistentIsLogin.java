@@ -38,7 +38,7 @@ public class PersistentIsLogin extends PersistentIdentity<Boolean> {
 
             @Override
             public Boolean create() {
-                return true;
+                return false;
             }
         });
     }

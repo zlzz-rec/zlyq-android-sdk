@@ -44,6 +44,17 @@ public class SharedPreferencesUtil {
         return mPreferences.getString(key, "");
     }
 
+    // 存入数据
+    public void putSPBoolean(String key, boolean value) {
+        mEditor.putBoolean(key, value);
+        mEditor.commit();
+    }
+
+    // 获取数据
+    public Boolean getSPBoolean(String key) {
+        return mPreferences.getBoolean(key, false);
+    }
+
     // 移除数据
     public void removeSP(String key) {
         mEditor.remove(key);

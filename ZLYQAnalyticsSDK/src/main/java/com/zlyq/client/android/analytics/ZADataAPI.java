@@ -46,44 +46,12 @@ public final class ZADataAPI {
      */
     public static void event(String event, Map ecp) {
         try {
-            if("appStart".endsWith(event) || "appEnd".endsWith(event)){
-                return;
-            }
             EventTask eventTask = new EventTask(event,ecp);
             JJPoolExecutor.getInstance().execute(new FutureTask<Object>(eventTask,null));
         } catch (Exception e) {
             e.printStackTrace();
             ELogger.logWrite(EConstant.TAG, "event error " + e.getMessage());
         }
-    }
-
-    /**
-     * 实时上报
-     * @param event
-     * @param ecp
-     */
-    public static void pushEvent(final String event, final Map ecp) {
-        EventBean bean = ZADataDecorator.generateEventBean(event, ecp);
-        if (bean == null) {
-            ELogger.logWrite(EConstant.TAG, " event bean == null");
-            return;
-        }
-        ELogger.logWrite(EConstant.TAG, " event " + bean.toString());
-        ENetHelper.create(ZADataManager.getContext(), new OnNetResponseListener() {
-            @Override
-            public void onPushSuccess() {
-            }
-            @Override
-            public void onPushEorr(int errorCode) {
-                //.请求成功,返回值错误,根据接口返回值,进行处理.
-            }
-            @Override
-            public void onPushFailed() {
-                //请求失败;不做处理.
-                EventTask eventTask = new EventTask(event,ecp);
-                JJPoolExecutor.getInstance().execute(new FutureTask<Object>(eventTask,null));
-            }
-        }).immediateSendEvent(bean);
     }
 
     /**
@@ -232,38 +200,10 @@ public final class ZADataAPI {
 
     private static void setUserProfiles(String type, Map map){
         sendEvent(type, map);
-//        ENetHelper.create(ZADataManager.getContext(), new OnNetResponseListener() {
-//            @Override
-//            public void onPushSuccess() {
-//                ELogger.logWrite(EConstant.TAG, "user_profile success ");
-//            }
-//            @Override
-//            public void onPushEorr(int errorCode) {
-//                ELogger.logError(EConstant.TAG, "user_profile error ");
-//            }
-//            @Override
-//            public void onPushFailed() {
-//                ELogger.logError(EConstant.TAG, "user_profile error ");
-//            }
-//        }).sendEvent(type, map);
     }
 
     private static void identification(){
         sendIdentification();
-//        ENetHelper.create(ZADataManager.getContext(), new OnNetResponseListener() {
-//            @Override
-//            public void onPushSuccess() {
-//                ELogger.logWrite(EConstant.TAG, "user_profile success ");
-//            }
-//            @Override
-//            public void onPushEorr(int errorCode) {
-//                ELogger.logError(EConstant.TAG, "user_profile error ");
-//            }
-//            @Override
-//            public void onPushFailed() {
-//                ELogger.logError(EConstant.TAG, "user_profile error ");
-//            }
-//        }).sendIdentification();
     }
 
     /**

@@ -11,8 +11,8 @@
 
     <application>
         <provider
-            android:name="com.zlyq.client.android.analytics.callback.ZLYQDataContentProvider"
-            android:authorities="${applicationId}.ZLYQDataContentProvider"
+            android:name="com.zlyq.client.android.analytics.dataprivate.ZADataNewDataContentProvider"
+            android:authorities="${applicationId}.ZADataNewDataContentProvider"
             android:enabled="true"
             android:exported="false" />
     </application>

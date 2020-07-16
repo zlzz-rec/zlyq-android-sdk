@@ -33,12 +33,12 @@ public class PersistentFirstStart extends PersistentIdentity<Boolean> {
 
             @Override
             public String save(Boolean item) {
-                return item == null ? create().toString() : String.valueOf(true);
+                return item == null ? create().toString() : String.valueOf(false);
             }
 
             @Override
             public Boolean create() {
-                return true;
+                return false;
             }
         });
     }

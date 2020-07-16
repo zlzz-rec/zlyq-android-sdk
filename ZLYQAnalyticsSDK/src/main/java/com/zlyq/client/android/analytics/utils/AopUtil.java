@@ -37,7 +37,7 @@ import android.widget.RadioButton;
 import android.widget.TextView;
 import android.widget.ToggleButton;
 
-import com.zlyq.client.android.analytics.AopConstants;
+import com.zlyq.client.android.analytics.AppConstants;
 import com.zlyq.client.android.analytics.R;
 import com.zlyq.client.android.analytics.ViewNode;
 import com.zlyq.client.android.analytics.callback.ScreenAutoTracker;
@@ -258,12 +258,12 @@ public class AopUtil {
                 ScreenAutoTracker screenAutoTracker = (ScreenAutoTracker) fragment;
                 JSONObject trackProperties = screenAutoTracker.getTrackProperties();
                 if (trackProperties != null) {
-                    if (trackProperties.has(AopConstants.SCREEN_NAME)) {
-                        screenName = trackProperties.optString(AopConstants.SCREEN_NAME);
+                    if (trackProperties.has(AppConstants.SCREEN_NAME)) {
+                        screenName = trackProperties.optString(AppConstants.SCREEN_NAME);
                     }
 
-                    if (trackProperties.has(AopConstants.TITLE)) {
-                        title = trackProperties.optString(AopConstants.TITLE);
+                    if (trackProperties.has(AppConstants.TITLE)) {
+                        title = trackProperties.optString(AppConstants.TITLE);
                     }
                     ZLYQDataUtils.mergeJSONObject(trackProperties, properties);
                 }
@@ -295,7 +295,7 @@ public class AopUtil {
             }
 
             if (!TextUtils.isEmpty(title)) {
-                properties.put(AopConstants.TITLE, title);
+                properties.put(AppConstants.TITLE, title);
             }
 
             if (TextUtils.isEmpty(screenName)) {
@@ -337,10 +337,10 @@ public class AopUtil {
     public static JSONObject buildTitleAndScreenName(Activity activity) {
         JSONObject propertyJSON = new JSONObject();
         try {
-            propertyJSON.put(AopConstants.SCREEN_NAME, activity.getClass().getCanonicalName());
+            propertyJSON.put(AppConstants.SCREEN_NAME, activity.getClass().getCanonicalName());
             String activityTitle = AopUtil.getActivityTitle(activity);
             if (!TextUtils.isEmpty(activityTitle)) {
-                propertyJSON.put(AopConstants.TITLE, activityTitle);
+                propertyJSON.put(AppConstants.TITLE, activityTitle);
             }
 
             if (activity instanceof ScreenAutoTracker) {
@@ -366,20 +366,20 @@ public class AopUtil {
     public static JSONObject buildTitleNoAutoTrackerProperties(Activity activity) {
         JSONObject propertyJSON = new JSONObject();
         try {
-            propertyJSON.put(AopConstants.SCREEN_NAME, activity.getClass().getCanonicalName());
+            propertyJSON.put(AppConstants.SCREEN_NAME, activity.getClass().getCanonicalName());
             String activityTitle = AopUtil.getActivityTitle(activity);
             if (!TextUtils.isEmpty(activityTitle)) {
-                propertyJSON.put(AopConstants.TITLE, activityTitle);
+                propertyJSON.put(AppConstants.TITLE, activityTitle);
             }
             if (activity instanceof ScreenAutoTracker) {
                 ScreenAutoTracker screenAutoTracker = (ScreenAutoTracker) activity;
                 JSONObject trackProperties = screenAutoTracker.getTrackProperties();
                 if (trackProperties != null) {
-                    if (trackProperties.has(AopConstants.SCREEN_NAME)) {
-                        propertyJSON.put(AopConstants.SCREEN_NAME, trackProperties.optString(AopConstants.SCREEN_NAME));
+                    if (trackProperties.has(AppConstants.SCREEN_NAME)) {
+                        propertyJSON.put(AppConstants.SCREEN_NAME, trackProperties.optString(AppConstants.SCREEN_NAME));
                     }
-                    if (trackProperties.has(AopConstants.TITLE)) {
-                        propertyJSON.put(AopConstants.TITLE, trackProperties.optString(AopConstants.TITLE));
+                    if (trackProperties.has(AppConstants.TITLE)) {
+                        propertyJSON.put(AppConstants.TITLE, trackProperties.optString(AppConstants.TITLE));
                     }
                 }
             }
@@ -618,22 +618,22 @@ public class AopUtil {
             //ViewId
             String idString = AopUtil.getViewId(view);
             if (!TextUtils.isEmpty(idString)) {
-                properties.put(AopConstants.ELEMENT_ID, idString);
+                properties.put(AppConstants.ELEMENT_ID, idString);
             }
 
             //$screen_name & $title
             if (activity != null) {
                 JSONObject activityProperties = AopUtil.buildTitleAndScreenName(activity);
-                if (!properties.has(AopConstants.SCREEN_NAME)) {
-                    String screenName = activityProperties.optString(AopConstants.SCREEN_NAME);
+                if (!properties.has(AppConstants.SCREEN_NAME)) {
+                    String screenName = activityProperties.optString(AppConstants.SCREEN_NAME);
                     if (!TextUtils.isEmpty(screenName)) {
-                        properties.put(AopConstants.SCREEN_NAME, screenName);
+                        properties.put(AppConstants.SCREEN_NAME, screenName);
                     }
                 }
-                if (!properties.has(AopConstants.TITLE)) {
-                    String title = activityProperties.optString(AopConstants.TITLE);
+                if (!properties.has(AppConstants.TITLE)) {
+                    String title = activityProperties.optString(AppConstants.TITLE);
                     if (!TextUtils.isEmpty(title)) {
-                        properties.put(AopConstants.TITLE, title);
+                        properties.put(AppConstants.TITLE, title);
                     }
                 }
             }
@@ -646,11 +646,11 @@ public class AopUtil {
             String viewText = viewNode.getViewContent();
             //$element_content
             if (!TextUtils.isEmpty(viewText)) {
-                properties.put(AopConstants.ELEMENT_CONTENT, viewText);
+                properties.put(AppConstants.ELEMENT_CONTENT, viewText);
             }
 
             //$element_type
-            properties.put(AopConstants.ELEMENT_TYPE, viewNode.getViewType());
+            properties.put(AppConstants.ELEMENT_TYPE, viewNode.getViewType());
 
             //fragmentName
             Object fragment = AopUtil.getFragmentFromView(view);

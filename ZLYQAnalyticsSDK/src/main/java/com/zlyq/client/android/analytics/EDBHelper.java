@@ -2,19 +2,14 @@ package com.zlyq.client.android.analytics;
 
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
-import android.text.TextUtils;
 
 import com.zlyq.client.android.analytics.bean.EventBean;
 import com.zlyq.client.android.analytics.db.EFinalDb;
-import com.zlyq.client.android.analytics.net.gson.reflect.TypeToken;
-import com.zlyq.client.android.analytics.utils.FastjsonUtils;
-import com.zlyq.client.android.analytics.utils.SharedPreferencesUtil;
-import java.util.ArrayList;
+
 import java.util.List;
 
  public class EDBHelper {
 
-     private static List<EventBean> listData = new ArrayList<>();
     private static final EFinalDb db;
 
    // SQLite 采用串行模型，所有线程都公用同一个数据库连接。

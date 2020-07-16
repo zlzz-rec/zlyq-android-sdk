@@ -5,10 +5,10 @@ import android.support.annotation.Keep;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 
-import com.zlyq.client.android.analytics.EventTask;
+import com.zlyq.client.android.analytics.ZADataAPI;
 import com.zlyq.client.android.analytics.data.persistent.PersistentFirstDay;
 import com.zlyq.client.android.analytics.data.persistent.PersistentFirstStart;
-import com.zlyq.client.android.analytics.thread.JJPoolExecutor;
+import com.zlyq.client.android.analytics.dataprivate.ZADataNewDataPrivate;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -16,7 +16,6 @@ import org.json.JSONObject;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
-import java.util.concurrent.FutureTask;
 
 @Keep
 public class ZLYQDataAPI {
@@ -46,8 +45,10 @@ public class ZLYQDataAPI {
     private ZLYQDataAPI(Application application, PersistentFirstStart mFirstStart, PersistentFirstDay mFirstDay) {
         mDeviceId = ZLYQDataPrivate.getAndroidID(application.getApplicationContext());
         mDeviceInfo = ZLYQDataPrivate.getDeviceInfo(application.getApplicationContext());
-        ZLYQDataPrivate.registerActivityLifecycleCallbacks(application, mFirstStart, mFirstDay);
-        ZLYQDataPrivate.registerActivityStateObserver(application);
+//        ZLYQDataPrivate.registerActivityLifecycleCallbacks(application, mFirstStart, mFirstDay);
+//        ZLYQDataPrivate.registerActivityStateObserver(application);
+        ZADataNewDataPrivate.registerActivityLifecycleCallbacks(application);
+        ZADataNewDataPrivate.registerActivityStateObserver(application);
     }
 
     /**
@@ -62,8 +63,9 @@ public class ZLYQDataAPI {
             if("appEnd".endsWith(eventName)){
                 map = toHashMap(properties);
             }
-            EventTask eventTask = new EventTask(eventName,map);
-            JJPoolExecutor.getInstance().execute(new FutureTask<Object>(eventTask,null));
+            ZADataAPI.event(eventName, map);
+//            EventTask eventTask = new EventTask(eventName,map);
+//            JJPoolExecutor.getInstance().execute(new FutureTask<Object>(eventTask,null));
         } catch (Exception e) {
             e.printStackTrace();
         }

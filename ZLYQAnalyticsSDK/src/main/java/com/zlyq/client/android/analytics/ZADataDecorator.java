@@ -72,16 +72,12 @@ public class ZADataDecorator {
         EventBean bean = new EventBean();
         //common
         bean.setEvent_time(ZADataDecorator.getNowDate());
-        String loginId = ZADataManager.getUserId().get();
-        if (!TextUtils.isEmpty(loginId)) {
-            bean.setIs_login(true);
-        } else {
-            bean.setIs_login(false);
-        }
+        boolean isLogin = ZADataManager.isLogin().get();
+        bean.setIs_login(isLogin?1:0);
         boolean firstDay = isFirstDay(System.currentTimeMillis());
-        bean.setIs_first_day(firstDay);
+        bean.setIs_first_day(firstDay?1:0);
         boolean firstTime = ZADataManager.getFirstStart().get();
-        bean.setIs_first_time(firstTime);
+        bean.setIs_first_time(firstTime?1:0);
         //自定义
         if (ecp != null && !ecp.isEmpty()) {
             EGson EGson = new GsonBuilder().enableComplexMapKeySerialization().create();
@@ -231,19 +227,6 @@ public class ZADataDecorator {
         }
         return Collections.unmodifiableMap(deviceInfo);
     }
-
-    /**
-     * 访问结束的标志:不活动状态超过15分钟；由客户端生成
-     */
-//    public static synchronized String getSID() {
-//        //
-//        String newDate = getNowDate();
-//        if (ZADataDecorator.compareDate(newDate, old_date, EConstant.PUSH_FINISH_DATE)) {
-//            sid = getNewUniqueSid() + "";
-//            hitsCount.set(0); //ssid变化时,重新计数
-//        }
-//        return sid;
-//    }
 
     public static synchronized String getNowDate() {
         SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");

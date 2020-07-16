@@ -381,7 +381,7 @@ import static com.zlyq.client.android.analytics.EConstant.TAG;
                 } catch (Exception e) {
                     SALog.printStackTrace(e);
                 }
-//                mDatabaseHelper.commitAppStart(true);
+                mDatabaseHelper.commitAppStart(true);
 //                if (!mDatabaseHelper.getAppEndEventState()) {
 //                    try {
 //                        String jsonEndData = mDatabaseHelper.getAppEndData();

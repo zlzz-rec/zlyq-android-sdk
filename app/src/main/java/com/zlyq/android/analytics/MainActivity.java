@@ -55,6 +55,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 //                    "event_time": "2020-07-08 19:25:42",
 //                    "is_login": false
 //            }
+//                ZADataManager.getFirstDay().commit("2020-07-08 19:25:42");
+//                ZADataManager.getFirstStart().commit(true);
                 Map customMap = new HashMap();
                 customMap.put("item_id", "1116824");
                 customMap.put("type", "22");

@@ -14,9 +14,9 @@ public class EventBean implements Serializable{
     private int id;
     private String event;
     private String event_time;
-    private boolean is_first_day;
-    private boolean is_first_time;
-    private boolean is_login;
+    private int is_first_day;
+    private int is_first_time;
+    private int is_login;
     private String ext;
 
     public int getId() {
@@ -43,27 +43,27 @@ public class EventBean implements Serializable{
         this.event_time = event_time;
     }
 
-    public boolean isIs_first_day() {
+    public int getIs_first_day() {
         return is_first_day;
     }
 
-    public void setIs_first_day(boolean is_first_day) {
+    public void setIs_first_day(int is_first_day) {
         this.is_first_day = is_first_day;
     }
 
-    public boolean isIs_first_time() {
+    public int getIs_first_time() {
         return is_first_time;
     }
 
-    public void setIs_first_time(boolean is_first_time) {
+    public void setIs_first_time(int is_first_time) {
         this.is_first_time = is_first_time;
     }
 
-    public boolean isIs_login() {
+    public int getIs_login() {
         return is_login;
     }
 
-    public void setIs_login(boolean is_login) {
+    public void setIs_login(int is_login) {
         this.is_login = is_login;
     }
 

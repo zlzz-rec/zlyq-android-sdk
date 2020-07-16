@@ -95,9 +95,9 @@ import static com.zlyq.client.android.analytics.EConstant.TAG;
             Map propertiesMap = new HashMap();
             propertiesMap.put("event", bean.getEvent());
             propertiesMap.put("event_time", bean.getEvent_time());
-            propertiesMap.put("is_first_day", bean.isIs_first_day());
-            propertiesMap.put("is_first_time", bean.isIs_first_day());
-            propertiesMap.put("is_login", bean.isIs_login());
+            propertiesMap.put("is_first_day", bean.getIs_first_day()==1?true:false);
+            propertiesMap.put("is_first_time", bean.getIs_first_time()==1?true:false);
+            propertiesMap.put("is_login", bean.getIs_login()==1?true:false);
             if(!TextUtils.isEmpty(bean.getExt())){
                 Map extMap = mEGson.fromJson(bean.getExt(), Map.class);
                 propertiesMap.putAll(extMap);
