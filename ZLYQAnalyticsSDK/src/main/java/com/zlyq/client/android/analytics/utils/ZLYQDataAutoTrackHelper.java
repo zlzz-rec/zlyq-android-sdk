@@ -68,7 +68,7 @@ public class ZLYQDataAutoTrackHelper {
             final int childCount = root.getChildCount();
             for (int i = 0; i < childCount; ++i) {
                 final View child = root.getChildAt(i);
-                child.setTag(R.id.sensors_analytics_tag_view_fragment_name, fragmentName);
+                child.setTag(R.id.zlyq_analytics_tag_view_fragment_name, fragmentName);
                 if (child instanceof ViewGroup && !(child instanceof ListView ||
                         child instanceof GridView ||
                         child instanceof Spinner ||
@@ -128,7 +128,7 @@ public class ZLYQDataAutoTrackHelper {
             }
             //Fragment名称
             String fragmentName = object.getClass().getName();
-            rootView.setTag(R.id.sensors_analytics_tag_view_fragment_name, fragmentName);
+            rootView.setTag(R.id.zlyq_analytics_tag_view_fragment_name, fragmentName);
 
             if (rootView instanceof ViewGroup) {
                 traverseView(fragmentName, (ViewGroup) rootView);

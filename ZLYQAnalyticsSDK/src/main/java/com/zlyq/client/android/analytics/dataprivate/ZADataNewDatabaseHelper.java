@@ -7,22 +7,24 @@ import android.database.Cursor;
 import android.net.Uri;
 
 /*public*/ class ZADataNewDatabaseHelper {
-    private static final String SensorsDataContentProvider = ".ZADataNewDataContentProvider/";
+    private static final String ZADataNewDataContentProvider = ".ZADataNewDataContentProvider/";
     private ContentResolver mContentResolver;
     private Uri mAppStart;
     private Uri mAppEndState;
     private Uri mAppPausedTime;
+    private Uri mAppStartTime;
 
     public static final String APP_STARTED = "$app_started";
     public static final String APP_END_STATE = "$app_end_state";
     public static final String APP_PAUSED_TIME = "$app_paused_time";
-
+    public static final String APP_START_TIME = "$app_start_time";
 
     ZADataNewDatabaseHelper(Context context, String packageName) {
         mContentResolver = context.getContentResolver();
-        mAppStart = Uri.parse("content://" + packageName + SensorsDataContentProvider + ZADataNewDataTable.APP_STARTED.getName());
-        mAppEndState = Uri.parse("content://" + packageName + SensorsDataContentProvider + ZADataNewDataTable.APP_END_STATE.getName());
-        mAppPausedTime = Uri.parse("content://" + packageName + SensorsDataContentProvider + ZADataNewDataTable.APP_PAUSED_TIME.getName());
+        mAppStart = Uri.parse("content://" + packageName + ZADataNewDataContentProvider + ZADataNewDataTable.APP_STARTED.getName());
+        mAppEndState = Uri.parse("content://" + packageName + ZADataNewDataContentProvider + ZADataNewDataTable.APP_END_STATE.getName());
+        mAppPausedTime = Uri.parse("content://" + packageName + ZADataNewDataContentProvider + ZADataNewDataTable.APP_PAUSED_TIME.getName());
+        mAppStartTime = Uri.parse("content://" + packageName + ZADataNewDataContentProvider + ZADataNewDataTable.APP_START_TIME.getName());
     }
 
 
@@ -35,6 +37,27 @@ import android.net.Uri;
         ContentValues contentValues = new ContentValues();
         contentValues.put(APP_STARTED, appStart);
         mContentResolver.insert(mAppStart, contentValues);
+    }
+
+    public void commitAppStartTime(long startTime) {
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(APP_START_TIME, startTime);
+        mContentResolver.insert(mAppStartTime, contentValues);
+    }
+
+    public long getAppStartTime() {
+        long startTime = 0;
+        Cursor cursor = mContentResolver.query(mAppStartTime, new String[]{APP_START_TIME}, null, null, null);
+        if (cursor != null && cursor.getCount() > 0) {
+            while (cursor.moveToNext()) {
+                startTime = cursor.getLong(0);
+            }
+        }
+
+        if (cursor != null) {
+            cursor.close();
+        }
+        return startTime;
     }
 
     /**

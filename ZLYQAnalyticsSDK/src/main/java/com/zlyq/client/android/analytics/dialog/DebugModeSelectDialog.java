@@ -1,19 +1,3 @@
-/*
- * Created by zhangwei on 2019/04/17.
- * Copyright 2015－2020 Sensors Data Inc.
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *       http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
 
 package com.zlyq.client.android.analytics.dialog;
 
@@ -68,21 +52,21 @@ public class DebugModeSelectDialog extends Dialog implements View.OnClickListene
 
     private void initView() {
         //标题:SDK 调试模式选择
-        TextView debugModeTitle = findViewById(R.id.sensors_analytics_debug_mode_title);
+        TextView debugModeTitle = findViewById(R.id.zlyq_analytics_debug_mode_title);
         debugModeTitle.setText("SDK 调试模式选择");
 
         //取消
-        TextView debugModeCancel = findViewById(R.id.sensors_analytics_debug_mode_cancel);
+        TextView debugModeCancel = findViewById(R.id.zlyq_analytics_debug_mode_cancel);
         debugModeCancel.setText("取消");
         debugModeCancel.setOnClickListener(this);
 
         //开启调试模式(不导入数据)
-        TextView debugModeOnly = findViewById(R.id.sensors_analytics_debug_mode_only);
+        TextView debugModeOnly = findViewById(R.id.zlyq_analytics_debug_mode_only);
         debugModeOnly.setText("开启调试模式（不导入数据）");
         debugModeOnly.setOnClickListener(this);
 
         //"开启调试模式(导入数据)"
-        TextView debugModeTrack = findViewById(R.id.sensors_analytics_debug_mode_track);
+        TextView debugModeTrack = findViewById(R.id.zlyq_analytics_debug_mode_track);
         debugModeTrack.setText("开启调试模式（导入数据）");
         debugModeTrack.setOnClickListener(this);
 
@@ -92,7 +76,7 @@ public class DebugModeSelectDialog extends Dialog implements View.OnClickListene
         } else if (currentDebugMode == ZADataAPI.DebugMode.DEBUG_AND_TRACK) {
             msg = "当前为 测试模式（导入数据）";
         }
-        TextView debugModeMessage = findViewById(R.id.sensors_analytics_debug_mode_message);
+        TextView debugModeMessage = findViewById(R.id.zlyq_analytics_debug_mode_message);
         debugModeMessage.setText(msg);
 
         //设置按钮点击效果
@@ -133,11 +117,11 @@ public class DebugModeSelectDialog extends Dialog implements View.OnClickListene
             return;
         }
         int id = v.getId();
-        if (id == R.id.sensors_analytics_debug_mode_track) {
+        if (id == R.id.zlyq_analytics_debug_mode_track) {
             onDebugModeDialogClickListener.setDebugMode(this, ZADataAPI.DebugMode.DEBUG_AND_TRACK);
-        } else if (id == R.id.sensors_analytics_debug_mode_only) {
+        } else if (id == R.id.zlyq_analytics_debug_mode_only) {
             onDebugModeDialogClickListener.setDebugMode(this, ZADataAPI.DebugMode.DEBUG_ONLY);
-        } else if (id == R.id.sensors_analytics_debug_mode_cancel) {
+        } else if (id == R.id.zlyq_analytics_debug_mode_cancel) {
             onDebugModeDialogClickListener.onCancel(this);
         }
     }

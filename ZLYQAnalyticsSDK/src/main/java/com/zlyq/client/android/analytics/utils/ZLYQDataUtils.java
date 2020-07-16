@@ -1,19 +1,3 @@
-/*
- * Created by wangzhuozhou on 2015/08/01.
- * Copyright 2015－2020 Sensors Data Inc.
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *       http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
 
 package com.zlyq.client.android.analytics.utils;
 
@@ -68,12 +52,12 @@ public final class ZLYQDataUtils {
 
     private static final String marshmallowMacAddress = "02:00:00:00:00:00";
     private static final String fileAddressMac = "/sys/class/net/wlan0/address";
-    private static final String SHARED_PREF_EDITS_FILE = "sensorsdata";
-    private static final String SHARED_PREF_DEVICE_ID_KEY = "sensorsdata.device.id";
-    private static final String SHARED_PREF_USER_AGENT_KEY = "sensorsdata.user.agent";
-    private static final String SHARED_PREF_REQUEST_TIME = "sensorsdata.request.time";
-    private static final String SHARED_PREF_REQUEST_TIME_RANDOM = "sensorsdata.request.time.random";
-    private static final String SHARED_PREF_CHANNEL_EVENT = "sensorsdata.channel.event";
+    private static final String SHARED_PREF_EDITS_FILE = "zlyqdata";
+    private static final String SHARED_PREF_DEVICE_ID_KEY = "zlyqdata.device.id";
+    private static final String SHARED_PREF_USER_AGENT_KEY = "zlyqdata.user.agent";
+    private static final String SHARED_PREF_REQUEST_TIME = "zlyqdata.request.time";
+    private static final String SHARED_PREF_REQUEST_TIME_RANDOM = "zlyqdata.request.time.random";
+    private static final String SHARED_PREF_CHANNEL_EVENT = "zlyqdata.channel.event";
     private static final Map<String, String> sCarrierMap = new HashMap<String, String>() {
         {
             //中国移动

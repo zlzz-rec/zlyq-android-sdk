@@ -1,11 +1,9 @@
 package com.zlyq.client.android.analytics.dataprivate;
 
-import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
 import android.app.ActionBar;
 import android.app.Activity;
 import android.app.Application;
-import android.content.Context;
 import android.content.pm.ActivityInfo;
 import android.content.pm.PackageManager;
 import android.database.ContentObserver;
@@ -14,18 +12,14 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.os.Handler;
-import android.provider.Settings;
+import android.os.Looper;
 import android.support.annotation.Keep;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
-
 import com.zlyq.client.android.analytics.ZADataAPI;
 import com.zlyq.client.android.analytics.ZADataManager;
-import com.zlyq.client.android.analytics.callback.ZLYQDataAPI;
-
 import org.json.JSONException;
 import org.json.JSONObject;
-
 import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -36,9 +30,7 @@ import java.util.Map;
 public class ZADataNewDataPrivate {
     private static List<String> mIgnoredActivities;
     private static ZADataNewDatabaseHelper mDatabaseHelper;
-    private static CountDownTimer countDownTimer;
-    private static WeakReference<Activity> mCurrentActivity;
-    private final static int SESSION_INTERVAL_TIME = 30 * 1000;
+    private static long duration = 0;
 
     static {
         mIgnoredActivities = new ArrayList<>();
@@ -127,22 +119,9 @@ public class ZADataNewDataPrivate {
     }
 
     /**
-     * Track 页面浏览事件
-     *
-     * @param activity Activity
-     */
-    @Keep
-    private static void trackAppViewScreen(Activity activity) {
-        try {
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
-    /**
      * Track $AppStart 事件
      */
-    private static void trackAppStart(Activity activity) {
+    private static void trackAppStart() {
         boolean firstStart = ZADataManager.getFirstStart().get();
         try {
             if (!firstStart) {
@@ -158,18 +137,15 @@ public class ZADataNewDataPrivate {
     /**
      * Track $AppEnd 事件
      */
-    private static void trackAppEnd(Activity activity, long timeDiff) {
+    private static void trackAppEnd() {
         try {
-            if (activity == null) {
-                return;
-            }
             JSONObject properties = new JSONObject();
-            properties.put("duration", timeDiff);
+            properties.put("duration", duration);
             Map map = toHashMap(properties);
             ZADataAPI.pushEvent("appEnd", map);
 //            ZLYQDataAPI.getInstance().track("appEnd", properties);
-            mDatabaseHelper.commitAppEndEventState(true);
-            mCurrentActivity = null;
+//            mDatabaseHelper.commitAppEndEventState(true);
+//            mCurrentActivity = null;
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -201,21 +177,6 @@ public class ZADataNewDataPrivate {
     @TargetApi(14)
     public static void registerActivityLifecycleCallbacks(Application application) {
         mDatabaseHelper = new ZADataNewDatabaseHelper(application.getApplicationContext(), application.getPackageName());
-        countDownTimer = new CountDownTimer(SESSION_INTERVAL_TIME, 10 * 1000) {
-            @Override
-            public void onTick(long l) {
-
-            }
-
-            @Override
-            public void onFinish() {
-                if (mCurrentActivity != null) {
-                    long timeDiff = System.currentTimeMillis() - mDatabaseHelper.getAppPausedTime();
-                    trackAppEnd(mCurrentActivity.get(), timeDiff);
-                }
-            }
-        };
-
         application.registerActivityLifecycleCallbacks(new Application.ActivityLifecycleCallbacks() {
             @Override
             public void onActivityCreated(Activity activity, Bundle bundle) {
@@ -223,29 +184,29 @@ public class ZADataNewDataPrivate {
 
             @Override
             public void onActivityStarted(Activity activity) {
-                mDatabaseHelper.commitAppStart(true);
-                long timeDiff = System.currentTimeMillis() - mDatabaseHelper.getAppPausedTime();
-                if (timeDiff > SESSION_INTERVAL_TIME) {
-                    if (!mDatabaseHelper.getAppEndEventState()) {
-                        trackAppEnd(activity, timeDiff);
-                    }
-                }
-                if (mDatabaseHelper.getAppEndEventState()) {
-                    mDatabaseHelper.commitAppEndEventState(false);
-                    trackAppStart(activity);
-                }
+//                mDatabaseHelper.commitAppStart(true);
+//                duration = mDatabaseHelper.getAppPausedTime() - mDatabaseHelper.getAppStartTime();
+//                if (!mDatabaseHelper.getAppEndEventState() && duration > 0) {
+//                    trackAppEnd(activity);
+//                }
+//                if (mDatabaseHelper.getAppEndEventState()) {
+//                    mDatabaseHelper.commitAppEndEventState(false);
+//                    trackAppStart(activity);
+//                }
+//                mDatabaseHelper.commitAppStartTime(System.currentTimeMillis());
             }
 
             @Override
             public void onActivityResumed(Activity activity) {
-                trackAppViewScreen(activity);
+//                trackAppViewScreen(activity);
+                setAppOnForeground(true);
             }
 
             @Override
             public void onActivityPaused(Activity activity) {
-                mCurrentActivity = new WeakReference<>(activity);
-                countDownTimer.start();
-                mDatabaseHelper.commitAppPausedTime(System.currentTimeMillis());
+                setAppOnForeground(false);
+//                mCurrentActivity = new WeakReference<>(activity);
+//                mDatabaseHelper.commitAppPausedTime(System.currentTimeMillis());
             }
 
             @Override
@@ -263,137 +224,33 @@ public class ZADataNewDataPrivate {
         });
     }
 
-    /**
-     * 注册 AppStart 的监听
-     */
-    public static void registerActivityStateObserver(Application application) {
-        application.getContentResolver().registerContentObserver(mDatabaseHelper.getAppStartUri(),
-                false, new ContentObserver(new Handler()) {
-                    @Override
-                    public void onChange(boolean selfChange, Uri uri) {
-                        if (mDatabaseHelper.getAppStartUri().equals(uri)) {
-                            countDownTimer.cancel();
-                        }
-                    }
-                });
-    }
+    public static boolean mIsAppOnForegroundB;// app是否在前台
+    private static long mStartTime;
+    private static Handler mHandler=new Handler(Looper.getMainLooper());// Handler对象
 
-//    public static Map<String, Object> getDeviceInfo(Context context) {
-//        final Map<String, Object> deviceInfo = new HashMap<>();
-//        {
-//            deviceInfo.put("$lib", "Android");
-//            deviceInfo.put("$lib_version", ZADataNewDataAPI.SDK_VERSION);
-//            deviceInfo.put("$os", "Android");
-//            deviceInfo.put("$os_version",
-//                    Build.VERSION.RELEASE == null ? "UNKNOWN" : Build.VERSION.RELEASE);
-//            deviceInfo
-//                    .put("$manufacturer", Build.MANUFACTURER == null ? "UNKNOWN" : Build.MANUFACTURER);
-//            if (TextUtils.isEmpty(Build.MODEL)) {
-//                deviceInfo.put("$model", "UNKNOWN");
-//            } else {
-//                deviceInfo.put("$model", Build.MODEL.trim());
-//            }
-//
-//            try {
-//                final PackageManager manager = context.getPackageManager();
-//                final PackageInfo packageInfo = manager.getPackageInfo(context.getPackageName(), 0);
-//                deviceInfo.put("$app_version", packageInfo.versionName);
-//
-//                int labelRes = packageInfo.applicationInfo.labelRes;
-//                deviceInfo.put("$app_name", context.getResources().getString(labelRes));
-//            } catch (final Exception e) {
-//                e.printStackTrace();
-//            }
-//
-//            final DisplayMetrics displayMetrics = context.getResources().getDisplayMetrics();
-//            deviceInfo.put("$screen_height", displayMetrics.heightPixels);
-//            deviceInfo.put("$screen_width", displayMetrics.widthPixels);
-//
-//            return Collections.unmodifiableMap(deviceInfo);
-//        }
-//    }
-
-    /**
-     * 获取 Android ID
-     *
-     * @param mContext Context
-     * @return String
-     */
-    @SuppressLint("HardwareIds")
-    public static String getAndroidID(Context mContext) {
-        String androidID = "";
-        try {
-            androidID = Settings.Secure.getString(mContext.getContentResolver(), Settings.Secure.ANDROID_ID);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return androidID;
-    }
-
-    private static void addIndentBlank(StringBuilder sb, int indent) {
-        try {
-            for (int i = 0; i < indent; i++) {
-                sb.append('\t');
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
-    public static String formatJson(String jsonStr) {
-        try {
-            if (null == jsonStr || "".equals(jsonStr)) {
-                return "";
-            }
-            StringBuilder sb = new StringBuilder();
-            char last;
-            char current = '\0';
-            int indent = 0;
-            boolean isInQuotationMarks = false;
-            for (int i = 0; i < jsonStr.length(); i++) {
-                last = current;
-                current = jsonStr.charAt(i);
-                switch (current) {
-                    case '"':
-                        if (last != '\\') {
-                            isInQuotationMarks = !isInQuotationMarks;
-                        }
-                        sb.append(current);
-                        break;
-                    case '{':
-                    case '[':
-                        sb.append(current);
-                        if (!isInQuotationMarks) {
-                            sb.append('\n');
-                            indent++;
-                            addIndentBlank(sb, indent);
-                        }
-                        break;
-                    case '}':
-                    case ']':
-                        if (!isInQuotationMarks) {
-                            sb.append('\n');
-                            indent--;
-                            addIndentBlank(sb, indent);
-                        }
-                        sb.append(current);
-                        break;
-                    case ',':
-                        sb.append(current);
-                        if (last != '\\' && !isInQuotationMarks) {
-                            sb.append('\n');
-                            addIndentBlank(sb, indent);
-                        }
-                        break;
-                    default:
-                        sb.append(current);
+    public static boolean mLastAppOnForeground=false;// 缓存上一次app是否在前台
+    public static Runnable appOnForegroundCheckRunnable=new Runnable() {
+        @Override
+        public void run() {
+            if(mIsAppOnForegroundB!=mLastAppOnForeground){
+                if(mIsAppOnForegroundB){
+                    mStartTime = System.currentTimeMillis();
+                    trackAppStart();
+                }else{
+                    duration = System.currentTimeMillis() - mStartTime;
+                    trackAppEnd();
                 }
+                mLastAppOnForeground=mIsAppOnForegroundB;
             }
+        }
+    };
 
-            return sb.toString();
-        } catch (Exception e) {
-            e.printStackTrace();
-            return "";
+    public static void setAppOnForeground(boolean onForeground){
+        mIsAppOnForegroundB=onForeground;
+        if(mHandler!=null){
+            mHandler.removeCallbacks(appOnForegroundCheckRunnable);
+            mHandler.postDelayed(appOnForegroundCheckRunnable,1000);
         }
     }
+
 }

@@ -8,7 +8,6 @@ import android.os.Process;
 import android.text.TextUtils;
 
 import com.zlyq.client.android.analytics.bean.ResultConfig;
-import com.zlyq.client.android.analytics.callback.ZLYQDataAPI;
 import com.zlyq.client.android.analytics.data.PersistentLoader;
 import com.zlyq.client.android.analytics.data.persistent.PersistentAppId;
 import com.zlyq.client.android.analytics.data.persistent.PersistentDebugMode;
@@ -17,6 +16,7 @@ import com.zlyq.client.android.analytics.data.persistent.PersistentFirstDay;
 import com.zlyq.client.android.analytics.data.persistent.PersistentFirstStart;
 import com.zlyq.client.android.analytics.data.persistent.PersistentIsLogin;
 import com.zlyq.client.android.analytics.data.persistent.PersistentUserId;
+import com.zlyq.client.android.analytics.dataprivate.ZADataNewDataPrivate;
 import com.zlyq.client.android.analytics.exception.EventException;
 import com.zlyq.client.android.analytics.intercept.CookieFacade;
 import com.zlyq.client.android.analytics.net.API;
@@ -170,7 +170,9 @@ public final class ZADataManager {
         queue = EVolley.newRequestQueue(application);
         EPushService.startService();
         ZADataDecorator.initCookie(cookie);
-        ZLYQDataAPI.init(application, mFirstStart, mFirstDay);
+        ZADataNewDataPrivate.registerActivityLifecycleCallbacks(application);
+//        ZADataNewDataPrivate.registerActivityStateObserver(application);
+//        ZLYQDataAPI.init(application, mFirstStart, mFirstDay);
 
         //初始化
         String mAndroidId = ZLYQDataUtils.getAndroidID(getContext());

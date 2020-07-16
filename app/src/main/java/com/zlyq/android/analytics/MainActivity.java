@@ -24,6 +24,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         findViewById(R.id.increase_user_profile).setOnClickListener(this);
         findViewById(R.id.delete_user_profile).setOnClickListener(this);
         findViewById(R.id.unset_user_profile).setOnClickListener(this);
+        findViewById(R.id.test).setOnClickListener(this);
 
         Intent intent = getIntent();
         ZADataManager.handleSchemeUrl(this, intent);
@@ -65,7 +66,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 //                ZADataAPI.pushEvent("item_click", customMap);
                 break;
             case R.id.btn_login:
-                ZADataAPI.login("12345678900000");
+                ZADataAPI.login("123456789");
                 break;
             case R.id.login_out:
                 ZADataAPI.logout();
@@ -103,6 +104,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 ecp7.put("name", "小红");
                 ecp7.put("gender", "女");
                 ZADataAPI.unsetUserProfile(ecp7);
+                break;
+            case R.id.test:
+                Intent intent = new Intent();
+                intent.setClass(MainActivity.this, EventActivity.class);
+                startActivity(intent);
                 break;
         }
     }

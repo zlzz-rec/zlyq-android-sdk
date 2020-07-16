@@ -33,6 +33,7 @@
                     android:scheme="artandc91cf844bd9d8d3b25e802e58bb0aa3f" />
             </intent-filter>
         </activity>
+        <activity android:name=".EventActivity"/>
     </application>
 
 </manifest>

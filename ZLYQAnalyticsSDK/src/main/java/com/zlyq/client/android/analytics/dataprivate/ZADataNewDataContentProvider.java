@@ -16,6 +16,7 @@ public class ZADataNewDataContentProvider extends ContentProvider {
     private final static int APP_START = 1;
     private final static int APP_END_STATE = 2;
     private final static int APP_PAUSED_TIME = 3;
+    private final static int APP_START_TIME = 4;
 
     private static SharedPreferences sharedPreferences;
     private static SharedPreferences.Editor mEditor;
@@ -29,6 +30,7 @@ public class ZADataNewDataContentProvider extends ContentProvider {
             uriMatcher.addURI(packName + ".ZADataNewDataContentProvider", ZADataNewDataTable.APP_STARTED.getName(), APP_START);
             uriMatcher.addURI(packName + ".ZADataNewDataContentProvider", ZADataNewDataTable.APP_END_STATE.getName(), APP_END_STATE);
             uriMatcher.addURI(packName + ".ZADataNewDataContentProvider", ZADataNewDataTable.APP_PAUSED_TIME.getName(), APP_PAUSED_TIME);
+            uriMatcher.addURI(packName + ".ZADataNewDataContentProvider", ZADataNewDataTable.APP_START_TIME.getName(), APP_START_TIME);
             sharedPreferences = getContext().getSharedPreferences("com.zlyq.client.android.analytics.dataprivate.ZADataNewDataAPI", Context.MODE_PRIVATE);
             mEditor = sharedPreferences.edit();
             mEditor.apply();
@@ -59,6 +61,10 @@ public class ZADataNewDataContentProvider extends ContentProvider {
                 long pausedTime = contentValues.getAsLong(ZADataNewDatabaseHelper.APP_PAUSED_TIME);
                 mEditor.putLong(ZADataNewDatabaseHelper.APP_PAUSED_TIME, pausedTime);
                 break;
+            case APP_START_TIME:
+                long startTime = contentValues.getAsLong(ZADataNewDatabaseHelper.APP_START_TIME);
+                mEditor.putLong(ZADataNewDatabaseHelper.APP_START_TIME, startTime);
+                break;
         }
         mEditor.commit();
         return uri;
@@ -84,6 +90,11 @@ public class ZADataNewDataContentProvider extends ContentProvider {
                 long pausedTime = sharedPreferences.getLong(ZADataNewDatabaseHelper.APP_PAUSED_TIME, 0);
                 matrixCursor = new MatrixCursor(new String[]{ZADataNewDatabaseHelper.APP_PAUSED_TIME});
                 matrixCursor.addRow(new Object[]{pausedTime});
+                break;
+            case APP_START_TIME:
+                long startTime = sharedPreferences.getLong(ZADataNewDatabaseHelper.APP_START_TIME, 0);
+                matrixCursor = new MatrixCursor(new String[]{ZADataNewDatabaseHelper.APP_START_TIME});
+                matrixCursor.addRow(new Object[]{startTime});
                 break;
         }
         return matrixCursor;

@@ -1,6 +1,6 @@
 /*
  * Created by wangzhuozhou on 2019/02/01.
- * Copyright 2015－2020 Sensors Data Inc.
+ * Copyright 2015－2020 zlyq Data Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -33,7 +33,7 @@ public class PersistentLoader {
     private PersistentLoader(Context context) {
         PersistentLoader.context = context.getApplicationContext();
         final SharedPreferencesLoader sPrefsLoader = new SharedPreferencesLoader();
-        final String prefsName = "com.sensorsdata.analytics.android.sdk.ZLYQDataAPI";
+        final String prefsName = "com.zlyq.client.android.analytics.ZADataAPI";
         storedPreferences = sPrefsLoader.loadPreferences(context, prefsName);
     }
 
@@ -97,7 +97,7 @@ public class PersistentLoader {
         String FIRST_INSTALL = "first_track_installation";
         String FIRST_INSTALL_CALLBACK = "first_track_installation_with_callback";
         String USER_ID = "events_user_id";
-        String REMOTE_CONFIG = "sensorsdata_sdk_configuration";
+        String REMOTE_CONFIG = "zlyqdata_sdk_configuration";
         String SUPER_PROPERTIES = "super_properties";
         String APP_ID = "appid";
         String DEBUG_MODE = "debug_mode";
