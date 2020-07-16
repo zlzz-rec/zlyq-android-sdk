@@ -19,14 +19,19 @@ import android.support.annotation.Keep;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 
+import com.zlyq.client.android.analytics.ZADataAPI;
 import com.zlyq.client.android.analytics.ZADataManager;
 import com.zlyq.client.android.analytics.callback.ZLYQDataAPI;
 
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.lang.ref.WeakReference;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 
 public class ZADataNewDataPrivate {
     private static List<String> mIgnoredActivities;
@@ -143,7 +148,8 @@ public class ZADataNewDataPrivate {
             if (!firstStart) {
                 ZADataManager.getFirstStart().commit(true);
             }
-            ZLYQDataAPI.getInstance().track("appStart", null);
+            ZADataAPI.pushEvent("appStart", null);
+//            ZLYQDataAPI.getInstance().track("appStart", null);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -159,12 +165,32 @@ public class ZADataNewDataPrivate {
             }
             JSONObject properties = new JSONObject();
             properties.put("duration", timeDiff);
-            ZLYQDataAPI.getInstance().track("appEnd", properties);
+            Map map = toHashMap(properties);
+            ZADataAPI.pushEvent("appEnd", map);
+//            ZLYQDataAPI.getInstance().track("appEnd", properties);
             mDatabaseHelper.commitAppEndEventState(true);
             mCurrentActivity = null;
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    private static Map toHashMap(JSONObject jsonObject)
+    {
+        try {
+            Map data = new HashMap();
+            Iterator it = jsonObject.keys();
+            while (it.hasNext())
+            {
+                String key = String.valueOf(it.next());
+                Object value = jsonObject.get(key);
+                data.put(key, value);
+            }
+            return data;
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 
     /**

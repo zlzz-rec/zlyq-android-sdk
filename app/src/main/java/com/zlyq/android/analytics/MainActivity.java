@@ -62,6 +62,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 customMap.put("type", "22");
                 customMap.put("channel_id", 81);
                 ZADataAPI.event("item_click", customMap);
+//                ZADataAPI.pushEvent("item_click", customMap);
                 break;
             case R.id.btn_login:
                 ZADataAPI.login("12345678900000");

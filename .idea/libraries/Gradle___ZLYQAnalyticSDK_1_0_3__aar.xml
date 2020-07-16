@@ -1,8 +1,8 @@
 <component name="libraryTable">
   <library name="Gradle: :ZLYQAnalyticSDK-1.0.3:@aar">
     <CLASSES>
-      <root url="jar://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/ZLYQAnalyticSDK-1.0.3.aar/907203e2ecd53a6379b355563cf7f639/jars/classes.jar!/" />
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/ZLYQAnalyticSDK-1.0.3.aar/907203e2ecd53a6379b355563cf7f639/res" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/ZLYQAnalyticSDK-1.0.3.aar/d326f3df8aef63b0d252d5c25402d614/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/ZLYQAnalyticSDK-1.0.3.aar/d326f3df8aef63b0d252d5c25402d614/res" />
     </CLASSES>
     <JAVADOC />
     <SOURCES />
