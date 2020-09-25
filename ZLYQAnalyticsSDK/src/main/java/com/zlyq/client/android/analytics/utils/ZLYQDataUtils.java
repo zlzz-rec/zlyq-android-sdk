@@ -24,7 +24,7 @@ import android.text.TextUtils;
 import android.view.Surface;
 import android.webkit.WebSettings;
 
-import com.zlyq.client.android.analytics.ELogger;
+import com.zlyq.client.android.analytics.ZlyqLogger;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -112,7 +112,7 @@ public final class ZLYQDataUtils {
                 }
             }
         } catch (Exception e) {
-            ELogger.logError("",e.getMessage());
+            ZlyqLogger.logError("",e.getMessage());
         }
         return manufacturer;
     }
@@ -157,7 +157,7 @@ public final class ZLYQDataUtils {
             }
             return null;
         } catch (Exception e) {
-            SALog.printStackTrace(e);
+            ZlyqLog.printStackTrace(e);
             return null;
         }
     }
@@ -177,13 +177,13 @@ public final class ZLYQDataUtils {
                 stringBuilder.append(line);
             }
         } catch (IOException e) {
-            ELogger.logError("",e.getMessage());
+            ZlyqLogger.logError("",e.getMessage());
         } finally {
             if (bf != null) {
                 try {
                     bf.close();
                 } catch (IOException e) {
-                    ELogger.logError("",e.getMessage());
+                    ZlyqLogger.logError("",e.getMessage());
                 }
             }
         }
@@ -225,11 +225,11 @@ public final class ZLYQDataUtils {
                         }
                     }
                 } catch (Exception e) {
-                    ELogger.logError("",e.getMessage());
+                    ZlyqLogger.logError("",e.getMessage());
                 }
             }
         } catch (Exception e) {
-            ELogger.logError("",e.getMessage());
+            ZlyqLogger.logError("",e.getMessage());
         }
         return null;
     }
@@ -265,7 +265,7 @@ public final class ZLYQDataUtils {
                 }
             }
         } catch (Exception e) {
-            ELogger.logError("",e.getMessage());
+            ZlyqLogger.logError("",e.getMessage());
             return null;
         }
         return null;
@@ -299,7 +299,7 @@ public final class ZLYQDataUtils {
                 return carrier;
             }
         } catch (Exception e) {
-            ELogger.logError("",e.getMessage());
+            ZlyqLogger.logError("",e.getMessage());
         }
         return alternativeName;
     }
@@ -349,7 +349,7 @@ public final class ZLYQDataUtils {
                 }
             }
         } catch (Exception e) {
-            ELogger.logError("",e.getMessage());
+            ZlyqLogger.logError("",e.getMessage());
         }
         return null;
     }
@@ -408,7 +408,7 @@ public final class ZLYQDataUtils {
                 properties.put("$title", activityTitle);
             }
         } catch (Exception e) {
-            ELogger.logError("",e.getMessage());
+            ZlyqLogger.logError("",e.getMessage());
         }
     }
 
@@ -419,7 +419,7 @@ public final class ZLYQDataUtils {
             editor.putString(SHARED_PREF_USER_AGENT_KEY, null);
             editor.apply();
         } catch (Exception e) {
-            ELogger.logError("",e.getMessage());
+            ZlyqLogger.logError("",e.getMessage());
         }
     }
 
@@ -430,13 +430,13 @@ public final class ZLYQDataUtils {
                 String key = superPropertiesIterator.next();
                 Object value = source.get(key);
                 if (value instanceof Date && !"$time".equals(key)) {
-                    dest.put(key, DateFormatUtils.formatDate((Date) value, Locale.CHINA));
+                    dest.put(key, ZlyqDateFormatUtils.formatDate((Date) value, Locale.CHINA));
                 } else {
                     dest.put(key, value);
                 }
             }
         } catch (Exception ex) {
-            ELogger.logError("",ex.getMessage());
+            ZlyqLogger.logError("",ex.getMessage());
         }
     }
 
@@ -462,13 +462,13 @@ public final class ZLYQDataUtils {
 
                 Object value = source.get(key);
                 if (value instanceof Date && !"$time".equals(key)) {
-                    dest.put(key, DateFormatUtils.formatDate((Date) value, Locale.CHINA));
+                    dest.put(key, ZlyqDateFormatUtils.formatDate((Date) value, Locale.CHINA));
                 } else {
                     dest.put(key, value);
                 }
             }
         } catch (Exception ex) {
-            ELogger.logError("",ex.getMessage());
+            ZlyqLogger.logError("",ex.getMessage());
         }
     }
 
@@ -492,7 +492,7 @@ public final class ZLYQDataUtils {
                             userAgent = WebSettings.getDefaultUserAgent(context);
                         }
                     } catch (Exception e) {
-                        ELogger.logError(TAG, "WebSettings NoSuchMethod: getDefaultUserAgent");
+                        ZlyqLogger.logError(TAG, "WebSettings NoSuchMethod: getDefaultUserAgent");
                     }
                 }
 
@@ -509,7 +509,7 @@ public final class ZLYQDataUtils {
 
             return userAgent;
         } catch (Exception e) {
-            ELogger.logError("",e.getMessage());
+            ZlyqLogger.logError("",e.getMessage());
             return null;
         }
     }
@@ -559,14 +559,14 @@ public final class ZLYQDataUtils {
             Method checkSelfPermissionMethod = contextCompat.getMethod("checkSelfPermission", Context.class, String.class);
             int result = (int) checkSelfPermissionMethod.invoke(null, new Object[]{context, permission});
             if (result != PackageManager.PERMISSION_GRANTED) {
-                ELogger.logError(TAG, "You can fix this by adding the following to your AndroidManifest.xml file:\n"
+                ZlyqLogger.logError(TAG, "You can fix this by adding the following to your AndroidManifest.xml file:\n"
                         + "<uses-permission android:name=\"" + permission + "\" />");
                 return false;
             }
 
             return true;
         } catch (Exception e) {
-            ELogger.logError(TAG, e.toString());
+            ZlyqLogger.logError(TAG, e.toString());
             return true;
         }
     }
@@ -593,7 +593,7 @@ public final class ZLYQDataUtils {
                     if (tm.hasCarrierPrivileges()) {
                         imei = tm.getImei();
                     } else {
-                        ELogger.logError(TAG, "Can not get IMEI info.");
+                        ZlyqLogger.logError(TAG, "Can not get IMEI info.");
                     }
                 } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
                     imei = tm.getImei();
@@ -602,7 +602,7 @@ public final class ZLYQDataUtils {
                 }
             }
         } catch (Exception e) {
-            ELogger.logError("",e.getMessage());
+            ZlyqLogger.logError("",e.getMessage());
         }
         return imei;
     }
@@ -663,7 +663,7 @@ public final class ZLYQDataUtils {
                 }
             }
         } catch (Exception e) {
-            ELogger.logError("",e.getMessage());
+            ZlyqLogger.logError("",e.getMessage());
         }
         return deviceId;
     }
@@ -682,7 +682,7 @@ public final class ZLYQDataUtils {
         try {
             androidID = Settings.Secure.getString(context.getContentResolver(), Settings.Secure.ANDROID_ID);
         } catch (Exception e) {
-            ELogger.logError("",e.getMessage());
+            ZlyqLogger.logError("",e.getMessage());
         }
         return androidID;
     }
@@ -698,7 +698,7 @@ public final class ZLYQDataUtils {
             int zoneOffset = cal.get(java.util.Calendar.ZONE_OFFSET);
             return zoneOffset / 1000;
         } catch (Exception ex) {
-            ELogger.logError("",ex.getMessage());
+            ZlyqLogger.logError("",ex.getMessage());
         }
         return null;
     }
@@ -807,7 +807,7 @@ public final class ZLYQDataUtils {
     public static boolean isRequestValid(Context context, int minRequestHourInterval, int maxRequestHourInterval) {
         try {
             if (minRequestHourInterval > maxRequestHourInterval) {
-                ELogger.logError(TAG, "最小时间间隔（minRequestHourInterval）大于最大时间间隔（maxRequestHourInterval），时间间隔设置无效。");
+                ZlyqLogger.logError(TAG, "最小时间间隔（minRequestHourInterval）大于最大时间间隔（maxRequestHourInterval），时间间隔设置无效。");
                 return true;
             }
             SharedPreferences sharedPreferences = getSharedPreferences(context);
@@ -830,7 +830,7 @@ public final class ZLYQDataUtils {
             }
             return isRequestValid;
         } catch (Exception ex) {
-            ELogger.logError("",ex.getMessage());
+            ZlyqLogger.logError("",ex.getMessage());
             return true;
         }
     }
@@ -863,7 +863,7 @@ public final class ZLYQDataUtils {
             channelPref.edit().putString(SHARED_PREF_CHANNEL_EVENT, channelEvents.toString()).apply();
             return true;
         } catch (Exception e) {
-            ELogger.logError("",e.getMessage());
+            ZlyqLogger.logError("",e.getMessage());
             return false;
         }
     }
@@ -913,7 +913,7 @@ public final class ZLYQDataUtils {
                     PackageManager.GET_META_DATA);
             return appInfo.loadLabel(packageManager);
         } catch (Exception e) {
-            ELogger.logError("",e.getMessage());
+            ZlyqLogger.logError("",e.getMessage());
         }
         return "";
     }

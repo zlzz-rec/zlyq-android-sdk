@@ -3,13 +3,13 @@ package com.zlyq.client.android.analytics.data.persistent;
 
 import android.content.SharedPreferences;
 
-import com.zlyq.client.android.analytics.data.PersistentLoader;
+import com.zlyq.client.android.analytics.data.ZlyqPersistentLoader;
 
 import java.util.concurrent.Future;
 
 public class PersistentFirstStart extends PersistentIdentity<Boolean> {
     public PersistentFirstStart(Future<SharedPreferences> loadStoredPreferences) {
-        super(loadStoredPreferences, PersistentLoader.PersistentName.FIRST_START, new PersistentSerializer<Boolean>() {
+        super(loadStoredPreferences, ZlyqPersistentLoader.PersistentName.FIRST_START, new PersistentSerializer<Boolean>() {
             @Override
             public Boolean load(String value) {
                 return false;

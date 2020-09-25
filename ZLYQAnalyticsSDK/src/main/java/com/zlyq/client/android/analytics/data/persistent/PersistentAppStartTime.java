@@ -3,13 +3,13 @@ package com.zlyq.client.android.analytics.data.persistent;
 
 import android.content.SharedPreferences;
 
-import com.zlyq.client.android.analytics.data.PersistentLoader;
+import com.zlyq.client.android.analytics.data.ZlyqPersistentLoader;
 
 import java.util.concurrent.Future;
 
 public class PersistentAppStartTime extends PersistentIdentity<Long> {
     public PersistentAppStartTime(Future<SharedPreferences> loadStoredPreferences) {
-        super(loadStoredPreferences, PersistentLoader.PersistentName.APP_START_TIME, new PersistentSerializer<Long>() {
+        super(loadStoredPreferences, ZlyqPersistentLoader.PersistentName.APP_START_TIME, new PersistentSerializer<Long>() {
             @Override
             public Long load(String value) {
                 return Long.valueOf(value);

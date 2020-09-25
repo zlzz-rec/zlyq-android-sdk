@@ -1,14 +1,14 @@
 package com.zlyq.client.android.analytics.bean;
 
-import com.zlyq.client.android.analytics.db.annotations.Table;
-import com.zlyq.client.android.analytics.db.annotations.Transient;
+import com.zlyq.client.android.analytics.db.annotations.ZlyqTable;
+import com.zlyq.client.android.analytics.db.annotations.ZlyqTransient;
 
 import java.io.Serializable;
 
-@Table(name = "eventlist")
+@ZlyqTable(name = "eventlist")
 public class EventBean implements Serializable{
 
-    @Transient
+    @ZlyqTransient
     private static final long serialVersionUID = 9009411034336334765L;
 
     private int id;

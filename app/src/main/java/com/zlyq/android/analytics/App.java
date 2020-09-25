@@ -23,7 +23,7 @@ public class App extends Application {
                 .setProjectId(1)//项目id
                 .setDebug(BuildConfig.DEBUG)//是否是debug
                 .setPushLimitMinutes(1)//多少分钟 push一次
-                .setPushLimitNum(5)//多少条 就主动进行push
+                .setPushLimitNum(100)//多少条 就主动进行push
                 .start();//开始*/
 
     }

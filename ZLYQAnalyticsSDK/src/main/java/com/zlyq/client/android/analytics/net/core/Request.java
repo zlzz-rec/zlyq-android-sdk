@@ -1,19 +1,3 @@
-/*
- * Copyright (C) 2011 The Android Open Source Project
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
-
 package com.zlyq.client.android.analytics.net.core;
 
 import android.net.TrafficStats;
@@ -23,8 +7,8 @@ import android.os.Looper;
 import android.os.SystemClock;
 import android.text.TextUtils;
 
-import com.zlyq.client.android.analytics.EConstant;
-import com.zlyq.client.android.analytics.utils.EMD5Utils;
+import com.zlyq.client.android.analytics.ZlyqConstant;
+import com.zlyq.client.android.analytics.utils.ZlyqMD5Utils;
 import org.json.JSONObject;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -34,11 +18,6 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
-/**
- * Base class for all network requests.
- *
- * @param <T> The type of parsed response this request expects.
- */
 public abstract class Request<T> implements Comparable<Request<T>> {
 
     /**
@@ -381,28 +360,28 @@ public abstract class Request<T> implements Comparable<Request<T>> {
 
     /**
      * Returns a list of extra HTTP headers to go along with this request. Can
-     * throw {@link AuthFailureError} as authentication may be required to
+     * throw {@link ZlyqAuthFailureError} as authentication may be required to
      * provide these values.
      *
-     * @throws AuthFailureError In the event_6 of auth failure
+     * @throws ZlyqAuthFailureError In the event_6 of auth failure
      */
-    public Map<String, String> getHeaders() throws AuthFailureError {
+    public Map<String, String> getHeaders() throws ZlyqAuthFailureError {
         return Collections.emptyMap();
     }
 
     /**
      * Returns a Map of POST parameters to be used for this request, or null if
-     * a simple GET should be used.  Can throw {@link AuthFailureError} as
+     * a simple GET should be used.  Can throw {@link ZlyqAuthFailureError} as
      * authentication may be required to provide these values.
      * <p/>
      * <p>Note that only one of getPostParams() and getPostBody() can return a non-null
      * value.</p>
      *
-     * @throws AuthFailureError In the event_6 of auth failure
+     * @throws ZlyqAuthFailureError In the event_6 of auth failure
      * @deprecated Use {@link #getParams()} instead.
      */
     @Deprecated
-    protected Map<String, String> getPostParams() throws AuthFailureError {
+    protected Map<String, String> getPostParams() throws ZlyqAuthFailureError {
         return getParams();
     }
 
@@ -436,11 +415,11 @@ public abstract class Request<T> implements Comparable<Request<T>> {
     /**
      * Returns the raw POST body to be sent.
      *
-     * @throws AuthFailureError In the event_6 of auth failure
+     * @throws ZlyqAuthFailureError In the event_6 of auth failure
      * @deprecated Use {@link #getBody()} instead.
      */
     @Deprecated
-    public byte[] getPostBody() throws AuthFailureError {
+    public byte[] getPostBody() throws ZlyqAuthFailureError {
         // Note: For compatibility with legacy clients of volley, this implementation must remain
         // here instead of simply calling the getBody() function because this function must
         // call getPostParams() and getPostParamsEncoding() since legacy clients would have
@@ -454,13 +433,13 @@ public abstract class Request<T> implements Comparable<Request<T>> {
 
     /**
      * Returns a Map of parameters to be used for a POST or PUT request.  Can throw
-     * {@link AuthFailureError} as authentication may be required to provide these values.
+     * {@link ZlyqAuthFailureError} as authentication may be required to provide these values.
      * <p/>
      * <p>Note that you can directly override {@link #getBody()} for custom data.</p>
      *
-     * @throws AuthFailureError in the event_6 of auth failure
+     * @throws ZlyqAuthFailureError in the event_6 of auth failure
      */
-    protected Map<String, String> getParams() throws AuthFailureError {
+    protected Map<String, String> getParams() throws ZlyqAuthFailureError {
         return null;
     }
 
@@ -488,9 +467,9 @@ public abstract class Request<T> implements Comparable<Request<T>> {
     /**
      * Returns the raw POST or PUT body to be sent.
      *
-     * @throws AuthFailureError in the event_6 of auth failure
+     * @throws ZlyqAuthFailureError in the event_6 of auth failure
      */
-    public byte[] getBody() throws AuthFailureError {
+    public byte[] getBody() throws ZlyqAuthFailureError {
         Map<String, String> params = getParams();
         if (params != null && params.size() > 0) {
             return encodeParameters(params, getParamsEncoding());
@@ -649,7 +628,7 @@ public abstract class Request<T> implements Comparable<Request<T>> {
     public String getSignParam(Map<String, String> params) {
         try {
             //sign = md5(age=12&name=John&time=1500000000000&abcdef&gender=male&race=Chinese)
-            String secret = EConstant.API_KEY;
+            String secret = ZlyqConstant.API_KEY;
             String result = "";
             // url参数升序排序然后拼接成字符串
             List<String> keys = new ArrayList<>();
@@ -670,7 +649,7 @@ public abstract class Request<T> implements Comparable<Request<T>> {
             }
             // post参数升序排序然后拼接成字符串
             result = result.replace(" ", "");
-            result = EMD5Utils.MD5(result+"&"+secret).toUpperCase();
+            result = ZlyqMD5Utils.MD5(result+"&"+secret).toUpperCase();
             return result;
         } catch (Exception e) {
             e.printStackTrace();
@@ -691,7 +670,7 @@ public abstract class Request<T> implements Comparable<Request<T>> {
     }
 
     public static byte[] encryptMD5(String data) throws IOException {
-        return EMD5Utils.MD5(data).getBytes();
+        return ZlyqMD5Utils.MD5(data).getBytes();
     }
 
 

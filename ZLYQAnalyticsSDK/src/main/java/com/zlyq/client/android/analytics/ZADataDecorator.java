@@ -12,7 +12,7 @@ import android.view.WindowManager;
 import com.zlyq.client.android.analytics.bean.EventBean;
 import com.zlyq.client.android.analytics.net.gson.EGson;
 import com.zlyq.client.android.analytics.net.gson.GsonBuilder;
-import com.zlyq.client.android.analytics.utils.NetworkUtils;
+import com.zlyq.client.android.analytics.utils.ZlyqNetworkUtils;
 import com.zlyq.client.android.analytics.utils.ZLYQDataUtils;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
@@ -29,7 +29,7 @@ import java.util.concurrent.atomic.AtomicInteger;
  */
 public class ZADataDecorator {
 
-    private static final String TAG = EConstant.TAG;
+    private static final String TAG = ZlyqConstant.TAG;
     private static volatile String old_date = "2010-01-01 00:00:00";//生成一次后缓存在此,初始化为时间.
     private static volatile String sid = "";//生成一次后缓存在此
     private static String cookie = "";//从宿主app中获取cookie
@@ -53,7 +53,7 @@ public class ZADataDecorator {
         //添加sdk版本
         cookie += "sv=" + getURLEncode(BuildConfig.VERSION_NAME) + ";";
         cookie += "st=" + getURLEncode("android") + ";";
-        ELogger.logWrite(TAG, "initCookie successful--> " + cookie);
+        ZlyqLogger.logWrite(TAG, "initCookie successful--> " + cookie);
     }
 
     public static synchronized EventBean generateEventBean(String event, Map ecp) {
@@ -89,30 +89,30 @@ public class ZADataDecorator {
     }
 
     public static synchronized void timerTaskPushEventByNum() {
-        if (ZADataDecorator.getEventNum() >= EConstant.PUSH_MAX_NUMBER){
-            EPushService.getSingleInstance().excutePushEvent();
+        if (ZADataDecorator.getEventNum() >= ZlyqConstant.PUSH_MAX_NUMBER){
+            ZlyqPushService.getSingleInstance().excutePushEvent();
             ZADataDecorator.clearEventNum();
-            ELogger.logWrite(EConstant.TAG, "当满足连续操作大于" + EConstant.PUSH_CUT_NUMBER + "条,就进行上传服务");
+            ZlyqLogger.logWrite(ZlyqConstant.TAG, "当满足连续操作大于" + ZlyqConstant.PUSH_CUT_NUMBER + "条,就进行上传服务");
         }else{
-            if (ZADataDecorator.getEventNum() >= EConstant.PUSH_CUT_NUMBER) { //当满足连续操作大于指定条,就进行上传服务
-                EPushService.getSingleInstance().excutePushEvent();
+            if (ZADataDecorator.getEventNum() >= ZlyqConstant.PUSH_CUT_NUMBER) { //当满足连续操作大于指定条,就进行上传服务
+                ZlyqPushService.getSingleInstance().excutePushEvent();
                 ZADataDecorator.clearEventNum();
-                ELogger.logWrite(EConstant.TAG, "当满足连续操作大于" + EConstant.PUSH_CUT_NUMBER + "条,就进行上传服务");
+                ZlyqLogger.logWrite(ZlyqConstant.TAG, "当满足连续操作大于" + ZlyqConstant.PUSH_CUT_NUMBER + "条,就进行上传服务");
             }
         }
     }
 
     public static synchronized void pushEventByNum() {
         ZADataDecorator.addEventNum();
-        if (ZADataDecorator.getEventNum() >= EConstant.PUSH_MAX_NUMBER){
-            EPushService.getSingleInstance().excutePushEvent();
+        if (ZADataDecorator.getEventNum() >= ZlyqConstant.PUSH_MAX_NUMBER){
+            ZlyqPushService.getSingleInstance().excutePushEvent();
             ZADataDecorator.clearEventNum();
-            ELogger.logWrite(EConstant.TAG, "当满足连续操作大于" + EConstant.PUSH_CUT_NUMBER + "条,就进行上传服务");
+            ZlyqLogger.logWrite(ZlyqConstant.TAG, "当满足连续操作大于" + ZlyqConstant.PUSH_CUT_NUMBER + "条,就进行上传服务");
         }else{
-            if (ZADataDecorator.getEventNum() >= EConstant.PUSH_CUT_NUMBER) { //当满足连续操作大于指定条,就进行上传服务
-                EPushService.getSingleInstance().excutePushEvent();
+            if (ZADataDecorator.getEventNum() >= ZlyqConstant.PUSH_CUT_NUMBER) { //当满足连续操作大于指定条,就进行上传服务
+                ZlyqPushService.getSingleInstance().excutePushEvent();
                 ZADataDecorator.clearEventNum();
-                ELogger.logWrite(EConstant.TAG, "当满足连续操作大于" + EConstant.PUSH_CUT_NUMBER + "条,就进行上传服务");
+                ZlyqLogger.logWrite(ZlyqConstant.TAG, "当满足连续操作大于" + ZlyqConstant.PUSH_CUT_NUMBER + "条,就进行上传服务");
             }
         }
     }
@@ -129,7 +129,7 @@ public class ZADataDecorator {
             String current = mIsFirstDayDateFormat.format(eventTime);
             return firstDay.equals(current);
         } catch (Exception e) {
-            ELogger.logError("",e.getMessage());
+            ZlyqLogger.logError("",e.getMessage());
         }
         return true;
     }
@@ -170,12 +170,12 @@ public class ZADataDecorator {
             deviceInfo.put("udid", mAndroidId);
             deviceInfo.put("platform", "App");
             deviceInfo.put("time", ZADataDecorator.getNowDate());
-            deviceInfo.put("network", NetworkUtils.networkType(mContext));
+            deviceInfo.put("network", ZlyqNetworkUtils.networkType(mContext));
             deviceInfo.put("user_id", ZADataManager.getUserId().get());
             deviceInfo.put("distinct_id", ZADataManager.getDistinctId().get());
             deviceInfo.put("app_id", ZADataManager.getAppId().get());
         } catch (final Exception e) {
-            ELogger.logError(TAG, "Exception getting app version name");
+            ZlyqLogger.logError(TAG, "Exception getting app version name");
         }
         try {
             int screenWidth, screenHeight;
@@ -223,7 +223,7 @@ public class ZADataDecorator {
             String mAndroidId = ZLYQDataUtils.getAndroidID(ZADataManager.getContext());
             deviceInfo.put("udid", mAndroidId);
         } catch (final Exception e) {
-            ELogger.logError(TAG, "Exception getting app version name");
+            ZlyqLogger.logError(TAG, "Exception getting app version name");
         }
         return Collections.unmodifiableMap(deviceInfo);
     }
@@ -259,7 +259,7 @@ public class ZADataDecorator {
 
     public static String getRequestCookies() {
         if (cookie.isEmpty()) {
-            ELogger.logError(TAG, "cookie is empty ");
+            ZlyqLogger.logError(TAG, "cookie is empty ");
         }
         return cookie;
     }
@@ -299,7 +299,7 @@ public class ZADataDecorator {
             }
         } catch (Exception e) {
             e.printStackTrace();
-            ELogger.logWrite(TAG, e.getMessage());
+            ZlyqLogger.logWrite(TAG, e.getMessage());
             return true;
 
         }

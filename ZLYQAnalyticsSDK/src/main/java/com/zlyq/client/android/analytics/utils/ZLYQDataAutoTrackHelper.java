@@ -2,12 +2,10 @@
 package com.zlyq.client.android.analytics.utils;
 
 import android.app.Activity;
-import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -18,14 +16,14 @@ import android.widget.ListView;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.Toast;
-import com.zlyq.client.android.analytics.EConstant;
-import com.zlyq.client.android.analytics.EGsonRequest;
-import com.zlyq.client.android.analytics.ELogger;
+import com.zlyq.client.android.analytics.ZlyqConstant;
+import com.zlyq.client.android.analytics.ZlyqGsonRequest;
+import com.zlyq.client.android.analytics.ZlyqLogger;
 import com.zlyq.client.android.analytics.ZADataAPI;
 import com.zlyq.client.android.analytics.R;
 import com.zlyq.client.android.analytics.ZADataManager;
 import com.zlyq.client.android.analytics.bean.ResultConfig;
-import com.zlyq.client.android.analytics.dialog.DebugModeSelectDialog;
+import com.zlyq.client.android.analytics.dialog.ZlyqDebugModeSelectDialog;
 import com.zlyq.client.android.analytics.net.API;
 import com.zlyq.client.android.analytics.net.core.Request;
 import com.zlyq.client.android.analytics.net.core.Response;
@@ -134,33 +132,33 @@ public class ZLYQDataAutoTrackHelper {
                 traverseView(fragmentName, (ViewGroup) rootView);
             }
         } catch (Exception e) {
-            ELogger.logError("",e.getMessage());
+            ZlyqLogger.logError("",e.getMessage());
         }
     }
 
     private static void putDebugMode(Activity activity, final String debugModeId){
-        String path = EConstant.COLLECT_URL + API.DEBUG_MODE_API + debugModeId;
+        String path = ZlyqConstant.COLLECT_URL + API.DEBUG_MODE_API + debugModeId;
         path = path+"?time="+System.currentTimeMillis();
         String mAndroidId = ZLYQDataUtils.getAndroidID(activity);
         Map map = new HashMap();
         map.put("udid", mAndroidId);
-        EGsonRequest request = new EGsonRequest<>(Request.Method.PUT, path, ResultConfig.class, null, map,//191
+        ZlyqGsonRequest request = new ZlyqGsonRequest<>(Request.Method.PUT, path, ResultConfig.class, null, map,//191
             new Response.Listener<ResultConfig>() {
                 @Override
                 public void onResponse(ResultConfig response) {
                     int code = response.getCode();
-                    ELogger.logWrite(TAG, response.toString());
+                    ZlyqLogger.logWrite(TAG, response.toString());
                     if (code == 0) {
-                        ELogger.logWrite(TAG, "--debugMode Success--");
+                        ZlyqLogger.logWrite(TAG, "--debugMode Success--");
                     } else {
-                        ELogger.logWrite(TAG, "--debugMode Error--");
+                        ZlyqLogger.logWrite(TAG, "--debugMode Error--");
                     }
                 }
             },
             new Response.ErrorListener() {
                 @Override
                 public void onErrorResponse(VolleyError error) {
-                    ELogger.logWrite(TAG, "--onVolleyError--");
+                    ZlyqLogger.logWrite(TAG, "--onVolleyError--");
                 }
             }
         );
@@ -179,7 +177,7 @@ public class ZLYQDataAutoTrackHelper {
                 intent.setData(null);
             }
         } catch (Exception e) {
-            ELogger.logError("",e.getMessage());
+            ZlyqLogger.logError("",e.getMessage());
         }
     }
 
@@ -195,7 +193,7 @@ public class ZLYQDataAutoTrackHelper {
             Method method = clazz.getDeclaredMethod("showPreview", Context.class, boolean.class, String.class);
             method.invoke(null, activity, isSfPopupTest, popupWindowId);
         } catch (Exception e) {
-            ELogger.logError("",e.getMessage());
+            ZlyqLogger.logError("",e.getMessage());
         }
     }
 
@@ -208,9 +206,9 @@ public class ZLYQDataAutoTrackHelper {
             }else if("debug_and_not_import".endsWith(ZADataManager.getDebugMode().get())){
                 ZADataAPI.setDebugMode(ZADataAPI.DebugMode.DEBUG_ONLY);
             }
-            DebugModeSelectDialog dialog = new DebugModeSelectDialog(activity, ZADataAPI.getDebugMode());
+            ZlyqDebugModeSelectDialog dialog = new ZlyqDebugModeSelectDialog(activity, ZADataAPI.getDebugMode());
             dialog.setCanceledOnTouchOutside(false);
-            dialog.setOnDebugModeDialogClickListener(new DebugModeSelectDialog.OnDebugModeViewClickListener() {
+            dialog.setOnDebugModeDialogClickListener(new ZlyqDebugModeSelectDialog.OnDebugModeViewClickListener() {
                 @Override
                 public void onCancel(Dialog dialog) {
                     dialog.cancel();
@@ -234,7 +232,7 @@ public class ZLYQDataAutoTrackHelper {
                 @Override
                 public void onCancel(DialogInterface dialog) {
                     //如果当前的调试模式不是 DebugOff ,则发送匿名或登录 ID 给服务端
-                    String serverUrl = EConstant.COLLECT_URL;
+                    String serverUrl = ZlyqConstant.COLLECT_URL;
                     ZADataAPI.DebugMode mCurrentDebugMode = ZADataAPI.getDebugMode();
                     String currentDebugToastMsg = "";
                     if (mCurrentDebugMode == ZADataAPI.DebugMode.DEBUG_OFF) {
@@ -245,12 +243,12 @@ public class ZLYQDataAutoTrackHelper {
                         currentDebugToastMsg = "开启调试模式，校验数据，并将数据导入到中量引擎分析中；关闭 App 进程后，将自动关闭调试模式";
                     }
                     Toast.makeText(activity, currentDebugToastMsg, Toast.LENGTH_LONG).show();
-                    SALog.info(TAG, "您当前的调试模式是：" + mCurrentDebugMode, null);
+                    ZlyqLog.info(TAG, "您当前的调试模式是：" + mCurrentDebugMode, null);
                 }
             });
             dialog.show();
         } catch (Exception e) {
-            SALog.printStackTrace(e);
+            ZlyqLog.printStackTrace(e);
         }
     }
 

@@ -2,12 +2,12 @@
 package com.zlyq.client.android.analytics.data.persistent;
 
 import android.content.SharedPreferences;
-import com.zlyq.client.android.analytics.data.PersistentLoader;
+import com.zlyq.client.android.analytics.data.ZlyqPersistentLoader;
 import java.util.concurrent.Future;
 
 public class PersistentSessionIntervalTime extends PersistentIdentity<Integer> {
     public PersistentSessionIntervalTime(Future<SharedPreferences> loadStoredPreferences) {
-        super(loadStoredPreferences, PersistentLoader.PersistentName.APP_SESSION_TIME, new PersistentSerializer<Integer>() {
+        super(loadStoredPreferences, ZlyqPersistentLoader.PersistentName.APP_SESSION_TIME, new PersistentSerializer<Integer>() {
             @Override
             public Integer load(String value) {
                 return Integer.valueOf(value);

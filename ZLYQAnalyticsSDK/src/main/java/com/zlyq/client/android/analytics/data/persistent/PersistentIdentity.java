@@ -4,7 +4,7 @@ package com.zlyq.client.android.analytics.data.persistent;
 import android.annotation.SuppressLint;
 import android.content.SharedPreferences;
 
-import com.zlyq.client.android.analytics.ELogger;
+import com.zlyq.client.android.analytics.ZlyqLogger;
 
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.Future;
@@ -41,9 +41,9 @@ public abstract class PersistentIdentity<T> {
                         data = sharedPreferences.getString(persistentKey, null);
                     }
                 } catch (final ExecutionException e) {
-                    ELogger.logError(TAG, "Cannot read distinct ids from sharedPreferences.");
+                    ZlyqLogger.logError(TAG, "Cannot read distinct ids from sharedPreferences.");
                 } catch (final InterruptedException e) {
-                    ELogger.logError(TAG, "Cannot read distinct ids from sharedPreferences.");
+                    ZlyqLogger.logError(TAG, "Cannot read distinct ids from sharedPreferences.");
                 }
 
                 if (data == null) {
@@ -71,9 +71,9 @@ public abstract class PersistentIdentity<T> {
             try {
                 sharedPreferences = loadStoredPreferences.get();
             } catch (final ExecutionException e) {
-                ELogger.logError(TAG, "Cannot read distinct ids from sharedPreferences.");
+                ZlyqLogger.logError(TAG, "Cannot read distinct ids from sharedPreferences.");
             } catch (final InterruptedException e) {
-                ELogger.logError(TAG, "Cannot read distinct ids from sharedPreferences.");
+                ZlyqLogger.logError(TAG, "Cannot read distinct ids from sharedPreferences.");
             }
 
             if (sharedPreferences == null) {

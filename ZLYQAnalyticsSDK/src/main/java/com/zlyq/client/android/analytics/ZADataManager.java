@@ -8,7 +8,7 @@ import android.os.Process;
 import android.text.TextUtils;
 
 import com.zlyq.client.android.analytics.bean.ResultConfig;
-import com.zlyq.client.android.analytics.data.PersistentLoader;
+import com.zlyq.client.android.analytics.data.ZlyqPersistentLoader;
 import com.zlyq.client.android.analytics.data.persistent.PersistentAppId;
 import com.zlyq.client.android.analytics.data.persistent.PersistentDebugMode;
 import com.zlyq.client.android.analytics.data.persistent.PersistentDistinctId;
@@ -17,22 +17,22 @@ import com.zlyq.client.android.analytics.data.persistent.PersistentFirstStart;
 import com.zlyq.client.android.analytics.data.persistent.PersistentIsLogin;
 import com.zlyq.client.android.analytics.data.persistent.PersistentUserId;
 import com.zlyq.client.android.analytics.dataprivate.ZADataNewDataPrivate;
-import com.zlyq.client.android.analytics.exception.EventException;
-import com.zlyq.client.android.analytics.intercept.CookieFacade;
+import com.zlyq.client.android.analytics.exception.ZlyqEventException;
+import com.zlyq.client.android.analytics.intercept.ZlyqCookieFacade;
 import com.zlyq.client.android.analytics.net.API;
 import com.zlyq.client.android.analytics.net.core.Request;
 import com.zlyq.client.android.analytics.net.core.RequestQueue;
 import com.zlyq.client.android.analytics.net.core.Response;
-import com.zlyq.client.android.analytics.net.core.Tools.EVolley;
+import com.zlyq.client.android.analytics.net.core.Tools.ZlyqVolley;
 import com.zlyq.client.android.analytics.net.core.VolleyError;
-import com.zlyq.client.android.analytics.utils.EDeviceUtils;
+import com.zlyq.client.android.analytics.utils.ZlyqDeviceUtils;
 import com.zlyq.client.android.analytics.utils.ZLYQDataAutoTrackHelper;
 import com.zlyq.client.android.analytics.utils.ZLYQDataUtils;
 
 import java.util.HashMap;
 import java.util.Map;
 
-import static com.zlyq.client.android.analytics.EConstant.TAG;
+import static com.zlyq.client.android.analytics.ZlyqConstant.TAG;
 
 /**
  * 事件管理
@@ -41,7 +41,7 @@ import static com.zlyq.client.android.analytics.EConstant.TAG;
 
 public final class ZADataManager {
 
-    public static boolean IS_DEBUG = EConstant.DEVELOP_MODE;
+    public static boolean IS_DEBUG = ZlyqConstant.DEVELOP_MODE;
     private static Application app;//全局持有app,保证sdk正常运转. app引用与进程同生命周期, 即 进程被销毁, jvm会随之销毁,app引用会随之销毁. so不存在内存泄漏.
     protected volatile static boolean hasInit = false;
     private static PersistentFirstStart mFirstStart = null;
@@ -60,7 +60,7 @@ public final class ZADataManager {
      */
     public static Context getContext() {
         if (app == null) {
-            throw new EventException("请先在application中实例化JJEventManager");
+            throw new ZlyqEventException("请先在application中实例化JJEventManager");
         }
         return app;
     }
@@ -72,56 +72,56 @@ public final class ZADataManager {
      */
     public static RequestQueue getRequestQueue() {
         if (queue == null) {
-            throw new EventException("请先在application中实例化RequestQueue");
+            throw new ZlyqEventException("请先在application中实例化RequestQueue");
         }
         return queue;
     }
 
     public static PersistentFirstStart getFirstStart(){
         if (mFirstStart == null) {
-            throw new EventException("mFirstStart is not");
+            throw new ZlyqEventException("mFirstStart is not");
         }
         return mFirstStart;
     }
 
     public static PersistentFirstDay getFirstDay(){
         if (mFirstDay == null) {
-            throw new EventException("mFirstDay is not");
+            throw new ZlyqEventException("mFirstDay is not");
         }
         return mFirstDay;
     }
 
     public static PersistentUserId getUserId(){
         if (mUserId == null) {
-            throw new EventException("mLoginId is not");
+            throw new ZlyqEventException("mLoginId is not");
         }
         return mUserId;
     }
 
     public static PersistentDistinctId getDistinctId(){
         if (mDistinctId == null) {
-            throw new EventException("mDistinctId is not");
+            throw new ZlyqEventException("mDistinctId is not");
         }
         return mDistinctId;
     }
 
     public static PersistentAppId getAppId(){
         if (mAppId == null) {
-            throw new EventException("mAppId is not");
+            throw new ZlyqEventException("mAppId is not");
         }
         return mAppId;
     }
 
     public static PersistentDebugMode getDebugMode(){
         if (mDebugMode == null) {
-            throw new EventException("mDebugMode is not");
+            throw new ZlyqEventException("mDebugMode is not");
         }
         return mDebugMode;
     }
 
     public static PersistentIsLogin isLogin(){
         if (mIsLogin == null) {
-            throw new EventException("mFirstStart is not");
+            throw new ZlyqEventException("mFirstStart is not");
         }
         return mIsLogin;
     }
@@ -135,40 +135,40 @@ public final class ZADataManager {
      */
     public static void init(Application application, String cookie, boolean isDebug) {
         if (application == null){
-            ELogger.logWrite(EConstant.TAG, " ZADataManager application==null!");
+            ZlyqLogger.logWrite(ZlyqConstant.TAG, " ZADataManager application==null!");
             return;
         }
 
-        PersistentLoader.initLoader(application);
-        mFirstStart = (PersistentFirstStart) PersistentLoader.loadPersistent(PersistentLoader.PersistentName.FIRST_START);
-        mFirstDay = (PersistentFirstDay) PersistentLoader.loadPersistent(PersistentLoader.PersistentName.FIRST_DAY);
-        mUserId = (PersistentUserId) PersistentLoader.loadPersistent(PersistentLoader.PersistentName.USER_ID);
-        mDistinctId = (PersistentDistinctId) PersistentLoader.loadPersistent(PersistentLoader.PersistentName.DISTINCT_ID);
-        mAppId = (PersistentAppId) PersistentLoader.loadPersistent(PersistentLoader.PersistentName.APP_ID);
-        mDebugMode = (PersistentDebugMode) PersistentLoader.loadPersistent(PersistentLoader.PersistentName.DEBUG_MODE);
-        mIsLogin = (PersistentIsLogin) PersistentLoader.loadPersistent(PersistentLoader.PersistentName.IS_LOGIN);
+        ZlyqPersistentLoader.initLoader(application);
+        mFirstStart = (PersistentFirstStart) ZlyqPersistentLoader.loadPersistent(ZlyqPersistentLoader.PersistentName.FIRST_START);
+        mFirstDay = (PersistentFirstDay) ZlyqPersistentLoader.loadPersistent(ZlyqPersistentLoader.PersistentName.FIRST_DAY);
+        mUserId = (PersistentUserId) ZlyqPersistentLoader.loadPersistent(ZlyqPersistentLoader.PersistentName.USER_ID);
+        mDistinctId = (PersistentDistinctId) ZlyqPersistentLoader.loadPersistent(ZlyqPersistentLoader.PersistentName.DISTINCT_ID);
+        mAppId = (PersistentAppId) ZlyqPersistentLoader.loadPersistent(ZlyqPersistentLoader.PersistentName.APP_ID);
+        mDebugMode = (PersistentDebugMode) ZlyqPersistentLoader.loadPersistent(ZlyqPersistentLoader.PersistentName.DEBUG_MODE);
+        mIsLogin = (PersistentIsLogin) ZlyqPersistentLoader.loadPersistent(ZlyqPersistentLoader.PersistentName.IS_LOGIN);
 
         //处理app拥有多个进程
-        String processName = EDeviceUtils.getProcessName(application, Process.myPid());
+        String processName = ZlyqDeviceUtils.getProcessName(application, Process.myPid());
         if (processName==null||!processName.equals(application.getPackageName()+"")) {
-            ELogger.logWrite(EConstant.TAG, " ZADataManager 初始化进程为:" + processName + ",不在主进程中!");
+            ZlyqLogger.logWrite(ZlyqConstant.TAG, " ZADataManager 初始化进程为:" + processName + ",不在主进程中!");
             return;
         }
 
         if (hasInit) {
-            ELogger.logWrite(EConstant.TAG, " ZADataManager 已经初始化init(),请勿重复操作!!!!!!");
+            ZlyqLogger.logWrite(ZlyqConstant.TAG, " ZADataManager 已经初始化init(),请勿重复操作!!!!!!");
             return;
         }
 
         hasInit = true;
-        EConstant.SWITCH_OFF = false;//开启一切统计事务
-        EConstant.DEVELOP_MODE = isDebug;//是否是开发模式
+        ZlyqConstant.SWITCH_OFF = false;//开启一切统计事务
+        ZlyqConstant.DEVELOP_MODE = isDebug;//是否是开发模式
         ZADataManager.getDebugMode().commit("no_debug");
 
         /****************进行初始化*************************/
         app = application;
-        queue = EVolley.newRequestQueue(application);
-        EPushService.startService();
+        queue = ZlyqVolley.newRequestQueue(application);
+        ZlyqPushService.startService();
         ZADataDecorator.initCookie(cookie);
         ZADataNewDataPrivate.registerActivityLifecycleCallbacks(application);
 //        ZADataNewDataPrivate.registerActivityStateObserver(application);
@@ -177,17 +177,17 @@ public final class ZADataManager {
         //初始化
         String mAndroidId = ZLYQDataUtils.getAndroidID(getContext());
         Map map = new HashMap();
-        map.put("project_id", EConstant.PROJECT_ID);
+        map.put("project_id", ZlyqConstant.PROJECT_ID);
         map.put("udid", mAndroidId);
         initConfig(map);
 
-        ELogger.logWrite(EConstant.TAG, " ZADataManager run  on thread-->" + Thread.currentThread().getName());
-        ELogger.logWrite(TAG, "----ZADataAPI sdk init  success!----");
+        ZlyqLogger.logWrite(ZlyqConstant.TAG, " ZADataManager run  on thread-->" + Thread.currentThread().getName());
+        ZlyqLogger.logWrite(TAG, "----ZADataAPI sdk init  success!----");
 
     }
 
 //    public static void pushEvent() {
-//        EPushService.getSingleInstance().excutePushEvent();
+//        ZlyqPushService.getSingleInstance().excutePushEvent();
 //    }
 
     /**
@@ -195,9 +195,9 @@ public final class ZADataManager {
      */
     public static void destoryEventService() {
         hasInit = false;//变为 可初始化
-        EConstant.SWITCH_OFF = true;//关闭一切统计事务
-        EPushService.getSingleInstance().stopEventService();
-        ELogger.logWrite(EConstant.TAG, " ----ZADataAPI sdk is destoryEventService!---");
+        ZlyqConstant.SWITCH_OFF = true;//关闭一切统计事务
+        ZlyqPushService.getSingleInstance().stopEventService();
+        ZlyqLogger.logWrite(ZlyqConstant.TAG, " ----ZADataAPI sdk is destoryEventService!---");
     }
 
     /**
@@ -205,8 +205,8 @@ public final class ZADataManager {
      */
     public static void cancelEventPush() {
         hasInit = false;//变为 可初始化
-        EPushService.getSingleInstance().stopEventService();
-        ELogger.logWrite(EConstant.TAG, " ----ZADataAPI sdk is cancelEventPush---");
+        ZlyqPushService.getSingleInstance().stopEventService();
+        ZlyqLogger.logWrite(ZlyqConstant.TAG, " ----ZADataAPI sdk is cancelEventPush---");
     }
 
     /**
@@ -217,14 +217,14 @@ public final class ZADataManager {
 
         private Application application;
 
-        private boolean DEVELOP_MODE = EConstant.DEVELOP_MODE;
-        private int PUSH_CUT_NUMBER = EConstant.PUSH_CUT_NUMBER;
-        private double PUSH_CUT_DATE = EConstant.PUSH_CUT_DATE;
-        private int PUSH_FINISH_DATE = EConstant.PUSH_FINISH_DATE;
-        private int PROJECT_ID = EConstant.PROJECT_ID;
+        private boolean DEVELOP_MODE = ZlyqConstant.DEVELOP_MODE;
+        private int PUSH_CUT_NUMBER = ZlyqConstant.PUSH_CUT_NUMBER;
+        private double PUSH_CUT_DATE = ZlyqConstant.PUSH_CUT_DATE;
+        private int PUSH_FINISH_DATE = ZlyqConstant.PUSH_FINISH_DATE;
+        private int PROJECT_ID = ZlyqConstant.PROJECT_ID;
 
         private String cookie = "";
-        private CookieFacade cookieIntercept;
+        private ZlyqCookieFacade cookieIntercept;
 
         public Builder(Application application) {
             this.application = application;
@@ -286,7 +286,7 @@ public final class ZADataManager {
          * @return
          */
         public  Builder setPushUrl(String url) {
-            EConstant.COLLECT_URL = url;
+            ZlyqConstant.COLLECT_URL = url;
             return this;
         }
 
@@ -295,7 +295,7 @@ public final class ZADataManager {
          * @return
          */
         public  Builder setApiKey(String apiKey) {
-            EConstant.API_KEY = apiKey;
+            ZlyqConstant.API_KEY = apiKey;
             return this;
         }
 
@@ -304,7 +304,7 @@ public final class ZADataManager {
          * @param cookieIntercept
          * @return
          */
-        public Builder setCookieIntercept(CookieFacade cookieIntercept) {
+        public Builder setCookieIntercept(ZlyqCookieFacade cookieIntercept) {
             this.cookieIntercept=cookieIntercept;
             return this;
         }
@@ -323,25 +323,25 @@ public final class ZADataManager {
          * 开始构建
          */
         public void start() {
-            ELogger.logWrite(EConstant.TAG, " ZADataManager.Builder#start() " );
+            ZlyqLogger.logWrite(ZlyqConstant.TAG, " ZADataManager.Builder#start() " );
 
             if (application == null) {
-                ELogger.logWrite(EConstant.TAG, " ZADataManager.Builder#start() application:" + "不能为空!");
+                ZlyqLogger.logWrite(ZlyqConstant.TAG, " ZADataManager.Builder#start() application:" + "不能为空!");
                 return;
             }
 
             //处理app拥有多个进程
-            String processName = EDeviceUtils.getProcessName(application, Process.myPid());
+            String processName = ZlyqDeviceUtils.getProcessName(application, Process.myPid());
             if (!processName.equals(application.getPackageName())) {
-                ELogger.logWrite(EConstant.TAG, " ZADataManager.Builder#start() 初始化进程为:" + processName + " 不在主进程中!");
+                ZlyqLogger.logWrite(ZlyqConstant.TAG, " ZADataManager.Builder#start() 初始化进程为:" + processName + " 不在主进程中!");
                 return;
             }
 
-            EConstant.PROJECT_ID = PROJECT_ID;
-            EConstant.PUSH_CUT_NUMBER = PUSH_CUT_NUMBER;
-            EConstant.PUSH_CUT_DATE = PUSH_CUT_DATE;
-            EConstant.PUSH_FINISH_DATE = PUSH_FINISH_DATE;
-            EGsonRequest.cookieIntercept = cookieIntercept;
+            ZlyqConstant.PROJECT_ID = PROJECT_ID;
+            ZlyqConstant.PUSH_CUT_NUMBER = PUSH_CUT_NUMBER;
+            ZlyqConstant.PUSH_CUT_DATE = PUSH_CUT_DATE;
+            ZlyqConstant.PUSH_FINISH_DATE = PUSH_FINISH_DATE;
+            ZlyqGsonRequest.cookieIntercept = cookieIntercept;
 
             ZADataManager.init(application, cookie, DEVELOP_MODE);
         }
@@ -351,27 +351,27 @@ public final class ZADataManager {
         if(mDistinctId != null){
             String distinctId = mDistinctId.get();
             if(TextUtils.isEmpty(distinctId)){
-                String path = EConstant.COLLECT_URL + API.INIT_API + EConstant.PROJECT_ID;
+                String path = ZlyqConstant.COLLECT_URL + API.INIT_API + ZlyqConstant.PROJECT_ID;
                 path = path+"?time="+System.currentTimeMillis();
-                EGsonRequest request = new EGsonRequest<>(Request.Method.POST, path, ResultConfig.class, null, map,//191
+                ZlyqGsonRequest request = new ZlyqGsonRequest<>(Request.Method.POST, path, ResultConfig.class, null, map,//191
                         new Response.Listener<ResultConfig>() {
                             @Override
                             public void onResponse(ResultConfig response) {
                                 int code = response.getCode();
-                                ELogger.logWrite(TAG, response.toString());
+                                ZlyqLogger.logWrite(TAG, response.toString());
                                 if (code == 0) {
                                     Map<String, String> data = response.getData();
                                     mDistinctId.commit(data.get("distinct_id"));
-                                    ELogger.logWrite(TAG, "--init Success--");
+                                    ZlyqLogger.logWrite(TAG, "--init Success--");
                                 } else {
-                                    ELogger.logWrite(TAG, "--init Error--");
+                                    ZlyqLogger.logWrite(TAG, "--init Error--");
                                 }
                             }
                         },
                         new Response.ErrorListener() {
                             @Override
                             public void onErrorResponse(VolleyError error) {
-                                ELogger.logWrite(TAG, "--onVolleyError--");
+                                ZlyqLogger.logWrite(TAG, "--onVolleyError--");
                             }
                         }
                 );

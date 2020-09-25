@@ -6,21 +6,19 @@ import android.app.Activity;
 import android.app.Application;
 import android.content.pm.ActivityInfo;
 import android.content.pm.PackageManager;
-import android.database.ContentObserver;
-import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
-import android.os.CountDownTimer;
 import android.os.Handler;
 import android.os.Looper;
-import android.support.annotation.Keep;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
+
 import com.zlyq.client.android.analytics.ZADataAPI;
 import com.zlyq.client.android.analytics.ZADataManager;
+
 import org.json.JSONException;
 import org.json.JSONObject;
-import java.lang.ref.WeakReference;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;

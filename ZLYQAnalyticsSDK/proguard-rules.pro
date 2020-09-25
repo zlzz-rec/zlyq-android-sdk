@@ -99,7 +99,7 @@
      public protected *;
 }
 
--keep public class com.zlyq.client.android.analytics.enums.LTPType* {
+-keep public class com.zlyq.client.android.analytics.enums.ZlyqLTPType* {
       public protected *;
 }
 

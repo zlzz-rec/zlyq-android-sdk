@@ -1,15 +1,10 @@
 package com.zlyq.client.android.analytics.net.core;
 
-
 import com.zlyq.client.android.analytics.net.gson.JsonDeserializationContext;
 import com.zlyq.client.android.analytics.net.gson.JsonDeserializer;
 import com.zlyq.client.android.analytics.net.gson.JsonElement;
-
 import java.lang.reflect.Type;
 
-/**
- * @author Aidi on 2018/1/8.
- */
 public class IntegerAdapter implements JsonDeserializer<Integer> {
 
     @Override
